@@ -27,7 +27,7 @@ public class OnBoard : MonoBehaviour
     void FixedUpdate()
     {
         TransformOnBoard();
-        KeepInside();
+        // KeepInside();
     }
 
     void TransformOnBoard()
@@ -74,24 +74,106 @@ public class OnBoard : MonoBehaviour
         transform.position = next_pos;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D collision)
     {
+        bool[] touching = { false, false, false, false};
+
         foreach (ContactPoint2D contact in collision.contacts)
         {
             Vector2 normal = contact.normal;
 
-            if (normal.x > 0.5f)
-                Debug.Log("Hit left wall");
-
-            if (normal.x < -0.5f)
-                Debug.Log("Hit right wall");
-
-            if (normal.y > 0.5f)
-                Debug.Log("Hit floor");
-
-            if (normal.y < -0.5f)
-                Debug.Log("Hit ceiling");
+            if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
+            {
+                if (normal.x > 0)
+                {
+                    //Debug.Log("Hit wall on LEFT side of player");
+                    touching[0] = true;
+                }
+                else
+                {
+                    //Debug.Log("Hit wall on RIGHT side of player");
+                    touching[0] = true;
+                    touching[2] = true;
+                }
+            }
+            else
+            {
+                if (normal.y > 0)
+                {
+                    //Debug.Log("Hit from BELOW (floor)");
+                    touching[1] = true;
+                }
+                else
+                {
+                    //Debug.Log("Hit from ABOVE (ceiling)");
+                    touching[1] = true;
+                    touching[3] = true;
+                }
+            }
         }
+
+        // Getting force vector due to spin
+        Vector2 pos = transform.position;
+        Vector2 radius = pos - Ship.Instance.center;
+        Vector2 tangent = new Vector2(-radius.y, radius.x);
+        Vector2 spin_force = tangent * -Ship.Instance.spin;
+        ////// Total momentum of bumped-into wall
+        Vector2 wal = Ship.Instance.vel + spin_force;
+
+        if (movingObject != null) // Modify vel + Momentum
+        {
+            if (touching[0])
+            {
+                if ((movingObject.vel.x < 0) == touching[2]) // Facing away from wall
+                {
+                    movingObject.vel.x = 0;
+                    momentum.x = wal.x;
+                }
+                else // Facing wall
+                {
+                    if (touching[2]) // Facing Right wall
+                    {
+                        movingObject.vel.x = Mathf.Max(wal.x - momentum.x, 0);
+                        momentum.x = Mathf.Min(momentum.x, wal.x);
+                    }
+                    else // Facing Left wall
+                    {
+                        movingObject.vel.x = Mathf.Min(wal.x - momentum.x, 0);
+                        momentum.x = Mathf.Max(momentum.x, wal.x);
+                    }
+                }
+            }
+
+            if (touching[1])
+            {
+                if ((movingObject.vel.y < 0) == touching[3]) // Facing away from wall
+                {
+                    movingObject.vel.y = 0;
+                    momentum.y = wal.y;
+                }
+                else // Facing wall
+                {
+                    if (touching[3]) // Facing Up wall
+                    {
+                        movingObject.vel.y = Mathf.Max(wal.y - momentum.y, 0);
+                        momentum.y = Mathf.Min(momentum.y, wal.y);
+                    }
+                    else // Facing Down wall
+                    {
+                        movingObject.vel.y = Mathf.Min(wal.y - momentum.y, 0);
+                        momentum.y = Mathf.Max(momentum.y, wal.y);
+                    }
+
+                }
+            }
+        }
+        else
+        {
+            // Idle objects simply pushed by ship
+            if (touching[0]) momentum.x = wal.x;
+            if (touching[1]) momentum.y = wal.y;
+        }
+
     }
 
     void KeepInside()

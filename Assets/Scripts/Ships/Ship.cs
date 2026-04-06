@@ -31,10 +31,8 @@ public class Ship : MonoBehaviour
     {
         Instance = this;
 
-        spaceship = transform.Find("Spaceship").GetComponent<Tilemap>();
+        spaceship = transform.Find("Walls").GetComponent<Tilemap>();
         spaceship_collider = spaceship.GetComponent<TilemapCollider2D>();
-        doors = transform.Find("Doors").GetComponent<Tilemap>();
-        airlocks = transform.Find("Airlocks").GetComponent<Tilemap>();
 
         vel = Vector2.zero;
         spin = 0;
