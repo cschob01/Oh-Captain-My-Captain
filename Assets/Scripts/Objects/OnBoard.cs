@@ -76,7 +76,7 @@ public class OnBoard : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        bool[] touching = { false, false, false, false};
+        bool[] touching = { false, false, false, false };
 
         foreach (ContactPoint2D contact in collision.contacts)
         {
