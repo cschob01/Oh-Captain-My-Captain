@@ -5,7 +5,7 @@ public class VelocityVisualizer : MonoBehaviour
     [Tooltip("Assign your Controls script here in the Inspector.")]
     public MovingObject movingObject;  // Drag the Controls component here in Inspector
 
-    void Update()
+    void FixedUpdate()
     {
         if (movingObject != null)
         {
