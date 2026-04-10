@@ -15,13 +15,7 @@ public class Enemy : MovingObject
         Vector2 dir = (target - pos).normalized;
         vel += acc * dir;
 
-        //Rotate velocity
-        float cos = Mathf.Cos(Ship.Instance.spin * Time.fixedDeltaTime);
-        float sin = Mathf.Sin(Ship.Instance.spin * Time.fixedDeltaTime);
-        vel = new Vector2(
-            vel.x * cos - vel.y * sin,
-            vel.x * sin + vel.y * cos
-        );
+        ////Clamp velocity
         vel = Vector2.ClampMagnitude(vel, max_vel);
     }
 }

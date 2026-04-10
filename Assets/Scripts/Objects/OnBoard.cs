@@ -186,7 +186,7 @@ public class OnBoard : MonoBehaviour
         {
             Vector2 normal = dist.normal;
 
-            Debug.Log("Normal: " + normal);
+            //Debug.Log("Normal: " + normal);
 
             bool rightWall = normal.x < -0.5f;
             bool leftWall = normal.x > 0.5f;
@@ -267,7 +267,7 @@ public class OnBoard : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not inside");
+            //Debug.Log("Not inside");
         }
     }
 
