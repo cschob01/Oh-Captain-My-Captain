@@ -5727,7 +5727,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000b96d4c939b5336d6d91ef4b631cd00c4d5cdab3fabb3f459
+  m_ApplyToSortingLayers: 00000000b96d4c939b5336d6d91ef4b631cd00c4d5cdab3fabb3f4592346afad
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -13668,6 +13668,8 @@ GameObject:
   - component: {fileID: 1554879399}
   - component: {fileID: 1554879400}
   - component: {fileID: 1554879401}
+  - component: {fileID: 1554879402}
+  - component: {fileID: 1554879403}
   m_Layer: 9
   m_Name: Captain
   m_TagString: Untagged
@@ -13778,7 +13780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Controls
   vel: {x: 0, y: 0}
-  Handler: {fileID: 0}
+  Handler: {fileID: 1554879402}
   acc: 0.04
   max_vel: 3
 --- !u!50 &1554879399
@@ -13820,7 +13822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: babdcd0e4b95f1d49970b83182bf26ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ControlShip
-  Handler: {fileID: 0}
+  Handler: {fileID: 1554879402}
 --- !u!58 &1554879401
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -13857,6 +13859,35 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.1
+--- !u!114 &1554879402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554879392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92a623b747b6774e860fb4ee0dd1d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputHandler
+--- !u!114 &1554879403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554879392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c58ebc7d6a00d4688ab7bb450b8081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandleGuns
+  gunPrefab: {fileID: 2864326933477791452, guid: 9e73e6ec8fe6daa468190e20693ff331, type: 3}
+  obj: {fileID: 0}
+  gun: {fileID: 0}
+  Handler: {fileID: 1554879402}
+  distanceFromPlayer: 0.1
 --- !u!1 &1573424515
 GameObject:
   m_ObjectHideFlags: 0
