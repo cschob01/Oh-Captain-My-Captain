@@ -60,7 +60,7 @@ public class ControlShip : MonoBehaviour
             input.x * Mathf.Cos(camRot) - input.y * Mathf.Sin(camRot),
             input.x * Mathf.Sin(camRot) + input.y * Mathf.Cos(camRot)
         );
-        Ship.Instance.SetVel(rotatedInput);
+        Ship.Instance.SetVel(rotatedInput, input);
     }
 }
 

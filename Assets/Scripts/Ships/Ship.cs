@@ -12,6 +12,12 @@ public class Ship : MonoBehaviour
     public float grav_dir { get; private set; } // Direction in degrees
     public float grav_force { get; private set; } // Direction in degrees
     public Vector2 center { get; private set; } // Center coordinates
+
+    public Vector2 global_vel { get; private set; } // Units per second
+
+    public Vector2 global_pos { get; private set; } // Ship pos
+
+    public float global_angle { get; private set; } // Ship angle
     public Tilemap spaceship { get; private set; }
     public TilemapCollider2D spaceship_collider { get; private set; }
     public Tilemap doors { get; private set; }
@@ -55,11 +61,12 @@ public class Ship : MonoBehaviour
     //////////////////////////////////////////
     // Repeatedly called via FixedUpdate
     //////////////////////////////////////////
-    public void SetVel(Vector2 input)
+    public void SetVel(Vector2 input, Vector2 global_input)
     {
         if (vel_active)
         {
             vel += input * vel_acc_rate * Time.fixedDeltaTime;
+            global_vel += global_input * vel_acc_rate * Time.fixedDeltaTime;
         }
     }
     public void SetSpin(bool dir)
@@ -89,5 +96,9 @@ public class Ship : MonoBehaviour
             vel.x * cos - vel.y * sin,
             vel.x * sin + vel.y * cos
         );
+
+        global_angle += spin * Mathf.Rad2Deg * Time.fixedDeltaTime;
+        global_pos += global_vel * Time.fixedDeltaTime;
+        Debug.Log("Pos: " + global_pos + "  Angle: " + global_angle);
     }
 }
