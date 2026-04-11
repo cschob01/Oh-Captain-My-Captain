@@ -99,6 +99,6 @@ public class Ship : MonoBehaviour
 
         global_angle += spin * Mathf.Rad2Deg * Time.fixedDeltaTime;
         global_pos += global_vel * Time.fixedDeltaTime;
-        Debug.Log("Pos: " + global_pos + "  Angle: " + global_angle);
+        //Debug.Log("Pos: " + global_pos + "  Angle: " + global_angle);
     }
 }
