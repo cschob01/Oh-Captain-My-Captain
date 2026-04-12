@@ -59,5 +59,8 @@ TagManager:
   - name: Captain
     uniqueID: 1068223957
     locked: 0
+  - name: Props
+    uniqueID: 1700389523
+    locked: 0
   m_RenderingLayers:
   - Default
