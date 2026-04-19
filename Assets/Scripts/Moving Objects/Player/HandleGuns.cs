@@ -10,23 +10,28 @@ public class HandleGuns : MonoBehaviour
 
     public float distanceFromPlayer = .1f;
 
+    public Vector2 dir;
     private void Awake()
     {
         obj = Instantiate(gunPrefab, transform.position, Quaternion.identity, transform);
         gun = obj.GetComponent<Gun>();
     }
 
+    private void Update()
+    {
+        if (Handler.controls.Gun.Attack.IsPressed()) gun.Fire(dir);
+        if (Handler.controls.Gun.Reload.IsPressed()) gun.Reload();
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Handler.controls.Gun.Attack.IsPressed()) gun.Fire();
-        if (Handler.controls.Gun.Reload.IsPressed()) gun.Reload();
-
         // Point gun
-        Vector2 MousePos = Handler.controls.Player.Look.ReadValue<Vector2>();
-        Vector2 ObjectPos = Camera.main.WorldToScreenPoint(transform.position);
+        Vector2 mouseScreen = Handler.controls.Player.Look.ReadValue<Vector2>();
+        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(mouseScreen);
+        mouseWorld.z = 0f;
 
-        Vector2 dir = (MousePos - ObjectPos).normalized;
+        dir = (mouseWorld - transform.position).normalized;
         obj.transform.localPosition = dir * distanceFromPlayer;
 
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

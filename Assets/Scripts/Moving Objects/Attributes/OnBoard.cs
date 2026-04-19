@@ -12,7 +12,7 @@ using static UnityEditor.PlayerSettings;
 public class OnBoard : MonoBehaviour
 {
     public MovingObject movingObject = null;
-    private Vector2 momentum = Vector2.zero;
+    public Vector2 momentum = Vector2.zero;
 
     public Collider2D mapCol;
     public Collider2D playerCol;
@@ -122,7 +122,7 @@ public class OnBoard : MonoBehaviour
 
         if (movingObject != null) // Modify vel + Momentum
         {
-            if (touching[0])
+            if (touching[0]) // Touching horizontally
             {
                 if ((movingObject.vel.x < 0) == touching[2]) // Facing away from wall
                 {

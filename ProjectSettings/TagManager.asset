@@ -12,10 +12,10 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - Background
   - Walls
-  - Movables
-  - 
+  - Enemies
+  - Player
   - 
   - 
   - 
@@ -58,6 +58,9 @@ TagManager:
     locked: 0
   - name: Captain
     uniqueID: 1068223957
+    locked: 0
+  - name: Projectiles
+    uniqueID: 1923099245
     locked: 0
   - name: Props
     uniqueID: 1700389523

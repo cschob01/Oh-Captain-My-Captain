@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8566200159891115653, guid: 532534c6539eaaf45a08472ce4742a74, type: 3}
       propertyPath: m_SortingLayer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8566200159891115653, guid: 532534c6539eaaf45a08472ce4742a74, type: 3}
       propertyPath: m_SortingLayerID
@@ -113,3 +113,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7742f34f5903c02428da34dd924d63de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pistol
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 768
+  laserPrefab: {fileID: 8067323692892758690, guid: a9498809f574da043bdd9beb19519c6a, type: 3}
+  damage: 10
+  range: 100
