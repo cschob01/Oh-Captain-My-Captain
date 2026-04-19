@@ -20,8 +20,6 @@ public class OnBoard : MonoBehaviour
     protected Rigidbody2D object_rb;
 
     public float epsilon = .01f;
-    private bool flip_x = false;
-    private bool flip_y = false;
 
     void Awake()
     {

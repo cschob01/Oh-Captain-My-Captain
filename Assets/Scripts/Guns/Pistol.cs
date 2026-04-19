@@ -11,6 +11,8 @@ public class Pistol : Gun
 
     public float reload_time = .75f; // Bullet per sec
     public float fire_time = .3f; // Bullet per sec
+
+    Coroutine reloadCoroutine;
     public bool reloading = false;
     public bool shooting = false;
 
@@ -18,24 +20,28 @@ public class Pistol : Gun
     public int range = 100;
     public float knockback = .1f;
 
+    public DisplayAmo displayAmo;
+
     void Awake()
     {
+        displayAmo = FindFirstObjectByType<DisplayAmo>();
+        displayAmo.SetAmo(chamber);
     }
 
     public override void Fire(Vector2 dir)
     {
         if (shooting) return; 
         if (chamber <= 0)  {  Reload(); return; }
-        reloading = false;
+        StopReloading();
 
         chamber--;
+        displayAmo.SetAmo(chamber);
 
         //FIRE SHIT
         CastRay(dir);
 
         //Start cooldown
         StartCoroutine(FireTimer());
-
    
         //Debug.Log("FIRED! Current: " + chamber);
     }
@@ -61,7 +67,6 @@ public class Pistol : Gun
 
     void SpawnLaser(Vector2 start, Vector2 end)
     {
-
         GameObject laser = Instantiate(laserPrefab);
 
         Vector2 dir = (end - start);
@@ -85,7 +90,22 @@ public class Pistol : Gun
     }
     public override void Reload()
     {
-        if (!reloading) StartCoroutine(ReloadTimer());
+        if (!reloading) reloadCoroutine = StartCoroutine(ReloadTimer());
+    }
+
+    public void StopReloading()
+    {
+        if (reloadCoroutine != null)
+        {
+            Debug.Log("STOPPING COROUTINE");
+            StopCoroutine(reloadCoroutine);
+            reloadCoroutine = null;
+            reloading = false;
+        }
+        else
+        {
+            Debug.Log("Nothing to stop");
+        }
     }
 
     IEnumerator ReloadTimer()
@@ -95,8 +115,8 @@ public class Pistol : Gun
         while ((chamber < capacity) && reloading)
         {
             yield return new WaitForSeconds(reload_time);
-            if (reloading) chamber++;
-            Debug.Log("Loaded one bullet. Current: " + chamber);
+            chamber++;
+            displayAmo.SetAmo(chamber);
         }
 
         reloading = false;

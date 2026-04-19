@@ -13,6 +13,14 @@ PrefabInstance:
       value: Pistol
       objectReference: {fileID: 0}
     - target: {fileID: 4592826337896136018, guid: 532534c6539eaaf45a08472ce4742a74, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4592826337896136018, guid: 532534c6539eaaf45a08472ce4742a74, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4592826337896136018, guid: 532534c6539eaaf45a08472ce4742a74, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.82703286
       objectReference: {fileID: 0}
@@ -117,5 +125,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 768
   laserPrefab: {fileID: 8067323692892758690, guid: a9498809f574da043bdd9beb19519c6a, type: 3}
+  reload_time: 0.75
+  fire_time: 0.3
+  reloading: 0
+  shooting: 0
   damage: 10
   range: 100
+  knockback: 0.1

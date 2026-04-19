@@ -19,8 +19,8 @@ public class HandleGuns : MonoBehaviour
 
     private void Update()
     {
-        if (Handler.controls.Gun.Attack.IsPressed()) gun.Fire(dir);
-        if (Handler.controls.Gun.Reload.IsPressed()) gun.Reload();
+        if (Handler.controls.Gun.Attack.WasPressedThisFrame()) gun.Fire(dir);
+        if (Handler.controls.Gun.Reload.WasPressedThisFrame()) gun.Reload();
     }
 
     // Update is called once per frame
