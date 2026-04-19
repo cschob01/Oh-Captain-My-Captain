@@ -19,6 +19,10 @@ public class OnBoard : MonoBehaviour
 
     protected Rigidbody2D object_rb;
 
+    public float epsilon = .01f;
+    private bool flip_x = false;
+    private bool flip_y = false;
+
     void Awake()
     {
     }
@@ -126,6 +130,11 @@ public class OnBoard : MonoBehaviour
             {
                 if ((movingObject.vel.x < 0) == touching[2]) // Facing away from wall
                 {
+                    // If wall is moving AWAY, do nothing (skip response)
+                    float relVelX = movingObject.vel.x + momentum.x - wal.x;
+                    if (Mathf.Abs(relVelX) < epsilon || relVelX * (touching[2] ? -1 : 1) > 0)
+                        return;
+
                     movingObject.vel.x = 0;
                     momentum.x = wal.x;
                 }
@@ -148,6 +157,11 @@ public class OnBoard : MonoBehaviour
             {
                 if ((movingObject.vel.y < 0) == touching[3]) // Facing away from wall
                 {
+                    // If wall is moving AWAY, do nothing
+                    float relVelY = movingObject.vel.y + momentum.y - wal.y;
+                    if (Mathf.Abs(relVelY) < epsilon || relVelY * (touching[3] ? -1 : 1) > 0)
+                        return;
+
                     movingObject.vel.y = 0;
                     momentum.y = wal.y;
                 }
@@ -170,8 +184,24 @@ public class OnBoard : MonoBehaviour
         else
         {
             // Idle objects simply pushed by ship
-            if (touching[0]) momentum.x = wal.x;
-            if (touching[1]) momentum.y = wal.y;
+            if (touching[0])
+            {
+                // If wall is moving AWAY, do nothing
+                float relVelX = momentum.x - wal.x;
+                if (Mathf.Abs(relVelX) < epsilon || relVelX * (touching[2] ? -1 : 1) > 0)
+                    return;
+
+                momentum.x = wal.x;
+            }
+            if (touching[1])
+            {
+                // If wall is moving AWAY, do nothing
+                float relVelY = momentum.y - wal.y;
+                if (Mathf.Abs(relVelY) < epsilon || relVelY * (touching[3] ? -1 : 1) > 0)
+                    return;
+
+                momentum.y = wal.y;
+            }
         }
 
     }
