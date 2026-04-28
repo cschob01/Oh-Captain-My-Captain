@@ -69,11 +69,11 @@ public class Ship : MonoBehaviour
             global_vel += global_input * vel_acc_rate * Time.fixedDeltaTime;
         }
     }
-    public void SetSpin(bool dir)
+    public void SetSpin(float dir) // Positive is right, negative is left
     {
         if (spin_active)
         {
-            spin += (dir ? 1 : -1) * spin_acc_rate * Time.fixedDeltaTime;
+            spin += dir * spin_acc_rate * Time.fixedDeltaTime;
         }
     }
     public void SetGrav(bool dir, bool on)

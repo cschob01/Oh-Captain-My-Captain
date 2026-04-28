@@ -10,11 +10,11 @@ public class ControlShip : MonoBehaviour
     {
         if (Handler.controls.Ship.SpinLeft.IsPressed())
         {
-            Ship.Instance.SetSpin(false); // Spin Left
+            Ship.Instance.SetSpin(-1f); // Spin Left
         }
         if (Handler.controls.Ship.SpinRight.IsPressed())
         {
-            Ship.Instance.SetSpin(true); // Spin Right
+            Ship.Instance.SetSpin(1f); // Spin Right
         }
 
         Vector2 input = Handler.controls.Ship.Thrust.ReadValue<Vector2>();
