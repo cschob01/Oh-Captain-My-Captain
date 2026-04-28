@@ -15,7 +15,7 @@ public class NPCPathing1 : MovingObject
 
     public float waypointDistance = 0.1f;
 
-    private bool line_of_sight = false;
+    private bool line_of_sight = true;
 
     void Start()
     {
