@@ -1,8 +1,12 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerHealth : Health
 {
     public DisplayPlayerHealth displayHealth;
+    public bool damage_cool_down = false;
+
+    public float cool_down_time = 3f;
 
     public void Awake()
     {
@@ -13,14 +17,34 @@ public class PlayerHealth : Health
 
     public override void TakeDamage(int damage, Vector2 dir)
     {
-        health -= damage;
-        displayHealth.SetHealth(health);
-        Debug.Log("Enemy Hit!");
-        if (health <= 0)
+        if (!damage_cool_down)
         {
-            Destroy(gameObject);
-        }
+            StartCoroutine(CoolDown());
 
-        onBoard.momentum += dir;
+
+            health -= damage;
+            displayHealth.SetHealth(health);
+            Debug.Log("Player Hit!");
+            if (health <= 0)
+            {
+                Destroy(gameObject);
+            }
+
+            onBoard.momentum += dir;
+        }
+        else
+        {
+            Debug.Log("Player On Cooldown!");
+        }
     }
+
+    IEnumerator CoolDown()
+    {
+        damage_cool_down = true;
+
+        yield return new WaitForSeconds(cool_down_time);
+
+        damage_cool_down = false;
+    }
+
 }

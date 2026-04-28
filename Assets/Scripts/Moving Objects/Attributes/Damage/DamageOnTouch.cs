@@ -2,17 +2,22 @@ using UnityEngine;
 
 public class DamageOnTouch : MonoBehaviour
 {
-    public PlayerHealth playerHealth;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public int damage = 10;
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if (other.gameObject.layer == LayerMask.NameToLayer("Triggers"))
+        {
+            Debug.Log("Collided with player!");
+
+            if (other.TryGetComponent<PlayerHealth>(out var player_health))
+            {
+                player_health.TakeDamage(damage, Vector2.zero);
+            }
+        }
+        else
+        {
+            Debug.Log("Collided with non-player!");
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
