@@ -2,37 +2,41 @@ using System.Collections;
 using UnityEngine;
 using static UnityEngine.UI.Image;
 
-public class Pistol : Gun
+public class M1919 : Gun
 {
     public LayerMask hitMask;
     public GameObject laserPrefab;
-    public int capacity { get; private set; } = 6;
+    public int capacity { get; private set; } = 100;
     public int chamber { get; private set; }
 
-    public float reload_time = .75f; // Bullet per sec
-    public float fire_time = .3f; // Bullet per sec
+    public float reload_time = 5f; // Bullet per sec
+    public float fire_time = .1f; // Bullet per sec
 
-    Coroutine reloadCoroutine;
+    private Coroutine reloadCoroutine;
     public bool reloading = false;
     public bool shooting = false;
 
-    public int damage = 10;
+    public int damage = 3;
     public int range = 100;
     public float knockback = .1f;
+    public float kickback = .05f;
 
     public DisplayAmo displayAmo;
+
+    public OnBoard onBoard;
 
     void Awake()
     {
         displayAmo = FindFirstObjectByType<DisplayAmo>();
         chamber = capacity;
         displayAmo.SetAmo(chamber);
+        onBoard = transform.parent.GetComponent<OnBoard>(); // Parent must have this script
     }
 
     public override void Fire(Vector2 dir)
     {
-        if (shooting) return; 
-        if (chamber <= 0)  {  Reload(); return; }
+        if (shooting) return;
+        if (chamber <= 0) { Reload(); return; }
         StopReloading();
 
         chamber--;
@@ -41,9 +45,11 @@ public class Pistol : Gun
         //FIRE SHIT
         CastRay(dir);
 
+        onBoard.momentum = onBoard.momentum - dir * kickback;
+
         //Start cooldown
         StartCoroutine(FireTimer());
-   
+
         //Debug.Log("FIRED! Current: " + chamber);
     }
 
@@ -81,10 +87,10 @@ public class Pistol : Gun
         laser.transform.rotation = Quaternion.Euler(0, 0, angle);
 
         // Scale along X axis
-        laser.transform.localScale = new Vector3(distance, 1f, 1f);
+        laser.transform.localScale = new Vector3(distance, .5f, 1f);
 
         // Set parent to us
-        laser.transform.parent = transform;
+        //laser.transform.parent = transform;
 
         // Optional: destroy after short time
         Destroy(laser, 0.05f);
@@ -116,7 +122,7 @@ public class Pistol : Gun
         while ((chamber < capacity) && reloading)
         {
             yield return new WaitForSeconds(reload_time);
-            chamber++;
+            chamber = capacity;
             displayAmo.SetAmo(chamber);
         }
 
