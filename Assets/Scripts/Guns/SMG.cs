@@ -18,8 +18,8 @@ public class SMG : Gun
 
     public int damage = 3;
     public int range = 100;
-    public float knockback = .05f;
-    public float kickback = .02f;
+    public float knockback = .1f;
+    public float kickback = .1f;
 
     public DisplayAmo displayAmo;
 

@@ -10908,7 +10908,7 @@ SpriteRenderer:
   m_Size: {x: 32, y: 32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1471119651
@@ -14531,8 +14531,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandleShip
   actions: 
-  spin_strength: 0.2
-  vel_strength: 0.2
+  spin_strength: 0.4
+  vel_strength: 0.4
 --- !u!1 &1912989356
 GameObject:
   m_ObjectHideFlags: 0
