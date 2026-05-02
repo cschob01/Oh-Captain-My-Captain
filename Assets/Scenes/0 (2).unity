@@ -11524,7 +11524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c58ebc7d6a00d4688ab7bb450b8081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandleGuns
-  gunPrefab: {fileID: 4210293357784807088, guid: 8f50cd65e45eb9341bb331225a0980ea, type: 3}
+  gunPrefab: {fileID: 3126403846969229939, guid: 42660e1361d2b834eada040a86b661c1, type: 3}
   obj: {fileID: 0}
   gun: {fileID: 0}
   Handler: {fileID: 1845965768}
