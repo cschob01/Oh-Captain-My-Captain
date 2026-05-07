@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// ControlPlayer
+// Controls Player velocity using user inputs
 public class ControlPlayer : MovingObject
 {
 
@@ -14,7 +16,7 @@ public class ControlPlayer : MovingObject
     {
         Vector2 input = Handler.controls.Player.Move.ReadValue<Vector2>();
 
-        // Rotate relative to camera
+        // Rotate relative to camera so that it matches what user expects
         float camRot = Camera.main.transform.eulerAngles.z * Mathf.Deg2Rad;
 
         Vector2 rotatedInput = new Vector2(

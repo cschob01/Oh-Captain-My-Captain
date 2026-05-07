@@ -1,6 +1,9 @@
 using UnityEngine;
 using Pathfinding;
 
+// This enemy uses a BFS to search for the shortest path to the player on the map. 
+// Credit to A* Pathfinding Project library for implementation of graph setup and
+// search.
 public class NPCPathing1 : MovingObject
 {
     public Transform target;
@@ -20,7 +23,7 @@ public class NPCPathing1 : MovingObject
     void Start()
     {
         seeker = GetComponent<Seeker>();
-        InvokeRepeating(nameof(HasLineOfSight), 0f, 0.5f);
+        InvokeRepeating(nameof(HasLineOfSight), 0f, 0.5f); // Continually update if enemy sees the player
     }
 
     void UpdatePath()
@@ -37,7 +40,9 @@ public class NPCPathing1 : MovingObject
             currentWaypoint = 0;
         }
     }
-    void HasLineOfSight()
+
+    // Updates line_of_sight depending on if direct path from enemy to player exists
+    void HasLineOfSight() 
     {
         Vector2 start = transform.position;
         Vector2 end = target.position;
@@ -59,14 +64,13 @@ public class NPCPathing1 : MovingObject
             CancelInvoke(nameof(UpdatePath));
             //Debug.Log("Cancel Invoking");
         }
-            line_of_sight = res;
+        line_of_sight = res;
     }
 
     protected override void SetVel()
     {
-        if (line_of_sight)
+        if (line_of_sight) // Head directly to player
         {
-            //Debug.Log("LINE OF SIGHT");
             Vector2 start = transform.position;
             Vector2 end = target.position;
             Vector2 dir = (end - start).normalized;
@@ -75,9 +79,8 @@ public class NPCPathing1 : MovingObject
             ////Clamp velocity
             vel = Vector2.ClampMagnitude(vel, max_vel);
         }
-        else
+        else // Traverse BFS graph
         {
-            //Debug.Log("NO LINE OF SIGHT");
             if (path == null || currentWaypoint >= path.vectorPath.Count) return;
 
             Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - (Vector2)transform.position).normalized;

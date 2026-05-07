@@ -3,10 +3,10 @@ using System.Collections;
 
 public class PlayerHealth : Health
 {
-    public DisplayPlayerHealth displayHealth;
+    public DisplayPlayerHealth displayHealth; // For displaying on the Canvas
     public bool damage_cool_down = false;
 
-    public float cool_down_time = 3f;
+    public float cool_down_time = 3f; // Cannot be damaged twice in this amount of time
 
     public void Awake()
     {
@@ -21,10 +21,8 @@ public class PlayerHealth : Health
         {
             StartCoroutine(CoolDown());
 
-
             health -= damage;
             displayHealth.SetHealth(health);
-            Debug.Log("Player Hit!");
             if (health <= 0)
             {
                 Destroy(transform.parent.gameObject);
@@ -32,12 +30,9 @@ public class PlayerHealth : Health
 
             onBoard.momentum += dir;
         }
-        else
-        {
-            Debug.Log("Player On Cooldown!");
-        }
     }
 
+    // Gives player time to recover
     IEnumerator CoolDown()
     {
         damage_cool_down = true;

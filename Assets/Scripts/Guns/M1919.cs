@@ -7,8 +7,8 @@ public class M1919 : Gun
     public int capacity { get; private set; } = 100;
     public int chamber { get; private set; }
 
-    public float reload_time = 5f; // Bullet per sec
-    public float fire_time = .1f; // Bullet per sec
+    public float reload_time = 5f; // Seconds per bullet
+    public float fire_time = .1f; // Seconds per bullet
 
     private Coroutine reloadCoroutine;
     public bool reloading = false;
@@ -31,6 +31,7 @@ public class M1919 : Gun
 
     public override void Fire(Vector2 dir)
     {
+        // Check that fire request is valid
         if (shooting) return;
         if (chamber <= 0) { Reload(); return; }
         StopReloading();
@@ -38,34 +39,14 @@ public class M1919 : Gun
         chamber--;
         displayAmo.SetAmo(chamber);
 
-        //FIRE SHIT
+        //Fire
         CastRay(dir);
 
+        // Apply kickback
         onBoard.momentum = onBoard.momentum - dir * kickback;
 
         //Start cooldown
         StartCoroutine(FireTimer());
-
-        //Debug.Log("FIRED! Current: " + chamber);
-    }
-
-    public void CastRay(Vector2 dir)
-    {
-        Vector3 pos = transform.position;
-        RaycastHit2D hit = Physics2D.Raycast(pos, dir, range, hitMask);
-        Vector2 endPoint;
-
-        if (hit.collider != null)
-        {
-            hit.collider.GetComponent<Health>()?.TakeDamage(10, dir * knockback);
-            endPoint = hit.point;
-        }
-        else
-        {
-            endPoint = (Vector2)pos + dir * range;
-        }
-
-        SpawnLaser(pos, endPoint);
     }
 
     public override void Reload()
@@ -77,14 +58,10 @@ public class M1919 : Gun
     {
         if (reloadCoroutine != null)
         {
-            Debug.Log("STOPPING COROUTINE");
+            //Interupt reloading
             StopCoroutine(reloadCoroutine);
             reloadCoroutine = null;
             reloading = false;
-        }
-        else
-        {
-            Debug.Log("Nothing to stop");
         }
     }
 
@@ -92,12 +69,11 @@ public class M1919 : Gun
     {
         reloading = true;
 
-        while ((chamber < capacity) && reloading)
-        {
-            yield return new WaitForSeconds(reload_time);
-            chamber = capacity;
-            displayAmo.SetAmo(chamber);
-        }
+        // Reoad mag all at once
+        yield return new WaitForSeconds(reload_time);
+        chamber = capacity;
+        displayAmo.SetAmo(chamber);
+    
 
         reloading = false;
     }

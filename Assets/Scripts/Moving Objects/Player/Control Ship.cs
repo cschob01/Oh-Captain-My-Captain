@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// ControlShip
+// Gives user control over the spin and velocity of the ship
 public class ControlShip : MonoBehaviour
 {
     public InputHandler Handler;
 
-    // SetVel called once per FixedUpdate
     private void FixedUpdate()
     {
         if (Handler.controls.Ship.SpinLeft.IsPressed())
@@ -19,7 +20,7 @@ public class ControlShip : MonoBehaviour
 
         Vector2 input = Handler.controls.Ship.Thrust.ReadValue<Vector2>();
 
-        // Get the camera's rotation in radians
+        // Rotate to camera so velocity change matches user's expectations
         float camRot = Camera.main.transform.eulerAngles.z * Mathf.Deg2Rad;
         Vector2 rotatedInput = new Vector2(
             input.x * Mathf.Cos(camRot) - input.y * Mathf.Sin(camRot),

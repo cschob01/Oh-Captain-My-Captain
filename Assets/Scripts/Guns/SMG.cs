@@ -33,24 +33,25 @@ public class SMG : Gun
 
     public override void Fire(Vector2 dir)
     {
+        // Check that fire request is valid
         if (shooting) return;
         if (chamber <= 0) { Reload(); return; }
         StopReloading();
 
+        // Burst
         chamber -= 3;
         displayAmo.SetAmo(chamber);
 
-        //FIRE SHIT
+        //FIRE
         StartCoroutine(BurstShot(dir));
 
         //Start cooldown
         StartCoroutine(FireTimer());
-
-        //Debug.Log("FIRED! Current: " + chamber);
     }
 
     IEnumerator BurstShot(Vector2 dir)
     {
+        // Fire thrice, each time applying kickback to player
         onBoard.momentum = onBoard.momentum - dir * kickback;
         CastRay(dir);
         yield return new WaitForSeconds(burst_time);
@@ -59,25 +60,6 @@ public class SMG : Gun
         yield return new WaitForSeconds(burst_time);
         onBoard.momentum = onBoard.momentum - dir * kickback;
         CastRay(handleGuns.dir);
-    }
-
-    public void CastRay(Vector2 dir)
-    {
-        Vector3 pos = transform.position;
-        RaycastHit2D hit = Physics2D.Raycast(pos, dir, range, hitMask);
-        Vector2 endPoint;
-
-        if (hit.collider != null)
-        {
-            hit.collider.GetComponent<Health>()?.TakeDamage(10, dir * knockback);
-            endPoint = hit.point;
-        }
-        else
-        {
-            endPoint = (Vector2)pos + dir * range;
-        }
-
-        SpawnLaser(pos, endPoint);
     }
 
     public override void Reload()
@@ -89,14 +71,10 @@ public class SMG : Gun
     {
         if (reloadCoroutine != null)
         {
-            Debug.Log("STOPPING COROUTINE");
+            // Interupt reload
             StopCoroutine(reloadCoroutine);
             reloadCoroutine = null;
             reloading = false;
-        }
-        else
-        {
-            Debug.Log("Nothing to stop");
         }
     }
 
@@ -104,12 +82,10 @@ public class SMG : Gun
     {
         reloading = true;
 
-        while ((chamber < capacity) && reloading)
-        {
-            yield return new WaitForSeconds(reload_time);
-            chamber = capacity;
-            displayAmo.SetAmo(chamber);
-        }
+        // Reload mag once
+        yield return new WaitForSeconds(reload_time);
+        chamber = capacity;
+        displayAmo.SetAmo(chamber);
 
         reloading = false;
     }

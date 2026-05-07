@@ -7,8 +7,8 @@ public class Pistol : Gun
     public int capacity { get; private set; } = 6;
     public int chamber { get; private set; }
 
-    public float reload_time = .75f; // Bullet per sec
-    public float fire_time = .3f; // Bullet per sec
+    public float reload_time = .75f; // Seconds per bullet
+    public float fire_time = .3f; // Seconds per bullet
 
     Coroutine reloadCoroutine;
     public bool reloading = false;
@@ -27,6 +27,7 @@ public class Pistol : Gun
 
     public override void Fire(Vector2 dir)
     {
+        // Check that fire request is valid
         if (shooting) return; 
         if (chamber <= 0)  {  Reload(); return; }
         StopReloading();
@@ -34,32 +35,11 @@ public class Pistol : Gun
         chamber--;
         displayAmo.SetAmo(chamber);
 
-        //FIRE SHIT
+        //Fire
         CastRay(dir);
 
         //Start cooldown
         StartCoroutine(FireTimer());
-   
-        //Debug.Log("FIRED! Current: " + chamber);
-    }
-
-    public void CastRay(Vector2 dir)
-    {
-        Vector3 pos = transform.position;
-        RaycastHit2D hit = Physics2D.Raycast(pos, dir, range, hitMask);
-        Vector2 endPoint;
-
-        if (hit.collider != null)
-        {
-            hit.collider.GetComponent<Health>()?.TakeDamage(10, dir * knockback);
-            endPoint = hit.point;
-        }
-        else
-        {
-            endPoint = (Vector2)pos + dir * range;
-        }
-
-        SpawnLaser(pos, endPoint);
     }
 
     public override void Reload()
@@ -71,14 +51,10 @@ public class Pistol : Gun
     {
         if (reloadCoroutine != null)
         {
-            Debug.Log("STOPPING COROUTINE");
+            // Interupt reloading
             StopCoroutine(reloadCoroutine);
             reloadCoroutine = null;
             reloading = false;
-        }
-        else
-        {
-            Debug.Log("Nothing to stop");
         }
     }
 
@@ -86,7 +62,8 @@ public class Pistol : Gun
     {
         reloading = true;
 
-        while ((chamber < capacity) && reloading)
+        // Reload until chmaber is full
+        while (chamber < capacity)
         {
             yield return new WaitForSeconds(reload_time);
             chamber++;

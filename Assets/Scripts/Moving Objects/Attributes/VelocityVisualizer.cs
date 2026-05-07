@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class VelocityVisualizer : MonoBehaviour
 {
-    [Tooltip("Assign your Controls script here in the Inspector.")]
-    public MovingObject movingObject;  // Drag the Controls component here in Inspector
+    public MovingObject movingObject; // Should be the parent of this object
 
     void FixedUpdate()
     {

@@ -7,8 +7,8 @@ public class HandCannon : Gun
     public int capacity { get; private set; } = 1;
     public int chamber { get; private set; }
 
-    public float reload_time = 2f; // Bullet per sec
-    public float fire_time = .3f; // Bullet per sec
+    public float reload_time = 2f; // Seconds per bullet
+    public float fire_time = .3f; // Seconds per bullet 
 
     private Coroutine reloadCoroutine;
     public bool reloading = false;
@@ -19,6 +19,7 @@ public class HandCannon : Gun
 
     public DisplayAmo displayAmo;
 
+    // Allows gun to apply kickback to player
     public OnBoard onBoard;
 
     void Awake()
@@ -31,6 +32,7 @@ public class HandCannon : Gun
 
     public override void Fire(Vector2 dir)
     {
+        // Check that request to fire is valid
         if (shooting) return;
         if (chamber <= 0) { Reload(); return; }
         StopReloading();
@@ -38,37 +40,17 @@ public class HandCannon : Gun
         chamber--;
         displayAmo.SetAmo(chamber);
 
-        //FIRE SHIT
+        //Fire four bullets (Hand cannon is strong)
         CastRay(dir);
         CastRay(dir);
         CastRay(dir);
         CastRay(dir);
 
+        // Apply kickback
         onBoard.momentum = onBoard.momentum - dir * kickback;
 
         //Start cooldown
         StartCoroutine(FireTimer());
-
-        //Debug.Log("FIRED! Current: " + chamber);
-    }
-
-    public void CastRay(Vector2 dir)
-    {
-        Vector3 pos = transform.position;
-        RaycastHit2D hit = Physics2D.Raycast(pos, dir, range, hitMask);
-        Vector2 endPoint;
-
-        if (hit.collider != null)
-        {
-            hit.collider.GetComponent<Health>()?.TakeDamage(10, dir * knockback);
-            endPoint = hit.point;
-        }
-        else
-        {
-            endPoint = (Vector2)pos + dir * range;
-        }
-
-        SpawnLaser(pos, endPoint);
     }
 
     public override void Reload()
@@ -80,14 +62,10 @@ public class HandCannon : Gun
     {
         if (reloadCoroutine != null)
         {
-            Debug.Log("STOPPING COROUTINE");
+            // Interupt reloading process
             StopCoroutine(reloadCoroutine);
             reloadCoroutine = null;
             reloading = false;
-        }
-        else
-        {
-            Debug.Log("Nothing to stop");
         }
     }
 
@@ -95,7 +73,8 @@ public class HandCannon : Gun
     {
         reloading = true;
 
-        while ((chamber < capacity) && reloading)
+        // Add bullets until capacity is full
+        while (chamber < capacity)
         {
             yield return new WaitForSeconds(reload_time);
             chamber++;

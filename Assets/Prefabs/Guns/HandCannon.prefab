@@ -115,6 +115,7 @@ MonoBehaviour:
   hitMask:
     serializedVersion: 2
     m_Bits: 8448
+  lazer_time: 0.4
   reload_time: 2
   fire_time: 0.3
   reloading: 0
