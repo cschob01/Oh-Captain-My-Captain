@@ -8,7 +8,7 @@ public class EnemyHealth : Health
         Debug.Log("Enemy Hit!");
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
 
         onBoard.momentum += dir;

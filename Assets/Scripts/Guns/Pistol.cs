@@ -4,8 +4,6 @@ using static UnityEngine.UI.Image;
 
 public class Pistol : Gun
 {
-    public LayerMask hitMask;
-    public GameObject laserPrefab;
     public int capacity { get; private set; } = 6;
     public int chamber { get; private set; }
 
@@ -17,8 +15,6 @@ public class Pistol : Gun
     public bool shooting = false;
 
     public int damage = 10;
-    public int range = 100;
-    public float knockback = .1f;
 
     public DisplayAmo displayAmo;
 
@@ -66,29 +62,6 @@ public class Pistol : Gun
         SpawnLaser(pos, endPoint);
     }
 
-    void SpawnLaser(Vector2 start, Vector2 end)
-    {
-        GameObject laser = Instantiate(laserPrefab);
-
-        Vector2 dir = (end - start);
-        float distance = dir.magnitude;
-
-        // Position at start
-        laser.transform.position = start;
-
-        // Rotate to face direction
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        laser.transform.rotation = Quaternion.Euler(0, 0, angle);
-
-        // Scale along X axis
-        laser.transform.localScale = new Vector3(distance, 1f, 1f);
-
-        // Set parent to us
-        laser.transform.parent = transform;
-
-        // Optional: destroy after short time
-        Destroy(laser, 0.05f);
-    }
     public override void Reload()
     {
         if (!reloading) reloadCoroutine = StartCoroutine(ReloadTimer());

@@ -93,17 +93,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0424382c043e664baefbe6731789a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandCannon
+  laserPrefab: {fileID: 8067323692892758690, guid: a9498809f574da043bdd9beb19519c6a, type: 3}
+  range: 200
+  knockback: 1.2
   hitMask:
     serializedVersion: 2
-    m_Bits: 768
-  laserPrefab: {fileID: 8067323692892758690, guid: a9498809f574da043bdd9beb19519c6a, type: 3}
+    m_Bits: 8448
   reload_time: 5
   fire_time: 0.3
   reloading: 0
   shooting: 0
   damage: 90
-  range: 200
-  knockback: 1.2
   kickback: 3.2
   displayAmo: {fileID: 0}
   onBoard: {fileID: 0}

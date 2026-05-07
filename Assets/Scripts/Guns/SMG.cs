@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class SMG : Gun
 {
-    public LayerMask hitMask;
-    public GameObject laserPrefab;
     public int capacity { get; private set; } = 15;
     public int chamber { get; private set; }
 
@@ -17,8 +15,6 @@ public class SMG : Gun
     public bool shooting = false;
 
     public int damage = 3;
-    public int range = 100;
-    public float knockback = .1f;
     public float kickback = .1f;
 
     public DisplayAmo displayAmo;
@@ -55,17 +51,18 @@ public class SMG : Gun
 
     IEnumerator BurstShot(Vector2 dir)
     {
+        onBoard.momentum = onBoard.momentum - dir * kickback;
         CastRay(dir);
         yield return new WaitForSeconds(burst_time);
+        onBoard.momentum = onBoard.momentum - dir * kickback;
         CastRay(handleGuns.dir);
         yield return new WaitForSeconds(burst_time);
+        onBoard.momentum = onBoard.momentum - dir * kickback;
         CastRay(handleGuns.dir);
     }
 
     public void CastRay(Vector2 dir)
     {
-        onBoard.momentum = onBoard.momentum - dir * kickback;
-
         Vector3 pos = transform.position;
         RaycastHit2D hit = Physics2D.Raycast(pos, dir, range, hitMask);
         Vector2 endPoint;
@@ -83,29 +80,6 @@ public class SMG : Gun
         SpawnLaser(pos, endPoint);
     }
 
-    void SpawnLaser(Vector2 start, Vector2 end)
-    {
-        GameObject laser = Instantiate(laserPrefab);
-
-        Vector2 dir = (end - start);
-        float distance = dir.magnitude;
-
-        // Position at start
-        laser.transform.position = start;
-
-        // Rotate to face direction
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        laser.transform.rotation = Quaternion.Euler(0, 0, angle);
-
-        // Scale along X axis
-        laser.transform.localScale = new Vector3(distance, .5f, 1f);
-
-        // Set parent to us
-        //laser.transform.parent = transform;
-
-        // Optional: destroy after short time
-        Destroy(laser, 0.05f);
-    }
     public override void Reload()
     {
         if (!reloading) reloadCoroutine = StartCoroutine(ReloadTimer());

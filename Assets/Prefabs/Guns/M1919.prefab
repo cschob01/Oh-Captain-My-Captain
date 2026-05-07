@@ -101,17 +101,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2694fb675630e5a4f83f1314033975a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::M1919
+  laserPrefab: {fileID: 8067323692892758690, guid: a9498809f574da043bdd9beb19519c6a, type: 3}
+  range: 100
+  knockback: 0.1
   hitMask:
     serializedVersion: 2
-    m_Bits: 768
-  laserPrefab: {fileID: 8067323692892758690, guid: a9498809f574da043bdd9beb19519c6a, type: 3}
+    m_Bits: 8448
   reload_time: 5
   fire_time: 0.1
   reloading: 0
   shooting: 0
   damage: 3
-  range: 100
-  knockback: 0.1
   kickback: 0.05
   displayAmo: {fileID: 0}
   onBoard: {fileID: 0}

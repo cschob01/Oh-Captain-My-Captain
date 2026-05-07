@@ -27,7 +27,7 @@ public class PlayerHealth : Health
             Debug.Log("Player Hit!");
             if (health <= 0)
             {
-                Destroy(gameObject);
+                Destroy(transform.parent.gameObject);
             }
 
             onBoard.momentum += dir;
