@@ -131,6 +131,7 @@ public class Gun : MonoBehaviour
 
     public void Reload()
     {
+        Debug.Log("Reload called");
         if (ReloadCoroutine == null) ReloadCoroutine = StartCoroutine(ReloadTimer());
     }
 
