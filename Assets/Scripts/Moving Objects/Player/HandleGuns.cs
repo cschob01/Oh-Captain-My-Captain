@@ -21,7 +21,7 @@ public class HandleGuns : MonoBehaviour
     void FixedUpdate()
     {
         // Fire/Reload gun if requested
-        if (Handler.controls.Gun.Attack.IsPressed()) gun.Fire(dir);
+        if (Handler.controls.Gun.Attack.IsPressed()) gun.Fire();
         if (Handler.controls.Gun.Reload.WasPressedThisFrame()) gun.Reload();
 
         // Point gun

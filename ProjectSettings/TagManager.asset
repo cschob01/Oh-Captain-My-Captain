@@ -19,7 +19,7 @@ TagManager:
   - 
   - PlayerTriggers
   - EnemyTriggers
-  - 
+  - Projectiles
   - 
   - 
   - 
@@ -58,6 +58,9 @@ TagManager:
     locked: 0
   - name: Captain
     uniqueID: 1068223957
+    locked: 0
+  - name: Visual Effects
+    uniqueID: 51473445
     locked: 0
   - name: Projectiles
     uniqueID: 1923099245

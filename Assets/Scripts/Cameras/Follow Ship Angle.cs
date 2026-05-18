@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FollowSpin : MonoBehaviour
+public class FollowShipAngle : MonoBehaviour
 {
     void FixedUpdate()
     {

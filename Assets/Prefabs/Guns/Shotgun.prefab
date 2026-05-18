@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8746174546149849819}
   - component: {fileID: 5365711144065134445}
   m_Layer: 0
-  m_Name: Pistol
+  m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 1700389523
   m_SortingLayer: 9
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ce18cfa260541e24ab8aed6fb5469958, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d18b1aaa263f7224bb036e127ce697cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,15 +106,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Gun1
   Burst: 1
   BurstSpeed: 0
-  FiringSpeed: 0.5
-  Kickback: 0.01
-  ProjectilesPerShot: 1
-  Ammo: {fileID: 11400000, guid: 3c4f832f45e1bf4449b84c476bfda508, type: 2}
-  BulletSpeed: 12
-  MagReload: 0
-  ReloadSpeed: 1.3
-  Capacity: 6
-  AngleRandomness: 1
+  FiringSpeed: 2
+  Kickback: 3
+  ProjectilesPerShot: 20
+  Ammo: {fileID: 11400000, guid: ccd4797b4930b58419fa74f30d37db54, type: 2}
+  BulletSpeed: 10
+  MagReload: 1
+  ReloadSpeed: 4
+  Capacity: 5
+  AngleRandomness: 10
   ProjectilePrefab: {fileID: 361116788346805724, guid: ce986436b5689cd4492710b6e76fb949, type: 3}
 --- !u!1 &7559210141061417157
 GameObject:
@@ -141,7 +141,7 @@ Transform:
   m_GameObject: {fileID: 7559210141061417157}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.54, y: 0, z: 0}
+  m_LocalPosition: {x: 1.35, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -1,13 +1,23 @@
 using TMPro;
 using UnityEngine;
 
-public class DisplayAmo : MonoBehaviour
+public class DisplayAmmo : MonoBehaviour
 {
 
-    public TextMeshProUGUI amoText;
+    [SerializeField] private TextMeshProUGUI amoText;
 
-    public void SetAmo(int amo)
+    private void OnEnable()
     {
-        amoText.text = "X" + amo;
+        EventHandler.Instance.OnAmmoChange += SetAmmo;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.Instance.OnAmmoChange -= SetAmmo;
+    }
+
+    private void SetAmmo(int ammo)
+    {
+        amoText.text = "X" + ammo;
     }
 }
