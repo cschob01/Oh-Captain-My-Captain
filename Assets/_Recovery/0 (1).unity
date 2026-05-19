@@ -4367,16 +4367,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandleRoundEndless
   MaxEnemies: 10
-  Enemies:
-  - FirstRound: 0
-    MaxProportion: 0
-    EnemyPrefab: {fileID: 853038673566719914, guid: 1db4401ca7a1c0a439842f03831a8ca4, type: 3}
-  - FirstRound: 3
-    MaxProportion: 0.4
-    EnemyPrefab: {fileID: 853038673566719914, guid: addaa35cca85d044ba928d00c2c43f49, type: 3}
+  EnemyPrefab: {fileID: 853038673566719914, guid: 1db4401ca7a1c0a439842f03831a8ca4, type: 3}
   Captain: {fileID: 1554879392}
   EnemiesLeft: 0
   Round: 0
+  EnemiesInPlay: 0
+  MidRound: 0
 --- !u!4 &1176123978
 Transform:
   m_ObjectHideFlags: 0
@@ -5411,7 +5407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96773108a48ff74999fe27bc29910e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  health: 1000
+  health: 20
   onBoard: {fileID: 1554879395}
   damage_cool_down: 0
   cool_down_time: 3

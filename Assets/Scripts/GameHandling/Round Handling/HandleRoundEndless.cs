@@ -5,20 +5,28 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEngine.ParticleSystem;
 
+[System.Serializable]
+public class Trip
+{
+    public int FirstRound;
+    public float MaxProportion; /// From 0-1, Takes ten rounds from FirstRound to reach it
+    public GameObject EnemyPrefab;
+}
+
 public class HandleRoundEndless : MonoBehaviour
 {
-    [SerializeField] private int MaxEnemies = 10;
-    [SerializeField] private GameObject EnemyPrefab;
+    [SerializeField] private int MaxEnemies = 20;
+    [SerializeField] private Trip[] Enemies; // First element will be treated as DEAFAULT enemy
     [SerializeField] private GameObject Captain;
 
     public int EnemiesLeft = 0;
     public int Round = 0;
 
     private Vector3[] SpawnPoints;
-    public int EnemiesInPlay = 0;
+    private int EnemiesInPlay = 0;
     private float SpawnSpeed = 5; // Seconds per enemy
-    public Coroutine SpawnCoroutine;
-    public bool MidRound = false;
+    private Coroutine SpawnCoroutine;
+    private bool MidRound = false;
 
     private void OnEnable()
     {
@@ -102,7 +110,7 @@ public class HandleRoundEndless : MonoBehaviour
             SpawnIndex = Random.Range(0, SpawnPoints.Length);
         }
 
-        GameObject enemy = Instantiate(EnemyPrefab, SpawnPoints[SpawnIndex], Quaternion.Euler(0f, 0f, 0f));
+        GameObject enemy = Instantiate(ChooseEnemy(), SpawnPoints[SpawnIndex], Quaternion.Euler(0f, 0f, 0f));
         OnBoard onBoard = enemy.GetComponent<OnBoard>();
         if (onBoard != null)
         {
@@ -128,6 +136,18 @@ public class HandleRoundEndless : MonoBehaviour
         }
 
         return ClosestIndex;
+    }
+
+    private GameObject ChooseEnemy()
+    {
+        float choice = Random.Range(0f, 1f);
+
+        for (int i = 1; i < Enemies.Length; i++)
+        {
+            choice -= Enemies[i].MaxProportion * Mathf.Clamp((Round - Enemies[i].FirstRound + 1) / 10f, 0f, 1f);
+            if (choice <= 0) return Enemies[i].EnemyPrefab;
+        }
+        return Enemies[0].EnemyPrefab;
     }
 
     private void EndRound()

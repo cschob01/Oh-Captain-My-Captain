@@ -12,6 +12,9 @@ public class Ship : MonoBehaviour
     public Vector2 vel { get; private set; } // Units per second
     public float spin { get; private set; } // Degrees per second
 
+    public float max_vel = 10;
+    public float max_spin = 5;
+
 
     public Vector2 center { get; private set; } // Center coordinates
 

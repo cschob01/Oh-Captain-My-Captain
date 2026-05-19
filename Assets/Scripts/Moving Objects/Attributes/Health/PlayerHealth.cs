@@ -9,7 +9,6 @@ public class PlayerHealth : Health
 
     public void Awake()
     {
-        health = 100;
         EventHandler.Instance.PlayerHealthChange(health);
     }
 

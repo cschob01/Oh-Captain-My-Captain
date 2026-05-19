@@ -20,8 +20,6 @@ public class Projectile : MonoBehaviour
         {
             transform.position = hit.point;
 
-            Debug.Log("HIT " + hit.collider.gameObject);
-
             DamageTarget(hit.collider.gameObject);
             PushTarget(hit.collider.gameObject);
             
