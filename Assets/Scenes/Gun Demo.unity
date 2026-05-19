@@ -2352,6 +2352,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f294b47bb4ffaa4486879f8ac07d353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ship
+  max_vel: 10
+  max_spin: 5
 --- !u!1 &1026341192
 GameObject:
   m_ObjectHideFlags: 0
@@ -4038,6 +4040,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OnBoard
   movingObject: {fileID: 1554879396}
   momentum: {x: 0, y: 0}
+  testing: 0
 --- !u!114 &1554879396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4071,7 +4074,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 994db22da20fdbd499889fb1d83aa5fd, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4143,7 +4146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c58ebc7d6a00d4688ab7bb450b8081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandleGuns
-  gunPrefab: {fileID: 6060456752840629824, guid: 3701462801c29664c8e1934447e1092b, type: 3}
+  StartingGun: {fileID: 0}
   Handler: {fileID: 1845965768}
   distanceFromPlayer: 0.1
   dir: {x: 0, y: 0}
@@ -4858,6 +4861,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OnBoard
   movingObject: {fileID: 0}
   momentum: {x: 0, y: 0}
+  testing: 0
 --- !u!1 &5462057067247030939
 GameObject:
   m_ObjectHideFlags: 0
@@ -5099,7 +5103,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 994db22da20fdbd499889fb1d83aa5fd, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

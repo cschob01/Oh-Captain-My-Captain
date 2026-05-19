@@ -5083,6 +5083,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OnBoard
   movingObject: {fileID: 1554879396}
   momentum: {x: 0, y: 0}
+  testing: 0
 --- !u!114 &1554879396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5116,7 +5117,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 994db22da20fdbd499889fb1d83aa5fd, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

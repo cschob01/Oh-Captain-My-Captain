@@ -14,7 +14,9 @@ public class OnBoard : MonoBehaviour
 
     protected Rigidbody2D object_rb;
 
-    private float epsilon = .01f; 
+    private float epsilon = .01f;
+
+    public bool testing = false;
 
     void FixedUpdate()
     {
@@ -105,6 +107,11 @@ public class OnBoard : MonoBehaviour
 
                     movingObject.vel.x = 0;
                     momentum.x = wall_force.x;
+
+                    if (testing)
+                    {
+                        Debug.Log("HOR NOT FACING at: " + Time.time);
+                    }
                 }
                 else // Facing wall
                 {
@@ -117,6 +124,11 @@ public class OnBoard : MonoBehaviour
                     {
                         movingObject.vel.x = Mathf.Min(wall_force.x - momentum.x, 0);
                         momentum.x = Mathf.Max(momentum.x, wall_force.x);
+                    }
+
+                    if (testing)
+                    {
+                        Debug.Log("HOR FACING at: " + Time.time);
                     }
                 }
             }
@@ -132,6 +144,11 @@ public class OnBoard : MonoBehaviour
 
                     movingObject.vel.y = 0;
                     momentum.y = wall_force.y;
+
+                    if (testing)
+                    {
+                        Debug.Log("VER NOT FACING at: " + Time.time);
+                    }
                 }
                 else // Facing wall
                 {
@@ -146,6 +163,10 @@ public class OnBoard : MonoBehaviour
                         momentum.y = Mathf.Max(momentum.y, wall_force.y);
                     }
 
+                    if (testing)
+                    {
+                        Debug.Log("VER FACING at: " + Time.time);
+                    }
                 }
             }
         }

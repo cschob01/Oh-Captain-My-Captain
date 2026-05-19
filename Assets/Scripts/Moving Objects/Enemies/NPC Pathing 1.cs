@@ -76,9 +76,6 @@ public class NPCPathing1 : MovingObject
             Vector2 end = target.position;
             Vector2 dir = (end - start).normalized;
             vel += acc * dir;
-
-            ////Clamp velocity
-            vel = Vector2.ClampMagnitude(vel, max_vel);
         }
         else // Traverse BFS graph
         {
@@ -90,6 +87,9 @@ public class NPCPathing1 : MovingObject
             if (Vector2.Distance(transform.position, path.vectorPath[currentWaypoint]) < waypointDistance)
                 currentWaypoint++;
         }
+
+        ////Clamp velocity
+        vel = Vector2.ClampMagnitude(vel, max_vel);
     }
     private void OnDestroy()
     {
