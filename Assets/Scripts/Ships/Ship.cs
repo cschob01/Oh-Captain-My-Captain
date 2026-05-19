@@ -55,10 +55,14 @@ public class Ship : MonoBehaviour
     {
         vel += input * vel_acc_rate * Time.fixedDeltaTime;
         global_vel += global_input * vel_acc_rate * Time.fixedDeltaTime;
+        vel = Vector2.ClampMagnitude(vel, max_vel);
+        global_vel = Vector2.ClampMagnitude(global_vel, max_vel);
+
     }
     public void SetSpin(float dir) // Positive is right, negative is left
     {
         spin += dir * spin_acc_rate * Time.fixedDeltaTime;
+        spin = Mathf.Clamp(spin, -max_spin, max_spin);
     }
 
     private void FixedUpdate()
