@@ -2640,7 +2640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f294b47bb4ffaa4486879f8ac07d353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ship
-  max_vel: 5
+  max_vel: 10
   max_spin: 0.15
 --- !u!1 &979742084
 GameObject:
@@ -5898,8 +5898,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandleShip
   actions: 
-  spin_strength: 0.2
-  vel_strength: 1
+  spin_strength: 0.6
+  vel_strength: 0.4
 --- !u!82 &1845965770
 AudioSource:
   m_ObjectHideFlags: 0
