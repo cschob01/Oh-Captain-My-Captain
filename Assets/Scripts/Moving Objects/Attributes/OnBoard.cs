@@ -23,6 +23,11 @@ public class OnBoard : MonoBehaviour
         TransformOnBoard();
     }
 
+    private void Awake()
+    {
+        object_rb = GetComponent<Rigidbody2D>();
+    }
+
     void TransformOnBoard() // Moves object according to ship's movement
     {
         Vector2 next_pos = transform.position;
@@ -30,8 +35,8 @@ public class OnBoard : MonoBehaviour
         /////////////////////////////////////////////////////////
         //Spin: Rotate object around ship center
         /////////////////////////////////////////////////////////
-        float cos = Mathf.Cos(Ship.Instance.spin * Time.fixedDeltaTime);
-        float sin = Mathf.Sin(Ship.Instance.spin * Time.fixedDeltaTime);
+        float cos = Mathf.Cos(Ship.Instance.spin);
+        float sin = Mathf.Sin(Ship.Instance.spin);
         next_pos -= Ship.Instance.center;    // Get relative to center
         next_pos = new Vector2(              // Rotate
             next_pos.x * cos - next_pos.y * sin,
@@ -40,6 +45,8 @@ public class OnBoard : MonoBehaviour
         next_pos += Ship.Instance.center;    // Bring back
 
         // Rotate momentum to compensate for spin
+        cos = Mathf.Cos(Ship.Instance.spin * Time.fixedDeltaTime);
+        sin = Mathf.Sin(Ship.Instance.spin * Time.fixedDeltaTime);
         momentum = new Vector2(
             momentum.x * cos - momentum.y * sin,
             momentum.x * sin + momentum.y * cos
@@ -57,9 +64,13 @@ public class OnBoard : MonoBehaviour
         /////////////////////////////////////////////////////////
         //Vel: Move object according to ship's velocity
         /////////////////////////////////////////////////////////
-        next_pos += (momentum - Ship.Instance.vel) * Time.fixedDeltaTime;
+        next_pos += (momentum - Ship.Instance.vel);
 
-        transform.position = next_pos;
+
+        //transform.position = next_pos;
+
+        object_rb.linearVelocity = next_pos - (Vector2)transform.position;
+        if (movingObject != null) object_rb.linearVelocity += movingObject.vel;
     }
 
     void OnCollisionStay2D(Collision2D collision)
@@ -117,12 +128,14 @@ public class OnBoard : MonoBehaviour
                 {
                     if (touching[2]) // Facing Right wall
                     {
-                        movingObject.vel.x = Mathf.Max(wall_force.x - momentum.x, 0);
+                        float new_vel = Mathf.Min(wall_force.x - momentum.x, movingObject.vel.x);
+                        movingObject.vel.x = Mathf.Max(new_vel, 0);
                         momentum.x = Mathf.Min(momentum.x, wall_force.x);
                     }
                     else // Facing Left wall
                     {
-                        movingObject.vel.x = Mathf.Min(wall_force.x - momentum.x, 0);
+                        float new_vel = Mathf.Max(wall_force.x - momentum.x, movingObject.vel.x);
+                        movingObject.vel.x = Mathf.Min(new_vel, 0);
                         momentum.x = Mathf.Max(momentum.x, wall_force.x);
                     }
 
@@ -154,12 +167,14 @@ public class OnBoard : MonoBehaviour
                 {
                     if (touching[3]) // Facing Up wall
                     {
-                        movingObject.vel.y = Mathf.Max(wall_force.y - momentum.y, 0);
+                        float new_vel = Mathf.Min(wall_force.y - momentum.y, movingObject.vel.y);
+                        movingObject.vel.y = Mathf.Max(new_vel, 0);
                         momentum.y = Mathf.Min(momentum.y, wall_force.y);
                     }
                     else // Facing Down wall
                     {
-                        movingObject.vel.y = Mathf.Min(wall_force.y - momentum.y, 0);
+                        float new_vel = Mathf.Max(wall_force.y - momentum.y, movingObject.vel.y);
+                        movingObject.vel.y = Mathf.Min(new_vel, 0);
                         momentum.y = Mathf.Max(momentum.y, wall_force.y);
                     }
 

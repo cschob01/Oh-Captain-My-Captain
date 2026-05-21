@@ -20,7 +20,7 @@ public abstract class MovingObject : MonoBehaviour
         SetVel();
 
         // Apply vel so that it works in the Unity physics system
-        object_rb.linearVelocity = vel;
+        // object_rb.linearVelocity = vel; // LEAVE TO ONBOARD
 
         // If a render component is given, rotate it to face the vel
         if (render != null)
