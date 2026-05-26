@@ -2640,8 +2640,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f294b47bb4ffaa4486879f8ac07d353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ship
-  max_vel: 3
-  max_spin: 1
+  max_vel: 1
+  max_spin: 0.2
 --- !u!1 &979742084
 GameObject:
   m_ObjectHideFlags: 0
@@ -4981,6 +4981,8 @@ MonoBehaviour:
   - {fileID: 6060456752840629824, guid: 581492f1a8447604380dfea9b5a786df, type: 3}
   - {fileID: 6060456752840629824, guid: 3701462801c29664c8e1934447e1092b, type: 3}
   - {fileID: 6060456752840629824, guid: 30a5ced03c338224e964ecca92841b37, type: 3}
+  - {fileID: 6060456752840629824, guid: 8f71f896744a1be49918fa2445bf921c, type: 3}
+  - {fileID: 6060456752840629824, guid: af9a195959ef8914589219461dddd720, type: 3}
   Selectors:
   - {fileID: 2137068375}
   - {fileID: 1791515302}
@@ -5191,7 +5193,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OnBoard_MovingObject
   momentum: {x: 0, y: 0}
-  movingObject: {fileID: 1554879396}
 --- !u!1 &1564052689
 GameObject:
   m_ObjectHideFlags: 0
@@ -5411,7 +5412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96773108a48ff74999fe27bc29910e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  health: 20
+  health: 1000
   onBoard: {fileID: 1554879403}
   damage_cool_down: 0
   cool_down_time: 3
