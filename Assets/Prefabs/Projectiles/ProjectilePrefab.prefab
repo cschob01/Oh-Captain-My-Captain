@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 7971247408707775525}
   - component: {fileID: 8528056216744175448}
   - component: {fileID: 2156674655825509680}
-  - component: {fileID: 1058248170070906910}
   - component: {fileID: 7162691740740842116}
   - component: {fileID: 1547275524577559838}
+  - component: {fileID: 7128253553371196890}
+  - component: {fileID: 8718403152309940249}
+  - component: {fileID: -3170256269384823344}
   m_Layer: 14
   m_Name: ProjectilePrefab
   m_TagString: Untagged
@@ -30,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 361116788346805724}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.607, y: -0.238, z: 0}
+  m_LocalPosition: {x: -2.45902, y: 0.2246, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -108,22 +110,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   hitMask:
     serializedVersion: 2
-    m_Bits: 12544
-  OnBoard: {fileID: 1058248170070906910}
---- !u!114 &1058248170070906910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 361116788346805724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02c64696f0e009a458be39d8f417c5cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OnBoard
-  movingObject: {fileID: 0}
-  momentum: {x: 0, y: 0}
+    m_Bits: 12288
+  OnBoard: {fileID: -3170256269384823344}
+  BouncesLeft: 0
 --- !u!96 &7162691740740842116
 TrailRenderer:
   serializedVersion: 3
@@ -246,3 +235,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f93e28c0f0fd046a18b3dad87015a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FollowShipSpin
+--- !u!50 &7128253553371196890
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361116788346805724}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 6200000, guid: 994db22da20fdbd499889fb1d83aa5fd, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
+--- !u!58 &8718403152309940249
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361116788346805724}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.12
+--- !u!114 &-3170256269384823344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361116788346805724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93f117ddc08489f4788b038d186d193b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OnBoard_Projectile
+  momentum: {x: 0, y: 0}
+  bounce: 0

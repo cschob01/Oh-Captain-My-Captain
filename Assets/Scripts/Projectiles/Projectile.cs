@@ -4,8 +4,9 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private LayerMask hitMask;
-    [SerializeField] private OnBoard OnBoard;
+    [SerializeField] private OnBoard_Projectile OnBoard;
     public Ammo Ammo { get; set; }
+    public int BouncesLeft = 0;
 
     private void FixedUpdate()
     {

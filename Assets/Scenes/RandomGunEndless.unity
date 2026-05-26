@@ -2640,7 +2640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f294b47bb4ffaa4486879f8ac07d353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ship
-  max_vel: 10
+  max_vel: 3
   max_spin: 1
 --- !u!1 &979742084
 GameObject:
@@ -5037,12 +5037,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1554879394}
-  - component: {fileID: 1554879395}
   - component: {fileID: 1554879396}
   - component: {fileID: 1554879399}
   - component: {fileID: 1554879400}
   - component: {fileID: 1554879401}
   - component: {fileID: 1554879402}
+  - component: {fileID: 1554879403}
   m_Layer: 10
   m_Name: Captain
   m_TagString: Untagged
@@ -5069,21 +5069,6 @@ Transform:
   - {fileID: 813534749}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1554879395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1554879392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02c64696f0e009a458be39d8f417c5cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OnBoard
-  movingObject: {fileID: 1554879396}
-  momentum: {x: 0, y: 0}
-  testing: 0
 --- !u!114 &1554879396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5193,6 +5178,20 @@ MonoBehaviour:
   Handler: {fileID: 1845965768}
   distanceFromPlayer: 0.1
   dir: {x: 0, y: 0}
+--- !u!114 &1554879403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554879392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1789f7c333e0dd43a0292345852d73e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OnBoard_MovingObject
+  momentum: {x: 0, y: 0}
+  movingObject: {fileID: 1554879396}
 --- !u!1 &1564052689
 GameObject:
   m_ObjectHideFlags: 0
@@ -5412,8 +5411,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96773108a48ff74999fe27bc29910e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  health: 1000
-  onBoard: {fileID: 1554879395}
+  health: 20
+  onBoard: {fileID: 1554879403}
   damage_cool_down: 0
   cool_down_time: 3
 --- !u!1 &1791515300
@@ -5892,7 +5891,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1845965765}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fd985e2c901826458d902e8a0aba8fe, type: 3}
   m_Name: 

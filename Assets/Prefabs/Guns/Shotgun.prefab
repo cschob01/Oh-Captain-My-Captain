@@ -111,6 +111,7 @@ MonoBehaviour:
   ProjectilesPerShot: 20
   Ammo: {fileID: 11400000, guid: ccd4797b4930b58419fa74f30d37db54, type: 2}
   BulletSpeed: 10
+  Bounces: 2
   MagReload: 1
   ReloadSpeed: 4
   Capacity: 5

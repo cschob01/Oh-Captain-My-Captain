@@ -14,7 +14,7 @@ public class Gun : MonoBehaviour
 
     private Coroutine ReloadCoroutine;
 
-    private OnBoard onBoard;
+    private OnBoard_MovingObject onBoard;
 
     [Header("Shooting Settings")]
 
@@ -37,6 +37,8 @@ public class Gun : MonoBehaviour
     [SerializeField] private Ammo Ammo;
 
     [SerializeField] private float BulletSpeed = 1;
+
+    [SerializeField] private int Bounces = 0;
 
     [Header("Reload Settings")]
 
@@ -61,7 +63,7 @@ public class Gun : MonoBehaviour
         Muzzle = transform.Find("Muzzle");
         Chamber = Capacity;
         EventHandler.Instance.AmmoChange(Chamber);
-        onBoard = transform.parent.GetComponent<OnBoard>(); // Parent must have this script
+        onBoard = transform.parent.GetComponent<OnBoard_MovingObject>(); // Parent must have this script
     }
 
     public void Fire()
@@ -109,7 +111,9 @@ public class Gun : MonoBehaviour
                        Muzzle.transform.position,
                        Quaternion.Euler(0f, 0f, angle));
 
-        obj.GetComponent<Projectile>().Ammo = Ammo;
+        Projectile projectile_script = obj.GetComponent<Projectile>();
+        projectile_script.Ammo = Ammo;
+        projectile_script.BouncesLeft = Bounces;
         OnBoard proj_OnBoard = obj.GetComponent<OnBoard>();
 
         Vector2 dir = new Vector2(
