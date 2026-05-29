@@ -15,9 +15,17 @@ public class EventHandler : MonoBehaviour
     public event Action<GameObject> OnGunChange;
     public event Action<GameObject> OnGadgetChange;
 
+    /// Beats
+    public event Action<int> OnBeatChange;
+
     private void Awake()
     {
         Instance = this;
+    }
+
+    public void BeatChange(int i)
+    {
+        OnBeatChange?.Invoke(i);
     }
 
     public void PlayerDied()
