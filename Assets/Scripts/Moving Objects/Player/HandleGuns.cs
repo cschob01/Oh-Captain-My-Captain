@@ -3,35 +3,29 @@ using UnityEngine;
 
 public class HandleGuns : MonoBehaviour
 {
-    public GameObject StartingGun;
-    public InputHandler Handler;
-    public float distanceFromPlayer = .1f;
+    [SerializeField] private GameObject StartingGun = null;
+    [SerializeField] public InputHandler Handler;
+    [SerializeField] public float distanceFromPlayer = .1f;
 
     private GameObject obj = null;
     private Gun gun = null;
 
     public Vector2 dir;
-    private void Awake()
+    private void Start()
     {
         //Set up gun using prefab
-        EventHandler.Instance.GunChange(StartingGun);
+        GunChange(StartingGun);
     }
 
-    private void OnEnable()
-    {
-        EventHandler.Instance.OnGunChange += GunChange;
-    }
-
-    private void OnDisable()
-    {
-        EventHandler.Instance.OnGunChange -= GunChange;
-    }
-
-    private void GunChange(GameObject Gun)
+    public void GunChange(GameObject Gun)
     {
         LoseGun();
-        obj = Instantiate(Gun, transform.position, Quaternion.identity, transform);
-        gun = obj.GetComponent<Gun>();
+        if (Gun != null)
+        {
+            obj = Instantiate(Gun, transform.position, Quaternion.identity, transform);
+            gun = obj.GetComponent<Gun>();
+        }
+        EventHandler.Instance.GunChange(obj);
     }
 
     private void LoseGun()

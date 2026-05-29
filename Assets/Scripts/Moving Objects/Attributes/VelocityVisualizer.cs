@@ -2,7 +2,13 @@ using UnityEngine;
 
 public class VelocityVisualizer : MonoBehaviour
 {
-    public MovingObject movingObject; // Should be the parent of this object
+    private MovingObject movingObject;
+    [SerializeField] private float DistanceFactor = .35f;
+
+    private void Awake()
+    {
+        movingObject = GetComponentInParent<MovingObject>();
+    }
 
     void FixedUpdate()
     {
@@ -10,7 +16,7 @@ public class VelocityVisualizer : MonoBehaviour
         {
             // Set this GameObject's position based on the Controls.vel vector
             // If working in 2D, we'll preserve z = 0
-            transform.localPosition = new Vector3(movingObject.vel.x, movingObject.vel.y, transform.position.z) * .35f;
+            transform.localPosition = new Vector3(movingObject.vel.x, movingObject.vel.y, transform.position.z) * DistanceFactor;
         }
     }
 }

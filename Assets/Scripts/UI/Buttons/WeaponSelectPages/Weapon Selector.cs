@@ -4,21 +4,25 @@ using TMPro;
 
 public class WeaponSelector : MonoBehaviour
 {
-    public GameObject GunPrefab;
+    public HandleGuns Player;
 
-    [SerializeField] private Image Image;
-    [SerializeField] private TMP_Text Text;
+    private GameObject GunPrefab;
+    private Image Image;
+    private TMP_Text Text;
     private Button Button;
 
     private void Awake()
     {
+        Image = transform.Find("Image").GetComponent<Image>();
+        Text = transform.Find("Text").GetComponent<TMP_Text>();
+
         Button = GetComponent<Button>();
         Button.onClick.AddListener(OnClicked);
     }
 
     private void OnClicked()
     {
-        EventHandler.Instance.GunChange(GunPrefab);
+        Player.GunChange(GunPrefab);
         EventHandler.Instance.RoundStart();
     }
 

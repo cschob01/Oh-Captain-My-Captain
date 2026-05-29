@@ -1,6 +1,7 @@
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.Port;
 using System.Collections;
+using UnityEngine.InputSystem.Controls;
 
 // Gun
 // This is the abstract class defining the interface for different gun types 
@@ -10,7 +11,11 @@ public class Gun : MonoBehaviour
     private Transform Muzzle;
 
     private bool Shooting = false;
-    private int Chamber;
+
+    [HideInInspector]
+    public int Chamber;
+    [HideInInspector]
+    public float ReloadProg = 0f;
 
     private Coroutine ReloadCoroutine;
 
@@ -45,7 +50,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private bool MagReload;
 
     [Tooltip("Seconds per bullet (or mag)")]
-    [SerializeField] private float ReloadSpeed;
+    [SerializeField] public float ReloadSpeed;
 
     [SerializeField] private int Capacity;
 
@@ -62,7 +67,6 @@ public class Gun : MonoBehaviour
         hitMask = LayerMask.GetMask("EnemyTriggers", "Walls");
         Muzzle = transform.Find("Muzzle");
         Chamber = Capacity;
-        EventHandler.Instance.AmmoChange(Chamber);
         onBoard = transform.parent.GetComponent<OnBoard_MovingObject>(); // Parent must have this script
     }
 
@@ -100,7 +104,6 @@ public class Gun : MonoBehaviour
         }
         onBoard.momentum = onBoard.momentum - (Vector2)transform.right * Kickback;
         Chamber--;
-        EventHandler.Instance.AmmoChange(Chamber);
     }
 
     private void FireProjectile()
@@ -135,7 +138,6 @@ public class Gun : MonoBehaviour
 
     public void Reload()
     {
-        Debug.Log("Reload called");
         if (ReloadCoroutine == null) ReloadCoroutine = StartCoroutine(ReloadTimer());
     }
 
@@ -146,27 +148,38 @@ public class Gun : MonoBehaviour
             // Interupt reloading
             StopCoroutine(ReloadCoroutine);
             ReloadCoroutine = null;
+            ReloadProg = 0f;
         }
     }
 
     IEnumerator ReloadTimer()
     {
+
         // Reload mag once
         if (MagReload)
         {
-            yield return new WaitForSeconds(ReloadSpeed);
+            while (ReloadProg <= ReloadSpeed)
+            {
+                yield return null;
+                ReloadProg += Time.deltaTime;
+            }
             Chamber = Capacity;
-            EventHandler.Instance.AmmoChange(Chamber);
         }
         else
         {
             while (Chamber < Capacity)
             {
-                yield return new WaitForSeconds(ReloadSpeed);
+                while (ReloadProg <= ReloadSpeed)
+                {
+                    yield return null;
+                    ReloadProg += Time.deltaTime;
+                }
                 Chamber++;
-                EventHandler.Instance.AmmoChange(Chamber);
+                ReloadProg = 0f;
             }
         }
+
+        ReloadProg = 0f;
         ReloadCoroutine = null;
     }
 }

@@ -112,9 +112,9 @@ MonoBehaviour:
   Ammo: {fileID: 11400000, guid: 3c4f832f45e1bf4449b84c476bfda508, type: 2}
   BulletSpeed: 12
   Bounces: 1
-  MagReload: 0
-  ReloadSpeed: 1.3
-  Capacity: 6
+  MagReload: 1
+  ReloadSpeed: 3
+  Capacity: 12
   AngleRandomness: 1
   ProjectilePrefab: {fileID: 361116788346805724, guid: ce986436b5689cd4492710b6e76fb949, type: 3}
 --- !u!1 &7559210141061417157

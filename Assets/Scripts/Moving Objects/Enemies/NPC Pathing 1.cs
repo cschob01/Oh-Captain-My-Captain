@@ -9,9 +9,6 @@ public class NPCPathing1 : MovingObject
     public Transform target;
     public LayerMask wallMask;
 
-    public float acc = .04f;
-    public float max_vel = 3;
-
     Seeker seeker;
     Path path;
     int currentWaypoint = 0;

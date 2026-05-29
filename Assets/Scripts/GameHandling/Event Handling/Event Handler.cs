@@ -8,12 +8,12 @@ public class EventHandler : MonoBehaviour
     public event Action OnPlayerDied;
     public event Action OnEnemyDied;
     public event Action<int> OnPlayerHealthChange;
-    public event Action<int> OnAmmoChange;
     public event Action OnRoundStart;
     public event Action OnRoundEnd;
     public event Action<int> OnRoundChange;
 
     public event Action<GameObject> OnGunChange;
+    public event Action<GameObject> OnGadgetChange;
 
     private void Awake()
     {
@@ -35,11 +35,6 @@ public class EventHandler : MonoBehaviour
         OnPlayerHealthChange?.Invoke(health);
     }
 
-    public void AmmoChange(int ammo)
-    {
-        OnAmmoChange?.Invoke(ammo);
-    }
-
     public void RoundStart()
     {
         OnRoundStart?.Invoke();
@@ -53,6 +48,11 @@ public class EventHandler : MonoBehaviour
     public void GunChange(GameObject Gun)
     {
         OnGunChange?.Invoke(Gun);
+    }
+
+    public void GadgetChange(GameObject Gadget)
+    {
+        OnGadgetChange?.Invoke(Gadget);
     }
 
     public void RoundChange(int round)

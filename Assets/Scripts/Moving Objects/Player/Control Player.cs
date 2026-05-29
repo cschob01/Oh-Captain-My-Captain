@@ -8,9 +8,6 @@ public class ControlPlayer : MovingObject
 
     public InputHandler Handler;
 
-    public float acc = .04f;
-    public float max_vel = 3;
-
     // SetVel called once per FixedUpdate
     protected override void SetVel()
     {

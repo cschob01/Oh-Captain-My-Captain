@@ -6,12 +6,19 @@ using UnityEngine.UIElements;
 public class WeaponSelectorManager : MonoBehaviour
 {
     private CanvasGroup cg;
-    [SerializeField] private GameObject[] GunPrefabs; // Expects >= 3
-    [SerializeField] private WeaponSelector[] Selectors; // Expects 3
+    [SerializeField] private GameObject[] GunPrefabs; // Expects >= Number of selectors
+    [SerializeField] private WeaponSelector[] Selectors;
+
+    [SerializeField] private HandleGuns Player;
 
     private void Awake()
     {
         cg = GetComponent<CanvasGroup>();
+
+        for (int i = 0; i < Selectors.Length; i++)
+        {
+            Selectors[i].Player = Player;
+        }
     }
     private void OnEnable()
     {
@@ -32,10 +39,10 @@ public class WeaponSelectorManager : MonoBehaviour
     {
         GameObject[] Options = GunPrefabs
             .OrderBy(x => UnityEngine.Random.value)
-            .Take(3)
+            .Take(Selectors.Length)
             .ToArray();
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < Selectors.Length; i++)
         {
             Selectors[i].SetButton(Options[i]);
         }

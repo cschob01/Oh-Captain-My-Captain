@@ -32,7 +32,6 @@ public class OnBoard_MovingObject : OnBoard
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.Log(transform.gameObject + " hit " + collision.gameObject);
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Walls"))
         {

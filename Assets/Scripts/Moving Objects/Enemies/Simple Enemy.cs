@@ -6,9 +6,6 @@ public class SimpleEnemy : MovingObject
 {
     public GameObject objective;
 
-    public float acc = .04f;
-    public float max_vel = 3;
-
     // Called once every fixedUpdate
     protected override void SetVel()
     {

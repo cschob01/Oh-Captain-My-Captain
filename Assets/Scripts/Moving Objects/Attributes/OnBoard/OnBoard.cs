@@ -44,10 +44,6 @@ public class OnBoard : MonoBehaviour
         /////////////////////////////////////////////////////////
         next_pos += (momentum - Ship.Instance.vel);
 
-
-        //transform.position = next_pos;
-
-        Debug.Log(transform.gameObject);
         object_rb.linearVelocity = next_pos - (Vector2)transform.position;
     }
 

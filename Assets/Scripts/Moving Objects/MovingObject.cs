@@ -5,6 +5,9 @@ using UnityEngine;
 // velocity vector. This is the foundation for player/enemy movement.
 public abstract class MovingObject : MonoBehaviour
 {
+    public float acc = .04f;
+    public float max_vel = 3;
+
     public Vector2 vel = Vector2.zero;
     protected Rigidbody2D object_rb;
     public GameObject render;
