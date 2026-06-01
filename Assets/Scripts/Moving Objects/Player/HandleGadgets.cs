@@ -4,7 +4,6 @@ using UnityEngine;
 public class HandleGadgets : MonoBehaviour
 {
     public GameObject StartingGadget;
-    public InputHandler Handler;
 
     private GameObject obj = null;
     private Gadget gadget = null;
@@ -39,8 +38,8 @@ public class HandleGadgets : MonoBehaviour
         if (obj != null && gadget != null)
         {
             // Use gadget if requested
-            if (Handler.controls.Gadget.Use.WasPressedThisFrame()) gadget.Activate(); // Try to activate gadget
-            if (Handler.controls.Gadget.Use.WasReleasedThisFrame()) gadget.Deactivate(); // Try to activate gadget
+            if (InputHandler.Instance.GadgetWasPressedThisFrame()) gadget.Activate(); // Try to activate gadget
+            if (InputHandler.Instance.GadgetWasPressedThisFrame()) gadget.Deactivate(); // Try to activate gadget
         }
     }
 }

@@ -376,7 +376,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 1}
+  m_LocalScale: {x: 100, y: 100, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -427,7 +427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b152dd43403db554484b32b75122259f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VelocityVisualizer
-  movingObject: {fileID: 1554879396}
+  DistanceFactor: 0.35
 --- !u!212 &461443132
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2400,7 +2400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead46f68b7f271c4e879d70c33336124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DisplayAmo
-  amoText: {fileID: 244734569}
 --- !u!1 &1064444239
 GameObject:
   m_ObjectHideFlags: 0
@@ -4038,9 +4037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c64696f0e009a458be39d8f417c5cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OnBoard
-  movingObject: {fileID: 1554879396}
   momentum: {x: 0, y: 0}
-  testing: 0
 --- !u!114 &1554879396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4053,11 +4050,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd0a4eb167d5ff4aa40bc1abe0e8c7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Controls
+  acc: 0.04
+  max_vel: 3
   vel: {x: 0, y: 0}
   render: {fileID: 813534748}
   Handler: {fileID: 1845965768}
-  acc: 0.04
-  max_vel: 3
 --- !u!50 &1554879399
 Rigidbody2D:
   serializedVersion: 5
@@ -4859,9 +4856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c64696f0e009a458be39d8f417c5cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OnBoard
-  movingObject: {fileID: 0}
   momentum: {x: 0, y: 0}
-  testing: 0
 --- !u!1 &5462057067247030939
 GameObject:
   m_ObjectHideFlags: 0
@@ -4928,7 +4923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b152dd43403db554484b32b75122259f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VelocityVisualizer
-  movingObject: {fileID: 0}
+  DistanceFactor: 0.35
 --- !u!212 &7021718682028428172
 SpriteRenderer:
   m_ObjectHideFlags: 0

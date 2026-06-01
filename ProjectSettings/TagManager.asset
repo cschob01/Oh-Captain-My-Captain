@@ -17,10 +17,10 @@ TagManager:
   - Enemies
   - Player
   - 
-  - PlayerTriggers
-  - EnemyTriggers
+  - Player Triggers
+  - Enemy Triggers
   - Projectiles
-  - 
+  - Player-Induced Triggers
   - 
   - 
   - 

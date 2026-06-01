@@ -4,6 +4,7 @@ using TMPro;
 
 public class WeaponSelector : MonoBehaviour
 {
+    [HideInInspector]
     public HandleGuns Player;
 
     private GameObject GunPrefab;

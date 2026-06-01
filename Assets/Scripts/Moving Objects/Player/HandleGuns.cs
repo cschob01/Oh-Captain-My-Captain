@@ -4,7 +4,6 @@ using UnityEngine;
 public class HandleGuns : MonoBehaviour
 {
     [SerializeField] private GameObject StartingGun = null;
-    [SerializeField] public InputHandler Handler;
     [SerializeField] public float distanceFromPlayer = .1f;
 
     private GameObject obj = null;
@@ -40,8 +39,8 @@ public class HandleGuns : MonoBehaviour
         if (obj != null && gun != null)
         {
             // Fire/Reload gun if requested
-            if (Handler.controls.Gun.Attack.IsPressed()) gun.Fire();
-            if (Handler.controls.Gun.Reload.WasPressedThisFrame()) gun.Reload();
+            if (InputHandler.Instance.FireIsPressed()) gun.Fire();
+            if (InputHandler.Instance.ReloadWasPressedThisFrame()) gun.Reload();
         }
     }
 
@@ -51,7 +50,7 @@ public class HandleGuns : MonoBehaviour
         {
             // Point gun
             ///////////////////////////////////////////////////////////////////
-            Vector2 mouseScreen = Handler.controls.Player.Look.ReadValue<Vector2>();
+            Vector2 mouseScreen = InputHandler.Instance.LookReadValue();
             Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(mouseScreen);
             mouseWorld.z = 0f;
 

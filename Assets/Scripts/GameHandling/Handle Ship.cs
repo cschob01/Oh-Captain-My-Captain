@@ -52,13 +52,6 @@ public class HandleShip : MonoBehaviour
         dir.x = (actions[3] ? 1 : 0) + (actions[5] ? -1 : 0);
         dir = dir.normalized * vel_strength;
 
-        // Get the camera's rotation in radians. Rotating the ship's movement by
-        // this will keep its movement relative to the player's camera
-        float camRot = Camera.main.transform.eulerAngles.z * Mathf.Deg2Rad;
-        Vector2 rotatedDir = new Vector2(
-            dir.x * Mathf.Cos(camRot) - dir.y * Mathf.Sin(camRot),
-            dir.x * Mathf.Sin(camRot) + dir.y * Mathf.Cos(camRot)
-        );
-        Ship.Instance.SetVel(rotatedDir, dir);
+        Ship.Instance.SetVel(dir);
     }
 }

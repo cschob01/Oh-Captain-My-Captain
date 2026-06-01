@@ -37,6 +37,8 @@ public class WeaponSelectorManager : MonoBehaviour
     }
     private void OpenPage()
     {
+        Debug.Log("New weapons provided");
+
         GameObject[] Options = GunPrefabs
             .OrderBy(x => UnityEngine.Random.value)
             .Take(Selectors.Length)
