@@ -1,52 +1,95 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-// InputHandler
-// Sets up the input controls depending on active level
-// (Currently set to default state. Only one scene is active)
 public class InputHandler : MonoBehaviour
 {
-    public static InputHandler Instance;
+    public static InputHandler Instance; // Make sigleton
+    private PlayerInput playerInput;
 
-    private InputSystem controls;
+    public PlayerInput PlayerInput => playerInput;
 
-    void Awake()
+    private InputAction attack;
+    private InputAction reload;
+    private InputAction look;
+    private InputAction spinLeft;
+    private InputAction spinRight;
+    private InputAction thrust;
+    private InputAction moveUp;
+    private InputAction moveLeft;
+    private InputAction moveDown;
+    private InputAction moveRight;
+    private InputAction gadget;
+    private InputAction pause;
+
+    private void Awake()
     {
-
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
 
+        playerInput = GetComponent<PlayerInput>();
         Instance = this;
 
-        controls = new InputSystem();
+        attack = GetAction("Attack");
+        reload = GetAction("Reload");
+        look = GetAction("Look");
+        spinLeft = GetAction("SpinLeft");
+        spinRight = GetAction("SpinRight");
+        thrust = GetAction("Thrust");
+        moveUp = GetAction("MoveUp");
+        moveLeft = GetAction("MoveLeft");
+        moveDown = GetAction("MoveDown");
+        moveRight = GetAction("MoveRight");
+        gadget = GetAction("Gadget/Use");
+        pause = GetAction("Game/Pause");
     }
-    void Start()
+
+    private InputAction GetAction(string actionName)
     {
-        controls.Enable();
+        InputAction action = playerInput.actions.FindAction(actionName);
+
+        if (action == null)
+        {
+            Debug.LogError($"Input Action '{actionName}' was not found in the Input Actions asset.");
+        }
+
+        return action;
     }
 
     public void EnableControls(bool enable)
     {
         if (enable)
-        {
-            controls.Enable();
-        }
+            playerInput.actions.Enable();
         else
-        {
-            controls.Disable();
-        }
+            playerInput.actions.Disable();
     }
 
-    public bool FireIsPressed() { return controls.Gun.Attack.IsPressed(); }
-    public bool ReloadWasPressedThisFrame() { return controls.Gun.Reload.WasPressedThisFrame(); }
-    public Vector2 LookReadValue() { return controls.Player.Look.ReadValue<Vector2>(); }
+    public bool FireIsPressed() => attack.IsPressed();
+    public bool ReloadWasPressedThisFrame() => reload.WasPressedThisFrame();
+    public Vector2 LookReadValue() => look.ReadValue<Vector2>();
 
-    public bool SpinLeftIsPressed() { return controls.Ship.SpinLeft.IsPressed(); }
-    public bool SpinRightIsPressed() { return controls.Ship.SpinRight.IsPressed(); }
-    public Vector2 ThrustReadValue() { return controls.Ship.Thrust.ReadValue<Vector2>(); }
-    public Vector2 MoveReadValue() { return controls.Player.Move.ReadValue<Vector2>(); }
-    public bool GadgetWasPressedThisFrame() { return controls.Gadget.Use.WasPressedThisFrame();  }
+    public bool SpinLeftIsPressed() => spinLeft.IsPressed();
+    public bool SpinRightIsPressed() => spinRight.IsPressed();
+    public Vector2 ThrustReadValue() => thrust.ReadValue<Vector2>();
+    public Vector2 MoveReadValue()
+    {
+        float x = 0f;
+        float y = 0f;
 
+        if (moveRight.IsPressed()) x += 1f;
+        if (moveLeft.IsPressed()) x -= 1f;
+        if (moveUp.IsPressed()) y += 1f;
+        if (moveDown.IsPressed()) y -= 1f;
+
+        Vector2 result = new Vector2(x, y);
+
+        return result.sqrMagnitude > 1f ? result.normalized : result;
+    }
+    public bool GadgetWasPressedThisFrame() => gadget.WasPressedThisFrame();
+
+    public bool PauseWasPressedThisFrame() => pause.WasPressedThisFrame();
+
+    public string CurrentControlScheme => playerInput.currentControlScheme;
 }

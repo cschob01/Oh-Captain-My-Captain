@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Android;
 
 public class EventHandler : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class EventHandler : MonoBehaviour
     /// Beats
     public event Action<int> OnBeatChange;
 
+    public event Action<bool> OnGamePause;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -27,6 +30,11 @@ public class EventHandler : MonoBehaviour
         }
 
         Instance = this;
+    }
+
+    public void GamePause(bool pause)
+    {
+        OnGamePause?.Invoke(pause);
     }
 
     public void BeatChange(int i)
