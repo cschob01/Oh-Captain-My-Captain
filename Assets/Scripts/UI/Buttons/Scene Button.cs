@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ChangeSceneButton : MonoBehaviour
+public class SceneButton : MonoBehaviour
 {
     public void LoadScene(string SceneName)
     {

@@ -11,7 +11,7 @@ public class ManageBinding : MonoBehaviour
 
     private void Awake()
     {
-        button = transform.Find("Button").GetComponent<Button>();
+        button = transform.Find("Button1").GetComponent<Button>();
         buttonText = button.GetComponentInChildren<TMP_Text>();
 
         Refresh();

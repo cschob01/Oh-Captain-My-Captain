@@ -13,7 +13,10 @@ public class InputHandler : MonoBehaviour
     private InputAction look;
     private InputAction spinLeft;
     private InputAction spinRight;
-    private InputAction thrust;
+    private InputAction thrustUp;
+    private InputAction thrustLeft;
+    private InputAction thrustDown;
+    private InputAction thrustRight;
     private InputAction moveUp;
     private InputAction moveLeft;
     private InputAction moveDown;
@@ -39,7 +42,10 @@ public class InputHandler : MonoBehaviour
         look = GetAction("Look");
         spinLeft = GetAction("SpinLeft");
         spinRight = GetAction("SpinRight");
-        thrust = GetAction("Thrust");
+        thrustUp = GetAction("ThrustUp");
+        thrustLeft = GetAction("ThrustLeft");
+        thrustDown = GetAction("ThrustDown");
+        thrustRight = GetAction("ThrustRight");
         moveUp = GetAction("MoveUp");
         moveLeft = GetAction("MoveLeft");
         moveDown = GetAction("MoveDown");
@@ -74,7 +80,20 @@ public class InputHandler : MonoBehaviour
 
     public bool SpinLeftIsPressed() => spinLeft.IsPressed();
     public bool SpinRightIsPressed() => spinRight.IsPressed();
-    public Vector2 ThrustReadValue() => thrust.ReadValue<Vector2>();
+    public Vector2 ThrustReadValue()
+    {
+        float x = 0f;
+        float y = 0f;
+
+        if (thrustRight.IsPressed()) x += 1f;
+        if (thrustLeft.IsPressed()) x -= 1f;
+        if (thrustUp.IsPressed()) y += 1f;
+        if (thrustDown.IsPressed()) y -= 1f;
+
+        Vector2 result = new Vector2(x, y);
+
+        return result.sqrMagnitude > 1f ? result.normalized : result;
+    }
     public Vector2 MoveReadValue()
     {
         float x = 0f;

@@ -111,13 +111,40 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Thrust"",
-                    ""type"": ""Value"",
-                    ""id"": ""b87cef4e-5bcc-40c5-b408-c4f5ab3cf1f3"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""name"": ""ThrustUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""a418ea13-7b60-4c4b-99ce-ded44a8f01d9"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThrustLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""0ef3fa4c-517c-43ef-9354-86c35b20362a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThrustDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""34ef1c29-872f-4bc2-afb6-a4dcd4f8eda4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThrustRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""f41f3e5e-5624-4d81-a8ea-8e1df00bc47b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -167,69 +194,91 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1d6f587a-c991-43fd-b5f8-aeb6ef4c9872"",
-                    ""path"": ""<Gamepad>/dpad"",
+                    ""id"": ""568a6937-4ab0-4c77-8708-d9a1e8c9301d"",
+                    ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Thrust"",
+                    ""action"": ""ThrustUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""9f3c9bfa-cf6d-4ad4-99de-90de4523eb5d"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Thrust"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""c63269c6-21f9-4bd8-9f84-a55252d8fd09"",
+                    ""name"": """",
+                    ""id"": ""2136d178-8063-4d30-854b-6703e6aa3598"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Thrust"",
+                    ""action"": ""ThrustUp"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""down"",
-                    ""id"": ""f540a701-bef2-49ba-99d8-cf272e1f299c"",
-                    ""path"": ""<Keyboard>/downArrow"",
+                    ""name"": """",
+                    ""id"": ""7fa77df1-afab-42c7-8adb-0a9c81db292a"",
+                    ""path"": ""<Gamepad>/dpad/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Thrust"",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ThrustLeft"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""left"",
-                    ""id"": ""d0fbe04c-5e32-4dd5-86c5-fa4b3f519f6c"",
+                    ""name"": """",
+                    ""id"": ""5dd5786c-7b6d-4bc0-999a-c4898e33779c"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Thrust"",
+                    ""action"": ""ThrustLeft"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""right"",
-                    ""id"": ""60caf7f7-23fd-4f45-a147-6235e8444705"",
+                    ""name"": """",
+                    ""id"": ""e7f0ad1b-5594-4033-84ae-64080f99ea1f"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ThrustDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c9ba5776-7fca-411f-a109-aa6a03857e51"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""ThrustDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""67aea6c4-66d0-4832-81b5-38e81da1ce20"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ThrustRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0ba48f4-d7dd-4811-8cc8-5470d566fc92"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Thrust"",
+                    ""action"": ""ThrustRight"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1355,7 +1404,10 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_Ship = asset.FindActionMap("Ship", throwIfNotFound: true);
         m_Ship_SpinLeft = m_Ship.FindAction("SpinLeft", throwIfNotFound: true);
         m_Ship_SpinRight = m_Ship.FindAction("SpinRight", throwIfNotFound: true);
-        m_Ship_Thrust = m_Ship.FindAction("Thrust", throwIfNotFound: true);
+        m_Ship_ThrustUp = m_Ship.FindAction("ThrustUp", throwIfNotFound: true);
+        m_Ship_ThrustLeft = m_Ship.FindAction("ThrustLeft", throwIfNotFound: true);
+        m_Ship_ThrustDown = m_Ship.FindAction("ThrustDown", throwIfNotFound: true);
+        m_Ship_ThrustRight = m_Ship.FindAction("ThrustRight", throwIfNotFound: true);
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
@@ -1481,7 +1533,10 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private List<IShipActions> m_ShipActionsCallbackInterfaces = new List<IShipActions>();
     private readonly InputAction m_Ship_SpinLeft;
     private readonly InputAction m_Ship_SpinRight;
-    private readonly InputAction m_Ship_Thrust;
+    private readonly InputAction m_Ship_ThrustUp;
+    private readonly InputAction m_Ship_ThrustLeft;
+    private readonly InputAction m_Ship_ThrustDown;
+    private readonly InputAction m_Ship_ThrustRight;
     /// <summary>
     /// Provides access to input actions defined in input action map "Ship".
     /// </summary>
@@ -1502,9 +1557,21 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @SpinRight => m_Wrapper.m_Ship_SpinRight;
         /// <summary>
-        /// Provides access to the underlying input action "Ship/Thrust".
+        /// Provides access to the underlying input action "Ship/ThrustUp".
         /// </summary>
-        public InputAction @Thrust => m_Wrapper.m_Ship_Thrust;
+        public InputAction @ThrustUp => m_Wrapper.m_Ship_ThrustUp;
+        /// <summary>
+        /// Provides access to the underlying input action "Ship/ThrustLeft".
+        /// </summary>
+        public InputAction @ThrustLeft => m_Wrapper.m_Ship_ThrustLeft;
+        /// <summary>
+        /// Provides access to the underlying input action "Ship/ThrustDown".
+        /// </summary>
+        public InputAction @ThrustDown => m_Wrapper.m_Ship_ThrustDown;
+        /// <summary>
+        /// Provides access to the underlying input action "Ship/ThrustRight".
+        /// </summary>
+        public InputAction @ThrustRight => m_Wrapper.m_Ship_ThrustRight;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1537,9 +1604,18 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @SpinRight.started += instance.OnSpinRight;
             @SpinRight.performed += instance.OnSpinRight;
             @SpinRight.canceled += instance.OnSpinRight;
-            @Thrust.started += instance.OnThrust;
-            @Thrust.performed += instance.OnThrust;
-            @Thrust.canceled += instance.OnThrust;
+            @ThrustUp.started += instance.OnThrustUp;
+            @ThrustUp.performed += instance.OnThrustUp;
+            @ThrustUp.canceled += instance.OnThrustUp;
+            @ThrustLeft.started += instance.OnThrustLeft;
+            @ThrustLeft.performed += instance.OnThrustLeft;
+            @ThrustLeft.canceled += instance.OnThrustLeft;
+            @ThrustDown.started += instance.OnThrustDown;
+            @ThrustDown.performed += instance.OnThrustDown;
+            @ThrustDown.canceled += instance.OnThrustDown;
+            @ThrustRight.started += instance.OnThrustRight;
+            @ThrustRight.performed += instance.OnThrustRight;
+            @ThrustRight.canceled += instance.OnThrustRight;
         }
 
         /// <summary>
@@ -1557,9 +1633,18 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @SpinRight.started -= instance.OnSpinRight;
             @SpinRight.performed -= instance.OnSpinRight;
             @SpinRight.canceled -= instance.OnSpinRight;
-            @Thrust.started -= instance.OnThrust;
-            @Thrust.performed -= instance.OnThrust;
-            @Thrust.canceled -= instance.OnThrust;
+            @ThrustUp.started -= instance.OnThrustUp;
+            @ThrustUp.performed -= instance.OnThrustUp;
+            @ThrustUp.canceled -= instance.OnThrustUp;
+            @ThrustLeft.started -= instance.OnThrustLeft;
+            @ThrustLeft.performed -= instance.OnThrustLeft;
+            @ThrustLeft.canceled -= instance.OnThrustLeft;
+            @ThrustDown.started -= instance.OnThrustDown;
+            @ThrustDown.performed -= instance.OnThrustDown;
+            @ThrustDown.canceled -= instance.OnThrustDown;
+            @ThrustRight.started -= instance.OnThrustRight;
+            @ThrustRight.performed -= instance.OnThrustRight;
+            @ThrustRight.canceled -= instance.OnThrustRight;
         }
 
         /// <summary>
@@ -2465,12 +2550,33 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSpinRight(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Thrust" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "ThrustUp" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnThrust(InputAction.CallbackContext context);
+        void OnThrustUp(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ThrustLeft" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThrustLeft(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ThrustDown" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThrustDown(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ThrustRight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThrustRight(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player" which allows adding and removing callbacks.
