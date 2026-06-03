@@ -47,9 +47,9 @@ public class SceneHandler : MonoBehaviour
 
         Instance = this;
 
+        // If we are starting from Bootstrapper and not testing, 
         // start fully black so first scene can fade in
-        if (fadeCanvas != null)
-            fadeCanvas.alpha = 1f;
+        if (SceneManager.GetActiveScene().name == "Bootstrapper") fadeCanvas.alpha = 1f;
     }
 
     public void LoadScene(string sceneName)
@@ -63,16 +63,17 @@ public class SceneHandler : MonoBehaviour
         isLoading = true;
 
         // 1. Fade OUT (hide current scene)
-        fadeCanvas.DOFade(1f, fadeDuration)
+        fadeCanvas.DOFade(1f, fadeDuration).SetUpdate(true)
             .OnComplete(() =>
             {
                 fadeCanvas.interactable = true;
                 fadeCanvas.blocksRaycasts = true;
             });
-        yield return new WaitForSeconds(fadeDuration);
+        yield return new WaitForSecondsRealtime(fadeDuration);
 
         // 2. Lock input here if you want
         InputHandler.Instance?.EnableControls(false);
+        Time.timeScale = 0f;
 
         // 3. Load scene in background (hidden)
         Debug.Log("Loading " + sceneName);
@@ -93,16 +94,15 @@ public class SceneHandler : MonoBehaviour
         yield return StartCoroutine(SceneInit());
 
         // 7. Fade IN (reveal scene)
-        fadeCanvas.DOFade(0f, fadeDuration)
-            .OnComplete(() =>
-                {
-                    fadeCanvas.interactable = false;
-                    fadeCanvas.blocksRaycasts = false;
-                });
-        yield return new WaitForSeconds(fadeDuration);
+        fadeCanvas.DOFade(0f, fadeDuration).SetUpdate(true);
+        fadeCanvas.interactable = false;
+        fadeCanvas.blocksRaycasts = false;
+
+        //yield return new WaitForSecondsRealtime(fadeDuration);
 
         // 8. Enable input AFTER everything is ready
         InputHandler.Instance?.EnableControls(true);
+        Time.timeScale = 1f;
     }
 
     private IEnumerator SceneInit()

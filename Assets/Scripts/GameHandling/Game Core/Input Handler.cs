@@ -30,6 +30,8 @@ public class InputHandler : MonoBehaviour
         }
 
         playerInput = GetComponent<PlayerInput>();
+        playerInput.enabled = true;
+
         Instance = this;
 
         attack = GetAction("Attack");

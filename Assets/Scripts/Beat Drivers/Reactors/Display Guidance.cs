@@ -26,6 +26,10 @@ public class DisplayGuidance : MonoBehaviour
         cg = GetComponent<CanvasGroup>();
         Text = transform.Find("Text").GetComponent<TextMeshProUGUI>();
     }
+    private void OnDestroy()
+    {
+        DOTween.Kill(cg);
+    }
     private void OnEnable()
     {
         EventHandler.Instance.OnBeatChange += SetGuidance;
