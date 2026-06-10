@@ -6,5 +6,6 @@ public class SignalReadyOnStart : MonoBehaviour
     void Start()
     {
         SceneHandler.Instance.doneLoading();
+        Destroy(gameObject);
     }
 }

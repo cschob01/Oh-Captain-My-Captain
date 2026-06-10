@@ -16,7 +16,8 @@ public class DisplayRound : MonoBehaviour
 
     private void ShowRound(int round)
     {
-        Text.text = "Round: " + round.ToString();
+        if (round <= 0) Text.text = "";
+        else Text.text = "Round: " + round.ToString();
     }
 
 }

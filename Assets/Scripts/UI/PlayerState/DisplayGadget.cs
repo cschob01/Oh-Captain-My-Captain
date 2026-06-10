@@ -13,6 +13,7 @@ public class DisplayGadget : MonoBehaviour
     {
         Icon = transform.Find("Icon").GetComponent<Image>();
         Cooldown = transform.Find("Cooldown").GetComponent<Image>();
+        ShowDisplay(false);
     }
 
     private void OnEnable()
@@ -38,17 +39,23 @@ public class DisplayGadget : MonoBehaviour
         }
     }
 
+    private void ShowDisplay(bool show)
+    {
+        Icon.enabled = show;
+        Cooldown.enabled = show;
+    }
+
     private void SetGadget(GameObject gadget)
     {
         if (gadget != null)
         {
             Gadget = gadget.GetComponent<Gadget>();
             Icon.sprite = gadget.GetComponent<SpriteRenderer>().sprite;
+            ShowDisplay(true);
         }
         else
         {
-            Icon = null;
-            Gadget = null;
+            ShowDisplay(false);
         }
     }
 }

@@ -1,18 +1,27 @@
+using DG.Tweening;
+using System.Collections;
+using System.IO;
+using System.Numerics;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
-using DG.Tweening;
 using UnityEngine.UI;
-using TMPro;
+using UnityEngine.UIElements;
 
 public class SceneHandler : MonoBehaviour
 {
     public static SceneHandler Instance;
 
-    [Header("References")]
-    [SerializeField] private CanvasGroup fadeCanvas; // full-screen black image
-    [SerializeField] private Image loadingBar;
-    [SerializeField] private float fadeDuration = 0.5f;
+    [System.Serializable]
+    public class Transition
+    {
+        public CanvasGroup fade_cg;
+        public float fadeTime = .5f;
+    }
+
+
+    [SerializeField] private Transition LoadingScreen;
+    [SerializeField] private Transition SpecialLoadingScreen;
 
     private bool isLoading;
     private AsyncOperation op;
@@ -20,21 +29,6 @@ public class SceneHandler : MonoBehaviour
     public void doneLoading()
     {
         isLoading = false;
-    }
-
-    public void FixedUpdate()
-    {
-        if (isLoading && op != null) {
-            if (op.progress == .9f)
-            {
-                loadingBar.fillAmount = 1f;
-
-            }
-            else
-            {
-                loadingBar.fillAmount = op.progress;
-            }
-        }
     }
 
     void Awake()
@@ -49,27 +43,45 @@ public class SceneHandler : MonoBehaviour
 
         // If we are starting from Bootstrapper and not testing, 
         // start fully black so first scene can fade in
-        if (SceneManager.GetActiveScene().name == "Bootstrapper") fadeCanvas.alpha = 1f;
+        if (SceneManager.GetActiveScene().name == "Bootstrapper") LoadingScreen.fade_cg.alpha = 1f;
+    }
+
+    private string GetNameByIndex(int index)
+    {
+        string path = SceneUtility.GetScenePathByBuildIndex(index);
+        return Path.GetFileNameWithoutExtension(path);
+    }
+
+    public void LoadNextLevel()
+    {
+        if (isLoading) return;
+
+        int index = SceneManager.GetActiveScene().buildIndex + 1;
+        if (index >= SceneManager.sceneCountInBuildSettings) LoadScene("Home Page");
+        else StartCoroutine(LoadRoutine(GetNameByIndex(index), SpecialLoadingScreen));
     }
 
     public void LoadScene(string sceneName)
     {
         if (isLoading) return;
-        StartCoroutine(LoadRoutine(sceneName));
+        StartCoroutine(LoadRoutine(sceneName, LoadingScreen));
     }
 
-    private IEnumerator LoadRoutine(string sceneName)
+    private IEnumerator LoadRoutine(string sceneName, Transition tran, bool FadeIn = true)
     {
         isLoading = true;
 
-        // 1. Fade OUT (hide current scene)
-        fadeCanvas.DOFade(1f, fadeDuration).SetUpdate(true)
-            .OnComplete(() =>
-            {
-                fadeCanvas.interactable = true;
-                fadeCanvas.blocksRaycasts = true;
-            });
-        yield return new WaitForSecondsRealtime(fadeDuration);
+        if (FadeIn)
+        {
+            // 1. Fade OUT (hide current scene)
+            tran.fade_cg.DOFade(1f, tran.fadeTime).SetUpdate(true)
+                .OnComplete(() =>
+                {
+                    tran.fade_cg.interactable = true;
+                    tran.fade_cg.blocksRaycasts = true;
+                });
+            yield return new WaitForSecondsRealtime(tran.fadeTime);
+        }
 
         // 2. Lock input here if you want
         InputHandler.Instance?.EnableControls(false);
@@ -82,7 +94,9 @@ public class SceneHandler : MonoBehaviour
 
         // 4. Wait until scene is fully loaded (0.9 barrier)
         while (op.progress < 0.9f)
+        {
             yield return null;
+        }
 
         // 5. Activate scene (still invisible due to fade)
         op.allowSceneActivation = true;
@@ -94,9 +108,9 @@ public class SceneHandler : MonoBehaviour
         yield return StartCoroutine(SceneInit());
 
         // 7. Fade IN (reveal scene)
-        fadeCanvas.DOFade(0f, fadeDuration).SetUpdate(true);
-        fadeCanvas.interactable = false;
-        fadeCanvas.blocksRaycasts = false;
+        tran.fade_cg.DOFade(0f, tran.fadeTime).SetUpdate(true);
+        tran.fade_cg.interactable = false;
+        tran.fade_cg.blocksRaycasts = false;
 
         //yield return new WaitForSecondsRealtime(fadeDuration);
 

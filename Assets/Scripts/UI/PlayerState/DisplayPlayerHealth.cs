@@ -2,27 +2,53 @@ using System.Xml;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DisplayPlayerHealth : MonoBehaviour
 {
-    public TextMeshProUGUI healthText;
+    private TextMeshProUGUI healthText;
+    private Image Image;
+    private PlayerHealth Health;
 
     private void Awake()
     {
-        PlayerHealth health = FindAnyObjectByType(typeof(PlayerHealth)).GetComponent<PlayerHealth>();
-        if (health != null) SetHealth(health.health);
+        healthText = transform.Find("Text").GetComponent<TextMeshProUGUI>();
+        Image = transform.Find("Image").GetComponent<Image>();
+        ShowDisplay(false);
     }
-    private void SetHealth(int health)
+    private void SetHealth(PlayerHealth health)
     {
-        healthText.text = "X" + health;
+        Health = health;
+        if (health != null)
+        {
+            ShowDisplay(true);
+        }
+        else
+        {
+            ShowDisplay(false);
+        }
+    }
+
+    private void Update()
+    {
+        if (Health == null) return;
+
+        healthText.text = "X " + Health.health.ToString();
+    }
+
+    private void ShowDisplay(bool show)
+    {
+        Image.enabled = show;
+        healthText.enabled = show;
+
     }
     private void OnEnable()
     {
-        EventHandler.Instance.OnPlayerHealthChange += SetHealth;
+        EventHandler.Instance.OnHealthChange += SetHealth;
     }
 
     private void OnDisable()
     {
-        EventHandler.Instance.OnPlayerHealthChange -= SetHealth;
+        EventHandler.Instance.OnHealthChange -= SetHealth;
     }
 }

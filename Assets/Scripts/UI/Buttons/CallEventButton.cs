@@ -27,9 +27,9 @@ public class CallEventButton : MonoBehaviour
         EventHandler.Instance.BeatChange(beat);
     }
 
-    public void InvokePlayerHealthChange(int health)
+    public void InvokeHealthChange(PlayerHealth Health)
     {
-        EventHandler.Instance.PlayerHealthChange(health);
+        EventHandler.Instance.HealthChange(Health);
     }
 
     public void InvokeRoundChange(int round)

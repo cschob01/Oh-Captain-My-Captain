@@ -15,11 +15,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Home Page.unity
     guid: 1622696a200e0e04da8bfd21bf5079d3
   - enabled: 1
-    path: Assets/Scenes/RandomGunEndless.unity
-    guid: 5ce5f1e7ab82fe648936308931ba140a
-  - enabled: 1
     path: Assets/Scenes/Tutorials/Tutorial1.unity
     guid: fe383972e254ccd42896de3bd202c989
+  - enabled: 1
+    path: Assets/Scenes/RandomGunEndless.unity
+    guid: a0c2d8738f954ee4e93566d21bae26ef
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -7,9 +7,9 @@ public class PlayerHealth : Health
 
     public float cool_down_time = 3f; // Cannot be damaged twice in this amount of time
 
-    public void Awake()
+    public void Start()
     {
-        EventHandler.Instance.PlayerHealthChange(health);
+        EventHandler.Instance.HealthChange(this);
     }
 
     public override void TakeDamage(int damage, Vector2 dir)
@@ -19,7 +19,6 @@ public class PlayerHealth : Health
             StartCoroutine(CoolDown());
 
             health -= damage;
-            EventHandler.Instance.PlayerHealthChange(health);
             if (health <= 0)
             {
                 Destroy(transform.parent.gameObject);

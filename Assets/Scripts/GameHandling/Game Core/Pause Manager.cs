@@ -5,6 +5,22 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private CanvasGroup cg;
     private bool Paused;
 
+    private void OnEnable()
+    {
+        EventHandler.Instance.OnLevelCompleted += DisablePauseMenu;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.Instance.OnLevelCompleted -= DisablePauseMenu;
+    }
+
+    private void DisablePauseMenu()
+    {
+        Pause(false);
+        gameObject.SetActive(false);
+    }
+
     private void Start()
     {
         Pause(false);
