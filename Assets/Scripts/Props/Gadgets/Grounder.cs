@@ -15,7 +15,7 @@ public class Grounder : Gadget
         onBoard.momentum = Vector2.zero;
     }
 
-    public override void Deactivate()
+    protected override void Disuse()
     {
         
     }

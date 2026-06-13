@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
 
@@ -25,23 +26,24 @@ public class Ship : MonoBehaviour
     public Vector2 global_pos { get; private set; } // Ship pos in global space
 
     public float global_angle { get; private set; } // Ship angle (radians) in global space
-
-
     public Tilemap spaceship { get; private set; }
     public TilemapCollider2D spaceship_collider { get; private set; }
 
     [SerializeField] private float vel_acc_rate = 1;     //
     [SerializeField] private float spin_acc_rate = 1;    // per sec
 
+    public List<DenseMass> denseMasses { get; private set; }
+
     private Animator[] ThrustIndicators;
     private Transform CameraHolder;
     private CameraShaker Shaker;
-    private bool Shifting;
 
     // Initialization
     protected virtual void Awake()
     {
         Instance = this;
+
+        denseMasses = new();
 
         spaceship = GameObject.Find("Walls").GetComponent<Tilemap>();
         spaceship_collider = spaceship.GetComponent<TilemapCollider2D>();
@@ -133,6 +135,16 @@ public class Ship : MonoBehaviour
         spin += dir * spin_acc_rate * Time.fixedDeltaTime;
         spin = Mathf.Clamp(spin, -max_spin, max_spin);
         if (!Mathf.Approximately(0, dir)) Shaker.Shake();
+    }
+
+    public void AddDenseMass(DenseMass dm)
+    {
+        denseMasses.Add(dm);
+    }
+
+    public void RemoveDenseMass(DenseMass dm)
+    {
+        denseMasses.Remove(dm);
     }
 
     private void FixedUpdate()

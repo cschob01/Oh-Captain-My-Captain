@@ -5,14 +5,16 @@ using TMPro;
 public class DisplayGadget : MonoBehaviour
 {
     private Image Icon;
-    private Image Cooldown;
+    private Image Cooldown1;
+    private Image Cooldown2;
 
     private Gadget Gadget;
 
     private void Awake()
     {
         Icon = transform.Find("Icon").GetComponent<Image>();
-        Cooldown = transform.Find("Cooldown").GetComponent<Image>();
+        Cooldown1 = transform.Find("Cooldown1").GetComponent<Image>();
+        Cooldown2 = transform.Find("Cooldown2").GetComponent<Image>();
         ShowDisplay(false);
     }
 
@@ -31,18 +33,24 @@ public class DisplayGadget : MonoBehaviour
     {
         if (Gadget != null)
         {
-            Cooldown.fillAmount = Gadget.CooldownProg / Gadget.Cooldown;
+            if (Gadget.MidCooldown) Cooldown2.fillAmount = 1f - Gadget.CooldownProg / Gadget.Cooldown;
+            else Cooldown2.fillAmount = 0f;
+
+            if (Gadget.MidUse) Cooldown1.fillAmount = 1f - Gadget.UseProg / Gadget.UseTime;
+            else Cooldown1.fillAmount = 0f;
         }
         else
         {
-            Cooldown.fillAmount = 0f;
+            Cooldown2.fillAmount = 0f;
+            Cooldown1.fillAmount = 0f;
         }
     }
 
     private void ShowDisplay(bool show)
     {
         Icon.enabled = show;
-        Cooldown.enabled = show;
+        Cooldown1.enabled = show;
+        Cooldown2.enabled = show;
     }
 
     private void SetGadget(GameObject gadget)

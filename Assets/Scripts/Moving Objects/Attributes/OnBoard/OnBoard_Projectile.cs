@@ -18,6 +18,7 @@ public class OnBoard_Projectile : OnBoard
     protected void FixedUpdate()
     {
         TransformOnBoard();
+        TransformDenseMass();
     }
 
     void OnCollisionStay2D(Collision2D collision)

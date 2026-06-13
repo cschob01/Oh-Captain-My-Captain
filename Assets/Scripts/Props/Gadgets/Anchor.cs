@@ -15,7 +15,7 @@ public class Anchor : Gadget
         onBoard.momentum = Ship.Instance.vel;
     }
 
-    public override void Deactivate()
+    protected override void Disuse()
     {
         
     }

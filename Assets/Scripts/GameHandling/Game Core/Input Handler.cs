@@ -130,6 +130,7 @@ public class InputHandler : MonoBehaviour
         return result.sqrMagnitude > 1f ? result.normalized : result;
     }
     public bool GadgetWasPressedThisFrame() => gadget.WasPressedThisFrame();
+    public bool GadgetWasReleasedThisFrame() => gadget.WasReleasedThisFrame();
 
     public bool PauseWasPressedThisFrame() => pause.WasPressedThisFrame();
 

@@ -105,5 +105,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PropSpawner
   Cooldown: 6
   CooldownProg: 0
-  Grenade: {fileID: 361116788346805724, guid: b01bebf6e52d47a41b11bb834399471f, type: 3}
+  Prop: {fileID: 361116788346805724, guid: b01bebf6e52d47a41b11bb834399471f, type: 3}
   ThrowForce: 0.5

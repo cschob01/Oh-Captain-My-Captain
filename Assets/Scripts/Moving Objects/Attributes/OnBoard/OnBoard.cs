@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 // OnBoard is the foundation for on-ship physics
 // Rather than moving the spaceship, objects inside that are given this script
@@ -42,6 +43,15 @@ public class OnBoard : MonoBehaviour
             momentum += dif.normalized * power;
         }
     }
+
+    protected void TransformDenseMass()
+    {
+        foreach (DenseMass mass in Ship.Instance.denseMasses)
+        {
+            OnExplosion(mass.transform.position, -mass.acceleration * Time.fixedDeltaTime, mass.radius);
+        }
+    }
+
 
     protected void TransformOnBoard() // Moves object according to ship's movement
     {

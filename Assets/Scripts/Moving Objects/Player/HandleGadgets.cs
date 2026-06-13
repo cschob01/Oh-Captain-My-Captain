@@ -39,7 +39,7 @@ public class HandleGadgets : MonoBehaviour
         {
             // Use gadget if requested
             if (InputHandler.Instance.GadgetWasPressedThisFrame()) gadget.Activate(); // Try to activate gadget
-            if (InputHandler.Instance.GadgetWasPressedThisFrame()) gadget.Deactivate(); // Try to activate gadget
+            if (InputHandler.Instance.GadgetWasReleasedThisFrame()) gadget.Deactivate(); // Try to activate gadget
         }
     }
 }

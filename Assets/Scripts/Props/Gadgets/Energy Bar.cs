@@ -4,41 +4,40 @@ using UnityEngine;
 public class EnergyBar : Gadget
 {
     private MovingObject MovingObject;
-    private bool Boosted = false;
 
     [SerializeField] private float MaxVelBoost = 2f;
     [SerializeField] private float AccBoost = 2f;
-    [SerializeField] private float BoostDuration = 7f;
+
+    private float MaxVel;
+    private float Acc;
 
     private void Awake()
     {
         MovingObject = GetComponentInParent<MovingObject>();
         GetComponent<SpriteRenderer>().enabled = false;
+
+        if (MovingObject == null) Debug.Log("ERROR: No moving object in parent of energy bar");
+        else
+        {
+            MaxVel = MovingObject.max_vel;
+            Acc = MovingObject.acc;
+        }
     }
     protected override void Use()
     {
-        if (!Boosted)
-        {
-            StartCoroutine(BoostRoutine());
-        }
+        MovingObject.max_vel = MaxVel * MaxVelBoost;
+        MovingObject.acc = Acc * AccBoost;
     }
 
-    public override void Deactivate()
+    protected override void Disuse()
     {
-        
+        MovingObject.max_vel = MaxVel;
+        MovingObject.acc = Acc;
     }
 
-    private IEnumerator BoostRoutine()
+    private void OnDisable()
     {
-        Boosted = true;
-        MovingObject.acc *= AccBoost;
-        MovingObject.max_vel *= MaxVelBoost;
-
-        yield return new WaitForSeconds(BoostDuration);
-
-        MovingObject.acc /= AccBoost;
-        MovingObject.max_vel /= MaxVelBoost;
-        StartCoroutine(CooldownRoutine());
-        Boosted = false;
+        MovingObject.max_vel = MaxVel;
+        MovingObject.acc = Acc;
     }
 }

@@ -17,6 +17,7 @@ public class OnBoard_MovingObject : OnBoard
     protected void FixedUpdate()
     {
         TransformOnBoard();
+        TransformDenseMass();
 
         //Rotate vel to follow ship's spin
         float cos = Mathf.Cos(Ship.Instance.spin * Time.fixedDeltaTime);

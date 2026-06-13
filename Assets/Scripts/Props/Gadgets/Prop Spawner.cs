@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PropSpawner : Gadget
 {
-    [SerializeField] private GameObject Grenade;
+    [SerializeField] private GameObject Prop;
     [SerializeField] private float ThrowForce;
     private OnBoard OnBoard;
     private MovingObject MovingObject;
@@ -24,7 +24,7 @@ public class PropSpawner : Gadget
 
     protected override void Use()
     {
-        GameObject grenade = Instantiate(Grenade, transform.position, transform.rotation);
+        GameObject grenade = Instantiate(Prop, transform.position, transform.rotation);
         OnBoard onBoard = grenade.GetComponent<OnBoard>();
         if (onBoard == null) Debug.Log("ERROR: Grenade prefab does not contain onBoard");
         else
@@ -36,7 +36,7 @@ public class PropSpawner : Gadget
         StartCoroutine(CooldownRoutine());
     }
 
-    public override void Deactivate()
+    protected override void Disuse()
     {
 
     }
