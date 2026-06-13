@@ -50,11 +50,7 @@ public class HandleGuns : MonoBehaviour
         {
             // Point gun
             ///////////////////////////////////////////////////////////////////
-            Vector2 mouseScreen = InputHandler.Instance.LookReadValue();
-            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(mouseScreen);
-            mouseWorld.z = 0f;
-
-            dir = (mouseWorld - transform.position).normalized;
+            Vector2 dir = InputHandler.Instance.LookReadValue();
             obj.transform.localPosition = dir * distanceFromPlayer;
 
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

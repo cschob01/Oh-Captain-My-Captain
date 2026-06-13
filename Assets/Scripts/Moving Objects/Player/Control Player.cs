@@ -14,7 +14,7 @@ public class ControlPlayer : MovingObject
     }
 
     // SetVel called once per FixedUpdate
-    protected override void SetVel()
+    protected override Vector2 GetDir()
     {
         Vector2 input = InputHandler.Instance.MoveReadValue();
 
@@ -26,7 +26,6 @@ public class ControlPlayer : MovingObject
             input.x * Mathf.Sin(camRot) + input.y * Mathf.Cos(camRot)
         );
 
-        vel += acc * rotatedInput;
-        vel = Vector2.ClampMagnitude(vel, max_vel);
+        return rotatedInput;
     }
 }

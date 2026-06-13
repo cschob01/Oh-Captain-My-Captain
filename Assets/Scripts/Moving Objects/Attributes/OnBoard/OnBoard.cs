@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 
 // OnBoard is the foundation for on-ship physics
@@ -15,6 +15,34 @@ public class OnBoard : MonoBehaviour
 
     protected float epsilon = .01f;
 
+    [SerializeField] protected bool testing;
+
+    private void OnEnable()
+    {
+        EventHandler.Instance.OnExplosion += OnExplosion;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.Instance.OnExplosion -= OnExplosion;
+    }
+
+    private void OnExplosion(Vector2 pos, float force, float radius)
+    {
+        Vector2 dif = (Vector2)transform.position - pos;
+        float dist = dif.magnitude;
+        if (dist <= radius)
+        {
+            if (dist == 0f)
+            {
+                Debug.Log("Object is positioned EXACTLY on explosion");
+                return;
+            }
+            float power = force * (radius - dist) / radius;
+            momentum += dif.normalized * power;
+        }
+    }
+
     protected void TransformOnBoard() // Moves object according to ship's movement
     {
         Vector2 next_pos = transform.position;
@@ -22,8 +50,9 @@ public class OnBoard : MonoBehaviour
         /////////////////////////////////////////////////////////
         //Spin: Rotate object around ship center
         /////////////////////////////////////////////////////////
-        float cos = Mathf.Cos(Ship.Instance.spin);
-        float sin = Mathf.Sin(Ship.Instance.spin);
+        float angle = Ship.Instance.spin * Time.fixedDeltaTime;
+        float cos = Mathf.Cos(angle);
+        float sin = Mathf.Sin(angle);
         next_pos -= Ship.Instance.center;    // Get relative to center
         next_pos = new Vector2(              // Rotate
             next_pos.x * cos - next_pos.y * sin,
@@ -42,46 +71,37 @@ public class OnBoard : MonoBehaviour
         /////////////////////////////////////////////////////////
         //Vel: Move object according to ship's velocity
         /////////////////////////////////////////////////////////
-        next_pos += (momentum - Ship.Instance.vel);
+        next_pos += (momentum - Ship.Instance.vel) * Time.fixedDeltaTime;
 
-        object_rb.linearVelocity = next_pos - (Vector2)transform.position;
+        object_rb.linearVelocity = (next_pos - object_rb.position) / Time.fixedDeltaTime;
     }
 
-    protected bool[] GetContactPoints(Collision2D collision)
+    protected Vector2 GetWallForce(ContactPoint2D contact)
     {
-        bool[] touching = { false, false, false, false };
+        // Getting force vector due to spin
+        Vector2 pos = transform.position;
+        Vector2 radius = pos - Ship.Instance.center;
+        Vector2 tangent = new Vector2(-radius.y, radius.x);
+        Vector2 spin_force = tangent * -Ship.Instance.spin;
+        ////// Total momentum of bumped-into wall
+        Vector2 wall_force = Ship.Instance.vel + spin_force;
 
-        foreach (ContactPoint2D contact in collision.contacts)
+        if (testing)
         {
-            Vector2 normal = contact.normal;
-
-            if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
-            {
-                if (normal.x > 0)
-                {
-                    touching[0] = true;
-                }
-                else
-                {
-                    touching[0] = true;
-                    touching[2] = true;
-                }
-            }
-            else
-            {
-                if (normal.y > 0)
-                {
-                    touching[1] = true;
-                }
-                else
-                {
-                    touching[1] = true;
-                    touching[3] = true;
-                }
-            }
+            Debug.Log(
+                $"Thrust Force: {Ship.Instance.vel}\n" +
+                $"SpinForce: {spin_force}\n" +
+                $"Normal: {contact.normal}\n" +
+                $"Total After Projection: {ProjectOnto(wall_force, contact.normal)}"
+            );
         }
 
-        return touching;
+        return ProjectOnto(wall_force, contact.normal);
+    }
+
+    protected Vector2 ProjectOnto(Vector2 vector, Vector2 onto)
+    {
+        return Vector2.Dot(vector, onto) / onto.sqrMagnitude * onto;
     }
 
 }

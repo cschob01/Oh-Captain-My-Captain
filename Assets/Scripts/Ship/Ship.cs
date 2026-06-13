@@ -12,26 +12,26 @@ public class Ship : MonoBehaviour
     public static Ship Instance;
 
     public Vector2 vel { get; private set; } // Units per second
-    public float spin { get; private set; } // Degrees per second
+    public float spin { get; private set; } // Radians per second
 
-    public float max_vel = 10;
-    public float max_spin = 5;
+    [SerializeField] private float max_vel = 10;
+    [SerializeField] private float max_spin = 50;
 
 
-    public Vector2 center { get; private set; } // Center coordinates
+    public Vector2 center { get; private set; } = Vector2.zero; // Center coordinates
 
     public Vector2 global_vel { get; private set; } // Units per second
 
     public Vector2 global_pos { get; private set; } // Ship pos in global space
 
-    public float global_angle { get; private set; } // Ship angle in global space
+    public float global_angle { get; private set; } // Ship angle (radians) in global space
 
 
     public Tilemap spaceship { get; private set; }
     public TilemapCollider2D spaceship_collider { get; private set; }
 
-    private float vel_acc_rate;     //
-    private float spin_acc_rate;    // per sec
+    [SerializeField] private float vel_acc_rate = 1;     //
+    [SerializeField] private float spin_acc_rate = 1;    // per sec
 
     private Animator[] ThrustIndicators;
     private Transform CameraHolder;
@@ -60,17 +60,12 @@ public class Ship : MonoBehaviour
         vel = Vector2.zero;
         spin = 0;
 
-        vel_acc_rate = .85f;
-        spin_acc_rate = .15f; ;
-
-        center = Vector2.zero;
-
         CameraHolder = Camera.main.transform.parent;
         Shaker = CameraHolder.GetComponent<CameraShaker>();
     }
 
     //////////////////////////////////////////
-    // Repeatedly called via FixedUpdate
+    // Repeatedly called via FIXEDUPDATE
     //////////////////////////////////////////
     public void SetVel(Vector2 global_input)
     {
@@ -129,6 +124,10 @@ public class Ship : MonoBehaviour
         global_vel = Vector2.ClampMagnitude(global_vel, max_vel);
 
     }
+
+    //////////////////////////////////////////
+    // Repeatedly called via FIXEDUPDATE
+    //////////////////////////////////////////
     public void SetSpin(float dir) // Positive is right, negative is left
     {
         spin += dir * spin_acc_rate * Time.fixedDeltaTime;
@@ -147,7 +146,7 @@ public class Ship : MonoBehaviour
             vel.x * sin + vel.y * cos
         );
 
-        global_angle += spin * Mathf.Rad2Deg * Time.fixedDeltaTime; // Update angle in global space
+        global_angle += spin * Time.fixedDeltaTime; // Update angle in global space
         global_pos += global_vel * Time.fixedDeltaTime; // Update position in global space
     }
 }

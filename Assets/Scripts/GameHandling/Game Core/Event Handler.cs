@@ -22,6 +22,8 @@ public class EventHandler : MonoBehaviour
 
     public event Action<bool> OnGamePause;
 
+    public event Action<Vector2, float, float> OnExplosion;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -31,6 +33,11 @@ public class EventHandler : MonoBehaviour
         }
 
         Instance = this;
+    }
+
+    public void Explosion(Vector2 Coordinates, float Force, float Radius)
+    {
+        OnExplosion?.Invoke(Coordinates, Force, Radius);
     }
 
     public void HealthChange(PlayerHealth Health)

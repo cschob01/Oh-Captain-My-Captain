@@ -7,14 +7,11 @@ public class SimpleEnemy : MovingObject
     public GameObject objective;
 
     // Called once every fixedUpdate
-    protected override void SetVel()
+    protected override Vector2 GetDir()
     {
         Vector2 pos = transform.position;
         Vector2 target = objective.transform.position;
-        Vector2 dir = (target - pos).normalized;
-        vel += acc * dir;
-
-        ////Clamp velocity
-        vel = Vector2.ClampMagnitude(vel, max_vel);
+        Vector2 dir = (target - pos);
+        return dir;
     }
 }

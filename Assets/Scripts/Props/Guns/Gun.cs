@@ -1,7 +1,5 @@
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.Port;
 using System.Collections;
-using UnityEngine.InputSystem.Controls;
 
 // Gun
 // This is the abstract class defining the interface for different gun types 

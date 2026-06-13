@@ -65,28 +65,25 @@ public class NPCPathing1 : MovingObject
         line_of_sight = res;
     }
 
-    protected override void SetVel()
+    protected override Vector2 GetDir()
     {
         if (line_of_sight) // Head directly to player
         {
             Vector2 start = transform.position;
             Vector2 end = target.position;
-            Vector2 dir = (end - start).normalized;
-            vel += acc * dir;
+            Vector2 dir = (end - start);
+            return dir;
         }
         else // Traverse BFS graph
         {
-            if (path == null || currentWaypoint >= path.vectorPath.Count) return;
-
-            Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - (Vector2)transform.position).normalized;
-            vel += acc * dir;
+            if (path == null || currentWaypoint >= path.vectorPath.Count) return Vector2.zero;
 
             if (Vector2.Distance(transform.position, path.vectorPath[currentWaypoint]) < waypointDistance)
                 currentWaypoint++;
-        }
 
-        ////Clamp velocity
-        vel = Vector2.ClampMagnitude(vel, max_vel);
+            Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - (Vector2)transform.position);
+            return dir;
+        }
     }
     private void OnDestroy()
     {

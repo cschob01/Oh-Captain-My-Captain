@@ -8,7 +8,7 @@ public abstract class MovingObject : MonoBehaviour
     public float acc = .04f;
     public float max_vel = 3;
 
-    public Vector2 vel = Vector2.zero;
+    public Vector2 vel { get; private set; } = Vector2.zero;
     protected Rigidbody2D object_rb;
     public GameObject render;
 
@@ -17,10 +17,16 @@ public abstract class MovingObject : MonoBehaviour
         object_rb = GetComponent<Rigidbody2D>();
     }
 
+    public void ModifyVel(Vector2 new_vel)
+    {
+        vel = Vector2.ClampMagnitude(new_vel, max_vel);
+    }
+
     private void FixedUpdate()
     {
         // Get vel from child class
-        SetVel();
+        vel += acc * GetDir().normalized;
+        vel = Vector2.ClampMagnitude(vel, max_vel);
 
         // Apply vel so that it works in the Unity physics system
         // object_rb.linearVelocity = vel; // LEAVE TO ONBOARD
@@ -32,5 +38,5 @@ public abstract class MovingObject : MonoBehaviour
         }
     }
 
-    protected abstract void SetVel();
+    protected abstract Vector2 GetDir();
 }

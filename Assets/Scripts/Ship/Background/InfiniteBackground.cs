@@ -22,6 +22,6 @@ public class InfiniteBackground : MonoBehaviour
         rend.material.mainTextureOffset = offset;
 
         //Follow ship's rotation
-        transform.rotation = Quaternion.Euler(0, 0, Ship.Instance.global_angle);
+        transform.rotation = Quaternion.Euler(0, 0, Ship.Instance.global_angle * Mathf.Rad2Deg);
     }
 }

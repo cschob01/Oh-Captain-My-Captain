@@ -76,7 +76,28 @@ public class InputHandler : MonoBehaviour
 
     public bool FireIsPressed() => attack.IsPressed();
     public bool ReloadWasPressedThisFrame() => reload.WasPressedThisFrame();
-    public Vector2 LookReadValue() => look.ReadValue<Vector2>();
+
+    public Vector2 LookReadValue()
+    {
+        Vector2 localDir;
+
+        if (playerInput.currentControlScheme == "Keyboard&Mouse")
+        {
+            Vector2 mousePos = Mouse.current.position.ReadValue();
+
+            localDir = (
+                mousePos -
+                new Vector2(Screen.width, Screen.height) * 0.5f
+            ).normalized;
+        }
+        else
+        {
+            localDir = look.ReadValue<Vector2>().normalized;
+        }
+
+        float angle = Camera.main.transform.eulerAngles.z;
+        return (Quaternion.Euler(0f, 0f, angle) * localDir).normalized;
+    }
 
     public bool SpinLeftIsPressed() => spinLeft.IsPressed();
     public bool SpinRightIsPressed() => spinRight.IsPressed();
