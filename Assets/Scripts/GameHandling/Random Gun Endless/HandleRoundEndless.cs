@@ -17,7 +17,7 @@ public class HandleRoundEndless : MonoBehaviour
 {
     [SerializeField] private int MaxEnemies = 20;
     [SerializeField] private Trip[] Enemies; // First element will be treated as DEAFAULT enemy
-    [SerializeField] private GameObject Captain;
+    private GameObject Captain;
 
     public int EnemiesLeft = 0;
     public int Round = 0;
@@ -37,13 +37,16 @@ public class HandleRoundEndless : MonoBehaviour
 
     private void OnDisable()
     {
-        EventHandler.Instance.OnRoundStart += StartRound;
-        EventHandler.Instance.OnRoundEnd += EndRound;
+        EventHandler.Instance.OnRoundStart -= StartRound;
+        EventHandler.Instance.OnRoundEnd -= EndRound;
         EventHandler.Instance.OnEnemyDied -= OnEnemyDied;
     }
 
     private void Awake()
     {
+        Captain = GameObject.Find("Captain");
+        if (Captain == null) Debug.Log("ERROR: GameObject named Captain not found in scene");
+
         List<Vector3> positions = new();
 
         foreach (Transform child in transform)

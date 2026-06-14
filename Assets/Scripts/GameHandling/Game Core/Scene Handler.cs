@@ -61,6 +61,13 @@ public class SceneHandler : MonoBehaviour
         else StartCoroutine(LoadRoutine(GetNameByIndex(index), SpecialLoadingScreen));
     }
 
+    public void RestartLevel()
+    {
+        if (isLoading) return;
+
+        StartCoroutine(LoadRoutine(SceneManager.GetActiveScene().name, SpecialLoadingScreen));
+    }
+
     public void LoadScene(string sceneName)
     {
         if (isLoading) return;

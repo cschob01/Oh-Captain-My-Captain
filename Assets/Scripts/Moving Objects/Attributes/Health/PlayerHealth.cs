@@ -5,7 +5,7 @@ public class PlayerHealth : Health
 {
     public bool damage_cool_down = false;
 
-    public float cool_down_time = 3f; // Cannot be damaged twice in this amount of time
+    public float cool_down_time = 1f; // Cannot be damaged twice in this amount of time
 
     public void Start()
     {
@@ -19,12 +19,12 @@ public class PlayerHealth : Health
             StartCoroutine(CoolDown());
 
             health -= damage;
+            onBoard.momentum += dir;
+
             if (health <= 0)
             {
-                Destroy(transform.parent.gameObject);
+                EventHandler.Instance.PlayerDied();
             }
-
-            onBoard.momentum += dir;
         }
     }
 
@@ -37,5 +37,4 @@ public class PlayerHealth : Health
 
         damage_cool_down = false;
     }
-
 }

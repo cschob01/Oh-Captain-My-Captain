@@ -4,6 +4,25 @@ public class VelocityVisualizer : MonoBehaviour
 {
     private MovingObject movingObject;
     [SerializeField] private float DistanceFactor = .35f;
+    [SerializeField] bool BelongsToCaptain;
+
+    private void OnEnable()
+    {
+        EventHandler.Instance.OnPlayerDied += OnPlayerDied;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.Instance.OnPlayerDied -= OnPlayerDied;
+    }
+
+    private void OnPlayerDied()
+    {
+        if (BelongsToCaptain)
+        {
+            gameObject.SetActive(false);
+        }
+    }
 
     private void Awake()
     {

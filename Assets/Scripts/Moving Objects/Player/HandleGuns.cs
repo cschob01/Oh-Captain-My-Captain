@@ -16,6 +16,21 @@ public class HandleGuns : MonoBehaviour
         GunChange(StartingGun);
     }
 
+    private void OnEnable()
+    {
+        EventHandler.Instance.OnPlayerDied += OnPlayerDied;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.Instance.OnPlayerDied -= OnPlayerDied;
+    }
+
+    private void OnPlayerDied()
+    {
+        if (obj != null) obj.SetActive(false);
+    }
+
     public void GunChange(GameObject Gun)
     {
         LoseGun();

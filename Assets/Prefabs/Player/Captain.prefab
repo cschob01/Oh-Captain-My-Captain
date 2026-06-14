@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VelocityVisualizer
   DistanceFactor: 0.2
+  BelongsToCaptain: 1
 --- !u!114 &3106615393349154256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,6 +356,7 @@ GameObject:
   - component: {fileID: 6384642690052565377}
   - component: {fileID: 1418219319419628021}
   - component: {fileID: 8501616747694279932}
+  - component: {fileID: 4171110588639457092}
   m_Layer: 10
   m_Name: Captain
   m_TagString: Untagged
@@ -395,7 +397,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Controls
   acc: 0.04
   max_vel: 3
-  vel: {x: 0, y: 0}
   render: {fileID: 7038076241529085269}
 --- !u!50 &7705164070393923615
 Rigidbody2D:
@@ -500,6 +501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OnBoard_MovingObject
   momentum: {x: 0, y: 0}
+  testing: 0
 --- !u!114 &8501616747694279932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,6 +516,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HandleGadgets
   StartingGadget: {fileID: 0}
   dir: {x: 0, y: 0}
+--- !u!114 &4171110588639457092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6511702108819458984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3735869d189c4489f216c1ddbe1283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandlePlayerDeath
+  Collider: {fileID: 6429341799052351813}
+  onBoard: {fileID: 1418219319419628021}
+  animator: {fileID: 676469244707782632}
+  movingObject: {fileID: 970004257232185974}
+  WaitTime: 3
 --- !u!1 &7038076241529085269
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,6 +543,7 @@ GameObject:
   m_Component:
   - component: {fileID: 804095223565923177}
   - component: {fileID: 8447508864666607817}
+  - component: {fileID: 676469244707782632}
   m_Layer: 0
   m_Name: Render
   m_TagString: Untagged
@@ -604,6 +624,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &676469244707782632
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7038076241529085269}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d9d0a771fa477ae47a5dc33b8cacc224, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8452752393325442879
 GameObject:
   m_ObjectHideFlags: 0
