@@ -20,10 +20,11 @@ public class PlayerHealth : Health
 
             health -= damage;
             onBoard.momentum += dir;
-
+            
             if (health <= 0)
             {
                 EventHandler.Instance.PlayerDied();
+                health = 0;
             }
         }
     }

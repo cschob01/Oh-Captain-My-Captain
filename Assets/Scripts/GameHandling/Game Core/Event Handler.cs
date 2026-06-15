@@ -15,10 +15,12 @@ public class EventHandler : MonoBehaviour
     public event Action<GameObject> OnGunChange;
     public event Action<GameObject> OnGadgetChange;
     public event Action<PlayerHealth> OnHealthChange;
+    public event Action<Timer> OnTimerChange;
 
     /// Beats
     public event Action<int> OnBeatChange;
     public event Action OnLevelCompleted;
+    public event Action OnLevelFailed;
 
     public event Action<bool> OnGamePause;
 
@@ -33,6 +35,16 @@ public class EventHandler : MonoBehaviour
         }
 
         Instance = this;
+    }
+
+    public void TimerChange(Timer timer)
+    {
+        OnTimerChange?.Invoke(timer);
+    }
+
+    public void LevelFailed()
+    {
+        OnLevelFailed?.Invoke();
     }
 
     public void Explosion(Vector2 Coordinates, float Force, float Radius)
