@@ -47,11 +47,17 @@ TagManager:
   - name: Spaceship
     uniqueID: 2471259577
     locked: 0
+  - name: Decore
+    uniqueID: 2787856121
+    locked: 0
   - name: Doors
     uniqueID: 3593884571
     locked: 0
   - name: Airlocks
     uniqueID: 3069451993
+    locked: 0
+  - name: Walls
+    uniqueID: 2471780711
     locked: 0
   - name: Obstacles
     uniqueID: 3288386865
