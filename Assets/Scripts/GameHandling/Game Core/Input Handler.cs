@@ -23,6 +23,17 @@ public class InputHandler : MonoBehaviour
     private InputAction moveRight;
     private InputAction gadget;
     private InputAction pause;
+    private InputAction interact;
+
+    private InputAction gadgetSwitch;
+
+    private InputAction gunSwitch;
+    private InputAction gunSwitchForwards;
+    private InputAction gunSwitchBackwards;
+    private InputAction gunSwitch1;
+    private InputAction gunSwitch2;
+    private InputAction gunSwitch3;
+    private InputAction gunSwitch4;
 
     private void Awake()
     {
@@ -52,6 +63,29 @@ public class InputHandler : MonoBehaviour
         moveRight = GetAction("MoveRight");
         gadget = GetAction("Gadget/Use");
         pause = GetAction("Game/Pause");
+        interact = GetAction("Interact");
+
+        gadgetSwitch = GetAction("Gadget/Switch");
+
+        gunSwitch = GetAction("Gun/Switch");
+
+        gunSwitchForwards = GetAction("Switch Forwards");
+        gunSwitchBackwards = GetAction("Switch Backwards");
+        gunSwitch1 = GetAction("Switch To 1");
+        gunSwitch2 = GetAction("Switch To 2");
+        gunSwitch3 = GetAction("Switch To 3");
+        gunSwitch4 = GetAction("Switch To 4");
+    }
+
+    public string GetInteractBinding()
+    {
+        if (interact == null)
+            return "";
+
+        return interact.GetBindingDisplayString(
+            InputBinding.DisplayStringOptions.DontUseShortDisplayNames,
+            group: playerInput.currentControlScheme
+        );
     }
 
     private InputAction GetAction(string actionName)
@@ -99,6 +133,8 @@ public class InputHandler : MonoBehaviour
         return (Quaternion.Euler(0f, 0f, angle) * localDir).normalized;
     }
 
+    public bool InteractWasPressedThisFrame() => interact.WasPressedThisFrame();
+
     public bool SpinLeftIsPressed() => spinLeft.IsPressed();
     public bool SpinRightIsPressed() => spinRight.IsPressed();
     public Vector2 ThrustReadValue()
@@ -133,6 +169,27 @@ public class InputHandler : MonoBehaviour
     public bool GadgetWasReleasedThisFrame() => gadget.WasReleasedThisFrame();
 
     public bool PauseWasPressedThisFrame() => pause.WasPressedThisFrame();
+
+    public int GunSwitchWasPressedThisFrame()
+    {
+        if (gunSwitch1.WasPressedThisFrame()) return 2;
+        if (gunSwitch2.WasPressedThisFrame()) return 3;
+        if (gunSwitch3.WasPressedThisFrame()) return 4;
+        if (gunSwitch4.WasPressedThisFrame()) return 5;
+
+        if (gunSwitch.WasPressedThisFrame() || gunSwitchForwards.WasPressedThisFrame())
+        {
+            return 1;
+        }
+        if (gunSwitchBackwards.WasPressedThisFrame())
+        {
+            return -1;
+        }
+
+        return 0;
+    }
+
+    public bool GadgetSwitchWasPressedThisFrame() =>  gadgetSwitch.WasPressedThisFrame();
 
     public string CurrentControlScheme => playerInput.currentControlScheme;
 }

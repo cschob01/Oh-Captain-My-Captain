@@ -4,10 +4,7 @@ using TMPro;
 
 public class WeaponSelector : MonoBehaviour
 {
-    [HideInInspector]
-    public HandleGuns Player;
-
-    private GameObject GunPrefab;
+    private Gun GunPrefab;
     private Image Image;
     private TMP_Text Text;
     private Button Button;
@@ -23,14 +20,14 @@ public class WeaponSelector : MonoBehaviour
 
     private void OnClicked()
     {
-        Player.GunChange(GunPrefab);
+        CaptainHandler.Instance.AddGun(GunPrefab);
         EventHandler.Instance.RoundStart();
     }
 
-    public void SetButton(GameObject Gun)
+    public void SetButton(Gun gun)
     {
-        GunPrefab = Gun;
-        Text.text = Gun.name;
-        Image.sprite = Gun.GetComponent<SpriteRenderer>().sprite;
+        GunPrefab = gun;
+        Text.text = gun.name;
+        Image.sprite = gun.GetComponent<SpriteRenderer>().sprite;
     }
 }

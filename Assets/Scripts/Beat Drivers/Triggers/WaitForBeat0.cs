@@ -8,11 +8,12 @@ public class WaitForBeat0 : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Invoke(nameof(TriggerBeat0), WaitTime);
+        if (WaitTime == 0) EventHandler.Instance.BeatChange("0");
+        else Invoke(nameof(TriggerBeat0), WaitTime);
     }
 
     void TriggerBeat0()
     {
-        EventHandler.Instance.BeatChange(0);
+        EventHandler.Instance.BeatChange("0");
     }
 }

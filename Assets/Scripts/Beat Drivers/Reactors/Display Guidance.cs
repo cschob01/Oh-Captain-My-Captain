@@ -13,7 +13,7 @@ public class DisplayGuidance : MonoBehaviour
     [System.Serializable]
     public class Guidance
     {
-        public int index;
+        public string name;
         public string text;
         public float cooldown;
     }
@@ -40,11 +40,11 @@ public class DisplayGuidance : MonoBehaviour
         EventHandler.Instance.OnBeatChange -= SetGuidance;
     }
 
-    private void SetGuidance(int index)
+    private void SetGuidance(string index)
     {
         for (int i = 0; i < Guides.Length; i++)
         {
-            if (Guides[i].index == index)
+            if (Guides[i].name == index)
             {
                 if (coroutine != null)
                 {

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ThrustShip : MonoBehaviour
 {
-    [SerializeField] private int Beat;
+    [SerializeField] private string Beat;
 
     [System.Serializable]
     public class Movement
@@ -28,7 +28,7 @@ public class ThrustShip : MonoBehaviour
         EventHandler.Instance.OnBeatChange -= ThrustShipOnBeat;
     }
 
-    private void ThrustShipOnBeat(int index)
+    private void ThrustShipOnBeat(string index)
     {
         if (index == Beat)
         {

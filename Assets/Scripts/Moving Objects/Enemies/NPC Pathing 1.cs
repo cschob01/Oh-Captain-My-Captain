@@ -76,12 +76,21 @@ public class NPCPathing1 : MovingObject
         }
         else // Traverse BFS graph
         {
-            if (path == null || currentWaypoint >= path.vectorPath.Count) return Vector2.zero;
+            if (path == null || path.vectorPath == null || path.vectorPath.Count == 0)
+                return Vector2.zero;
+
+            if (currentWaypoint >= path.vectorPath.Count)
+                return Vector2.zero;
 
             if (Vector2.Distance(transform.position, path.vectorPath[currentWaypoint]) < waypointDistance)
+            {
                 currentWaypoint++;
 
-            Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - (Vector2)transform.position);
+                if (currentWaypoint >= path.vectorPath.Count)
+                    return Vector2.zero;
+            }
+
+            Vector2 dir = (path.vectorPath[currentWaypoint] - (Vector3)transform.position);
             return dir;
         }
     }

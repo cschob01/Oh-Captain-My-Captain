@@ -1,14 +1,13 @@
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class DisplayGadget : MonoBehaviour
 {
     private Image Icon;
     private Image Cooldown1;
     private Image Cooldown2;
-
-    private Gadget Gadget;
 
     private void Awake()
     {
@@ -18,34 +17,6 @@ public class DisplayGadget : MonoBehaviour
         ShowDisplay(false);
     }
 
-    private void OnEnable()
-    {
-        EventHandler.Instance.OnGadgetChange += SetGadget;
-    }
-
-    private void OnDisable()
-    {
-        EventHandler.Instance.OnGadgetChange -= SetGadget;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Gadget != null)
-        {
-            if (Gadget.MidCooldown) Cooldown2.fillAmount = 1f - Gadget.CooldownProg / Gadget.Cooldown;
-            else Cooldown2.fillAmount = 0f;
-
-            if (Gadget.MidUse) Cooldown1.fillAmount = 1f - Gadget.UseProg / Gadget.UseTime;
-            else Cooldown1.fillAmount = 0f;
-        }
-        else
-        {
-            Cooldown2.fillAmount = 0f;
-            Cooldown1.fillAmount = 0f;
-        }
-    }
-
     private void ShowDisplay(bool show)
     {
         Icon.enabled = show;
@@ -53,17 +24,20 @@ public class DisplayGadget : MonoBehaviour
         Cooldown2.enabled = show;
     }
 
-    private void SetGadget(GameObject gadget)
+    void Update()
     {
-        if (gadget != null)
-        {
-            Gadget = gadget.GetComponent<Gadget>();
-            Icon.sprite = gadget.GetComponent<SpriteRenderer>().sprite;
-            ShowDisplay(true);
-        }
+        if (CaptainHandler.Instance.Gadgets.Count == 0) ShowDisplay(false);
         else
         {
-            ShowDisplay(false);
+            ShowDisplay(true);
+
+            Gadget gadget = CaptainHandler.Instance.Gadgets[CaptainHandler.Instance.CurrGadget];
+
+            if (gadget.MidCooldown) Cooldown2.fillAmount = 1f - gadget.CooldownProg / gadget.Cooldown;
+            else Cooldown2.fillAmount = 0f;
+
+            if (gadget.MidUse) Cooldown1.fillAmount = 1f - gadget.UseProg / gadget.UseTime;
+            else Cooldown1.fillAmount = 0f;
         }
     }
 }

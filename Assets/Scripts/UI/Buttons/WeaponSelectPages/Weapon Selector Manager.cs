@@ -6,22 +6,12 @@ using UnityEngine.UIElements;
 public class WeaponSelectorManager : MonoBehaviour
 {
     private CanvasGroup cg;
-    [SerializeField] private GameObject[] GunPrefabs; // Expects >= Number of selectors
+    [SerializeField] private Gun[] GunPrefabs; // Expects >= Number of selectors
     [SerializeField] private WeaponSelector[] Selectors;
-
-    private HandleGuns Player;
 
     private void Awake()
     {
         cg = GetComponent<CanvasGroup>();
-        GameObject obj = GameObject.Find("Captain");
-        if (obj == null) Debug.Log("ERROR: No instance of Captain found in scene");
-        Player = obj.GetComponent<HandleGuns>();
-
-        for (int i = 0; i < Selectors.Length; i++)
-        {
-            Selectors[i].Player = Player;
-        }
     }
     private void OnEnable()
     {
@@ -42,7 +32,7 @@ public class WeaponSelectorManager : MonoBehaviour
     {
         Debug.Log("New weapons provided");
 
-        GameObject[] Options = GunPrefabs
+        Gun[] Options = GunPrefabs
             .OrderBy(x => UnityEngine.Random.value)
             .Take(Selectors.Length)
             .ToArray();

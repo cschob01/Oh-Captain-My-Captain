@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SpinShip : MonoBehaviour
 {
-    [SerializeField] private int Beat;
+    [SerializeField] private string Beat;
 
     [System.Serializable]
     public class Movement
@@ -30,7 +30,7 @@ public class SpinShip : MonoBehaviour
         EventHandler.Instance.OnBeatChange -= SpinShipOnBeat;
     }
 
-    private void SpinShipOnBeat(int index)
+    private void SpinShipOnBeat(string index)
     {
         if (index == Beat)
         {

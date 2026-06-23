@@ -22,7 +22,7 @@ public class CallEventButton : MonoBehaviour
         EventHandler.Instance.RoundEnd();
     }
 
-    public void InvokeBeatChange(int beat)
+    public void InvokeBeatChange(string beat)
     {
         EventHandler.Instance.BeatChange(beat);
     }
@@ -35,15 +35,5 @@ public class CallEventButton : MonoBehaviour
     public void InvokeRoundChange(int round)
     {
         EventHandler.Instance.RoundChange(round);
-    }
-
-    public void InvokeGunChange(GameObject gun)
-    {
-        EventHandler.Instance.GunChange(gun);
-    }
-
-    public void InvokeGadgetChange(GameObject gadget)
-    {
-        EventHandler.Instance.GadgetChange(gadget);
     }
 }

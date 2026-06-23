@@ -12,13 +12,11 @@ public class EventHandler : MonoBehaviour
     public event Action OnRoundEnd;
     public event Action<int> OnRoundChange;
 
-    public event Action<GameObject> OnGunChange;
-    public event Action<GameObject> OnGadgetChange;
-    public event Action<PlayerHealth> OnHealthChange;
     public event Action<Timer> OnTimerChange;
+    public event Action<PlayerHealth> OnHealthChange;
 
     /// Beats
-    public event Action<int> OnBeatChange;
+    public event Action<string> OnBeatChange;
     public event Action OnLevelCompleted;
     public event Action OnLevelFailed;
 
@@ -67,9 +65,10 @@ public class EventHandler : MonoBehaviour
         OnGamePause?.Invoke(pause);
     }
 
-    public void BeatChange(int i)
+    public void BeatChange(string beat)
     {
-        OnBeatChange?.Invoke(i);
+        Debug.Log(beat + " called");
+        OnBeatChange?.Invoke(beat);
     }
 
     public void PlayerDied()
@@ -90,16 +89,6 @@ public class EventHandler : MonoBehaviour
     public void RoundEnd()
     {
         OnRoundEnd?.Invoke();
-    }
-
-    public void GunChange(GameObject Gun)
-    {
-        OnGunChange?.Invoke(Gun);
-    }
-
-    public void GadgetChange(GameObject Gadget)
-    {
-        OnGadgetChange?.Invoke(Gadget);
     }
 
     public void RoundChange(int round)

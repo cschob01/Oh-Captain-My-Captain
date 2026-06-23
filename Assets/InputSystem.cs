@@ -151,7 +151,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""11a53cda-35a6-463d-9b75-0f8e89c1071b"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -173,7 +173,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""319b8992-2050-44d8-a629-b852d8fe75b1"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/rightShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -330,6 +330,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""f428d5a3-98fa-4e59-8107-2f0829cedd7c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -442,6 +451,28 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""MoveRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""50a1cb9e-903e-4c36-8b21-1e12a3a507a3"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f1c2e677-68f5-4419-91cc-1dd5cafd1e88"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -462,6 +493,69 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""name"": ""Reload"",
                     ""type"": ""Button"",
                     ""id"": ""291e9ae6-17ee-4e43-92cd-6ae35c1a58e8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Switch Forwards"",
+                    ""type"": ""Button"",
+                    ""id"": ""ae09f011-0401-4e8a-a315-5c5a4c634732"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Switch Backwards"",
+                    ""type"": ""Button"",
+                    ""id"": ""9b8a8431-f02a-41a3-bf03-8bf874626cbd"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Switch To 1"",
+                    ""type"": ""Button"",
+                    ""id"": ""46ba3a09-81d7-430c-9204-8c9c220f3a9f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Switch To 2"",
+                    ""type"": ""Button"",
+                    ""id"": ""0e11061c-4ddb-417b-9cb7-d7e07e2387d9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Switch To 3"",
+                    ""type"": ""Button"",
+                    ""id"": ""c1c830d2-c354-48df-a81a-f8bf292a8851"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Switch To 4"",
+                    ""type"": ""Button"",
+                    ""id"": ""f588e89b-7c67-4735-a3ab-6e45876cb4aa"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Switch"",
+                    ""type"": ""Button"",
+                    ""id"": ""42d85917-6d4f-4ea4-a600-a2c90dc53b9a"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -512,6 +606,94 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""89eec1a9-e8f6-4749-bac2-0b6a1dfcf4f0"",
+                    ""path"": ""<Mouse>/forwardButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Switch Forwards"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dd2aa56e-e40b-4136-a729-22042ee0f365"",
+                    ""path"": ""<Mouse>/backButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Switch Backwards"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ba14490-f0fe-4775-b2b3-b3146ef81855"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Switch To 1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dd3d2cb8-36a5-4256-a5b2-994fb17ef4ae"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Switch To 2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c33112f-fc87-4b2f-90ae-620ca072f5ef"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Switch To 3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c56294f-db88-4a8a-a844-9e1258c6d690"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Switch To 4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4d2c828b-71e3-4ea1-99c3-1e26fa5824e2"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Switch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d7193c17-7d08-4fe8-9ef1-9bfdcecb4f48"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Switch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -523,6 +705,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""name"": ""Use"",
                     ""type"": ""Button"",
                     ""id"": ""efd46558-7bde-41e4-978d-e91a8196824d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Switch"",
+                    ""type"": ""Button"",
+                    ""id"": ""3ca1ad99-0af3-48a9-9ca7-52acfd4719ee"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -544,7 +735,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b23732cd-cf20-453e-ac8c-554ae68c6a27"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
@@ -560,6 +751,28 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Use"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f5e66d51-80f6-4050-a183-cf3a52cf22cd"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Switch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec696638-1483-4784-9ab8-ce0acf0f6405"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Switch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1415,13 +1628,22 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_Player_MoveLeft = m_Player.FindAction("MoveLeft", throwIfNotFound: true);
         m_Player_MoveDown = m_Player.FindAction("MoveDown", throwIfNotFound: true);
         m_Player_MoveRight = m_Player.FindAction("MoveRight", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         // Gun
         m_Gun = asset.FindActionMap("Gun", throwIfNotFound: true);
         m_Gun_Attack = m_Gun.FindAction("Attack", throwIfNotFound: true);
         m_Gun_Reload = m_Gun.FindAction("Reload", throwIfNotFound: true);
+        m_Gun_SwitchForwards = m_Gun.FindAction("Switch Forwards", throwIfNotFound: true);
+        m_Gun_SwitchBackwards = m_Gun.FindAction("Switch Backwards", throwIfNotFound: true);
+        m_Gun_SwitchTo1 = m_Gun.FindAction("Switch To 1", throwIfNotFound: true);
+        m_Gun_SwitchTo2 = m_Gun.FindAction("Switch To 2", throwIfNotFound: true);
+        m_Gun_SwitchTo3 = m_Gun.FindAction("Switch To 3", throwIfNotFound: true);
+        m_Gun_SwitchTo4 = m_Gun.FindAction("Switch To 4", throwIfNotFound: true);
+        m_Gun_Switch = m_Gun.FindAction("Switch", throwIfNotFound: true);
         // Gadget
         m_Gadget = asset.FindActionMap("Gadget", throwIfNotFound: true);
         m_Gadget_Use = m_Gadget.FindAction("Use", throwIfNotFound: true);
+        m_Gadget_Switch = m_Gadget.FindAction("Switch", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1687,6 +1909,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MoveLeft;
     private readonly InputAction m_Player_MoveDown;
     private readonly InputAction m_Player_MoveRight;
+    private readonly InputAction m_Player_Interact;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1718,6 +1941,10 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/MoveRight".
         /// </summary>
         public InputAction @MoveRight => m_Wrapper.m_Player_MoveRight;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Interact".
+        /// </summary>
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1759,6 +1986,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @MoveRight.started += instance.OnMoveRight;
             @MoveRight.performed += instance.OnMoveRight;
             @MoveRight.canceled += instance.OnMoveRight;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         /// <summary>
@@ -1785,6 +2015,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @MoveRight.started -= instance.OnMoveRight;
             @MoveRight.performed -= instance.OnMoveRight;
             @MoveRight.canceled -= instance.OnMoveRight;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         /// <summary>
@@ -1824,6 +2057,13 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private List<IGunActions> m_GunActionsCallbackInterfaces = new List<IGunActions>();
     private readonly InputAction m_Gun_Attack;
     private readonly InputAction m_Gun_Reload;
+    private readonly InputAction m_Gun_SwitchForwards;
+    private readonly InputAction m_Gun_SwitchBackwards;
+    private readonly InputAction m_Gun_SwitchTo1;
+    private readonly InputAction m_Gun_SwitchTo2;
+    private readonly InputAction m_Gun_SwitchTo3;
+    private readonly InputAction m_Gun_SwitchTo4;
+    private readonly InputAction m_Gun_Switch;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gun".
     /// </summary>
@@ -1843,6 +2083,34 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Gun/Reload".
         /// </summary>
         public InputAction @Reload => m_Wrapper.m_Gun_Reload;
+        /// <summary>
+        /// Provides access to the underlying input action "Gun/SwitchForwards".
+        /// </summary>
+        public InputAction @SwitchForwards => m_Wrapper.m_Gun_SwitchForwards;
+        /// <summary>
+        /// Provides access to the underlying input action "Gun/SwitchBackwards".
+        /// </summary>
+        public InputAction @SwitchBackwards => m_Wrapper.m_Gun_SwitchBackwards;
+        /// <summary>
+        /// Provides access to the underlying input action "Gun/SwitchTo1".
+        /// </summary>
+        public InputAction @SwitchTo1 => m_Wrapper.m_Gun_SwitchTo1;
+        /// <summary>
+        /// Provides access to the underlying input action "Gun/SwitchTo2".
+        /// </summary>
+        public InputAction @SwitchTo2 => m_Wrapper.m_Gun_SwitchTo2;
+        /// <summary>
+        /// Provides access to the underlying input action "Gun/SwitchTo3".
+        /// </summary>
+        public InputAction @SwitchTo3 => m_Wrapper.m_Gun_SwitchTo3;
+        /// <summary>
+        /// Provides access to the underlying input action "Gun/SwitchTo4".
+        /// </summary>
+        public InputAction @SwitchTo4 => m_Wrapper.m_Gun_SwitchTo4;
+        /// <summary>
+        /// Provides access to the underlying input action "Gun/Switch".
+        /// </summary>
+        public InputAction @Switch => m_Wrapper.m_Gun_Switch;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1875,6 +2143,27 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Reload.started += instance.OnReload;
             @Reload.performed += instance.OnReload;
             @Reload.canceled += instance.OnReload;
+            @SwitchForwards.started += instance.OnSwitchForwards;
+            @SwitchForwards.performed += instance.OnSwitchForwards;
+            @SwitchForwards.canceled += instance.OnSwitchForwards;
+            @SwitchBackwards.started += instance.OnSwitchBackwards;
+            @SwitchBackwards.performed += instance.OnSwitchBackwards;
+            @SwitchBackwards.canceled += instance.OnSwitchBackwards;
+            @SwitchTo1.started += instance.OnSwitchTo1;
+            @SwitchTo1.performed += instance.OnSwitchTo1;
+            @SwitchTo1.canceled += instance.OnSwitchTo1;
+            @SwitchTo2.started += instance.OnSwitchTo2;
+            @SwitchTo2.performed += instance.OnSwitchTo2;
+            @SwitchTo2.canceled += instance.OnSwitchTo2;
+            @SwitchTo3.started += instance.OnSwitchTo3;
+            @SwitchTo3.performed += instance.OnSwitchTo3;
+            @SwitchTo3.canceled += instance.OnSwitchTo3;
+            @SwitchTo4.started += instance.OnSwitchTo4;
+            @SwitchTo4.performed += instance.OnSwitchTo4;
+            @SwitchTo4.canceled += instance.OnSwitchTo4;
+            @Switch.started += instance.OnSwitch;
+            @Switch.performed += instance.OnSwitch;
+            @Switch.canceled += instance.OnSwitch;
         }
 
         /// <summary>
@@ -1892,6 +2181,27 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Reload.started -= instance.OnReload;
             @Reload.performed -= instance.OnReload;
             @Reload.canceled -= instance.OnReload;
+            @SwitchForwards.started -= instance.OnSwitchForwards;
+            @SwitchForwards.performed -= instance.OnSwitchForwards;
+            @SwitchForwards.canceled -= instance.OnSwitchForwards;
+            @SwitchBackwards.started -= instance.OnSwitchBackwards;
+            @SwitchBackwards.performed -= instance.OnSwitchBackwards;
+            @SwitchBackwards.canceled -= instance.OnSwitchBackwards;
+            @SwitchTo1.started -= instance.OnSwitchTo1;
+            @SwitchTo1.performed -= instance.OnSwitchTo1;
+            @SwitchTo1.canceled -= instance.OnSwitchTo1;
+            @SwitchTo2.started -= instance.OnSwitchTo2;
+            @SwitchTo2.performed -= instance.OnSwitchTo2;
+            @SwitchTo2.canceled -= instance.OnSwitchTo2;
+            @SwitchTo3.started -= instance.OnSwitchTo3;
+            @SwitchTo3.performed -= instance.OnSwitchTo3;
+            @SwitchTo3.canceled -= instance.OnSwitchTo3;
+            @SwitchTo4.started -= instance.OnSwitchTo4;
+            @SwitchTo4.performed -= instance.OnSwitchTo4;
+            @SwitchTo4.canceled -= instance.OnSwitchTo4;
+            @Switch.started -= instance.OnSwitch;
+            @Switch.performed -= instance.OnSwitch;
+            @Switch.canceled -= instance.OnSwitch;
         }
 
         /// <summary>
@@ -1930,6 +2240,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gadget;
     private List<IGadgetActions> m_GadgetActionsCallbackInterfaces = new List<IGadgetActions>();
     private readonly InputAction m_Gadget_Use;
+    private readonly InputAction m_Gadget_Switch;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gadget".
     /// </summary>
@@ -1945,6 +2256,10 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Gadget/Use".
         /// </summary>
         public InputAction @Use => m_Wrapper.m_Gadget_Use;
+        /// <summary>
+        /// Provides access to the underlying input action "Gadget/Switch".
+        /// </summary>
+        public InputAction @Switch => m_Wrapper.m_Gadget_Switch;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1974,6 +2289,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Use.started += instance.OnUse;
             @Use.performed += instance.OnUse;
             @Use.canceled += instance.OnUse;
+            @Switch.started += instance.OnSwitch;
+            @Switch.performed += instance.OnSwitch;
+            @Switch.canceled += instance.OnSwitch;
         }
 
         /// <summary>
@@ -1988,6 +2306,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Use.started -= instance.OnUse;
             @Use.performed -= instance.OnUse;
             @Use.canceled -= instance.OnUse;
+            @Switch.started -= instance.OnSwitch;
+            @Switch.performed -= instance.OnSwitch;
+            @Switch.canceled -= instance.OnSwitch;
         }
 
         /// <summary>
@@ -2620,6 +2941,13 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMoveRight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteract(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Gun" which allows adding and removing callbacks.
@@ -2642,6 +2970,55 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnReload(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Switch Forwards" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwitchForwards(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Switch Backwards" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwitchBackwards(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Switch To 1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwitchTo1(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Switch To 2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwitchTo2(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Switch To 3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwitchTo3(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Switch To 4" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwitchTo4(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Switch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwitch(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Gadget" which allows adding and removing callbacks.
@@ -2657,6 +3034,13 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnUse(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Switch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwitch(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

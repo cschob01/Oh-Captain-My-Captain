@@ -3,10 +3,14 @@ using UnityEngine;
 
 public class ToggleChildrenAfterBeat : MonoBehaviour
 {
-    [SerializeField] private int Beat;
+    [System.Serializable]
+    public class Activation
+    {
+        public string beat;
+        public bool active;
+    }
 
-    [Tooltip("Activate/Deavtivate")]
-    [SerializeField] private bool active;
+    [SerializeField] private Activation[] Activations;
 
     private void OnEnable()
     {
@@ -18,13 +22,15 @@ public class ToggleChildrenAfterBeat : MonoBehaviour
         EventHandler.Instance.OnBeatChange -= ToggleChildren;
     }
 
-    private void ToggleChildren(int index)
+    private void ToggleChildren(string index)
     {
-        if (index  == Beat)
+        for(int i = 0; i < Activations.Length; i++)
         {
+            if (index != Activations[i].beat) continue;
+
             foreach (Transform child in transform)
             {
-                child.gameObject.SetActive(active);
+                child.gameObject.SetActive(Activations[i].active);
             }
         }
     } 

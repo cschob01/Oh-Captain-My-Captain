@@ -5,7 +5,7 @@ public class ColliderBeatTrigger : MonoBehaviour
 {
     [SerializeField] private bool OneTimeUse = true;
     [SerializeField] private bool CompleteLevel = false;
-    [SerializeField] private int BeatIndex = 0;
+    [SerializeField] private string Beat;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -15,7 +15,7 @@ public class ColliderBeatTrigger : MonoBehaviour
         }
         else
         {
-            EventHandler.Instance.BeatChange(BeatIndex);
+            EventHandler.Instance.BeatChange(Beat);
         }
 
         if (OneTimeUse)

@@ -1381,6 +1381,7 @@ GameObject:
   - component: {fileID: 5625135077099785642}
   - component: {fileID: 5053761563903767058}
   - component: {fileID: 119434454317149826}
+  - component: {fileID: 4206852848793849048}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -1435,6 +1436,19 @@ MonoBehaviour:
   actions: 
   spin_strength: 1
   vel_strength: 1
+--- !u!114 &4206852848793849048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7359040000085580441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d0770cbedab2944ba0ab79859c29e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaitForBeat0
+  WaitTime: 0
 --- !u!1 &7600510883418695029
 GameObject:
   m_ObjectHideFlags: 0
