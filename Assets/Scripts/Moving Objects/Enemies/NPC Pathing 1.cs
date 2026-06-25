@@ -19,7 +19,7 @@ public class NPCPathing1 : MovingObject
 
     void Start()
     {
-        target = GameObject.Find("Captain").transform;
+        target = CaptainHandler.Instance.transform;
         seeker = GetComponent<Seeker>();
         InvokeRepeating(nameof(HasLineOfSight), 0f, 0.5f); // Continually update if enemy sees the player
     }
@@ -93,9 +93,5 @@ public class NPCPathing1 : MovingObject
             Vector2 dir = (path.vectorPath[currentWaypoint] - (Vector3)transform.position);
             return dir;
         }
-    }
-    private void OnDestroy()
-    {
-        EventHandler.Instance.EnemyDied();
     }
 }

@@ -6,16 +6,17 @@ using UnityEngine.UI;
 
 public class DisplayPlayerHealth : MonoBehaviour
 {
-    private TextMeshProUGUI healthText;
-    private Image Image;
+    private Image Bar;
+    private Image Border;
     private PlayerHealth Health;
 
     private void Awake()
     {
-        healthText = transform.Find("Text").GetComponent<TextMeshProUGUI>();
-        Image = transform.Find("Image").GetComponent<Image>();
+        Bar = transform.Find("BarMask").GetComponent<Image>();
+        Border = transform.Find("Border").GetComponent<Image>();
         ShowDisplay(false);
     }
+
     private void SetHealth(PlayerHealth health)
     {
         Health = health;
@@ -33,13 +34,13 @@ public class DisplayPlayerHealth : MonoBehaviour
     {
         if (Health == null) return;
 
-        healthText.text = "X " + Health.health.ToString();
+        Bar.fillAmount = Mathf.Clamp01(Health.health / Health.MaxHealth);
     }
 
     private void ShowDisplay(bool show)
     {
-        Image.enabled = show;
-        healthText.enabled = show;
+        Bar.enabled = show;
+        Border.enabled = show;
 
     }
     private void OnEnable()

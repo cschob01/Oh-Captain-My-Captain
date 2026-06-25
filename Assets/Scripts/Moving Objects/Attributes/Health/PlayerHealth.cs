@@ -3,9 +3,24 @@ using System.Collections;
 
 public class PlayerHealth : Health
 {
-    public bool damage_cool_down = false;
+    public int MaxHealth = 100;
 
-    public float cool_down_time = 1f; // Cannot be damaged twice in this amount of time
+    [SerializeField] private float HealSpeed = 5.0f;
+    [SerializeField] private float HealCooldown = 5.0f;
+
+    private float CooldownProg = 0f;
+
+    private void Update()
+    {
+        if (CooldownProg < HealCooldown) {
+            CooldownProg += Time.deltaTime;
+            return;
+        }
+
+        health += HealSpeed * Time.deltaTime;
+        health = Mathf.Clamp(health, 0, MaxHealth);
+    }
+
 
     public void Start()
     {
@@ -14,28 +29,14 @@ public class PlayerHealth : Health
 
     public override void TakeDamage(int damage, Vector2 dir)
     {
-        if (!damage_cool_down)
-        {
-            StartCoroutine(CoolDown());
-
-            health -= damage;
-            onBoard.momentum += dir;
+        health -= damage;
+        onBoard.momentum += dir;
+        CooldownProg = 0;
             
-            if (health <= 0)
-            {
-                EventHandler.Instance.PlayerDied();
-                health = 0;
-            }
+        if (health <= 0)
+        {
+            EventHandler.Instance.PlayerDied();
+            health = 0;
         }
-    }
-
-    // Gives player time to recover
-    IEnumerator CoolDown()
-    {
-        damage_cool_down = true;
-
-        yield return new WaitForSeconds(cool_down_time);
-
-        damage_cool_down = false;
     }
 }

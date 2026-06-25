@@ -26,6 +26,8 @@ public class DisplayAmmo : MonoBehaviour
 
     private void Update()
     {
+        if (CaptainHandler.Instance == null) return;
+
         if (CaptainHandler.Instance.Guns.Count == 0) ShowDisplay(false);
         else
         {

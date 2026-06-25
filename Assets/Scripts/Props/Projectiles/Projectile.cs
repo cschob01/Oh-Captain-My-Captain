@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private OnBoard_Projectile OnBoard;
     public Ammo Ammo { get; set; }
     public int BouncesLeft = 0;
+    public int PiercesLeft = 0;
 
     private void DamageTarget(GameObject target)
     {
@@ -43,9 +44,17 @@ public class Projectile : MonoBehaviour
         DamageTarget(collider.gameObject);
         PushTarget(collider.gameObject);
 
-        GetComponent<SpriteRenderer>().enabled = false;
-        Destroy(gameObject, 0f);
-        Destroy(this);
+        CaptainHandler.Instance.MakeMoney(10);
+
+
+        if (PiercesLeft == 0)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            PiercesLeft--;
+        }
     }
 
 }

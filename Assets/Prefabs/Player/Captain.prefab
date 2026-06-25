@@ -518,6 +518,8 @@ MonoBehaviour:
   StartingGun: {fileID: 0}
   StartingGadget: {fileID: 0}
   StartingMoney: 0
+  MaxGadgets: 1
+  MaxGuns: 2
 --- !u!1 &7038076241529085269
 GameObject:
   m_ObjectHideFlags: 0

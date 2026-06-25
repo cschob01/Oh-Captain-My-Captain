@@ -8,6 +8,7 @@ public class EnemyHealth : Health
         health -= damage;
         if (health <= 0)
         {
+            CaptainHandler.Instance.MakeMoney(100);
             Destroy(transform.parent.gameObject);
         }
 

@@ -143,14 +143,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c7e20c870bf45142be764926ba9cd11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCPathing
-  vel: {x: 0, y: 0}
+  acc: 0.02
+  max_vel: 1
   render: {fileID: 1656623353977328917}
   target: {fileID: 0}
   wallMask:
     serializedVersion: 2
     m_Bits: 256
-  acc: 0.02
-  max_vel: 1
   waypointDistance: 0.1
 --- !u!114 &2350221068620197675
 MonoBehaviour:
@@ -165,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageOnTouch
   damage: 10
-  PlayerTriggers: PlayerTriggers
+  Cooldown: 2.5
 --- !u!114 &-8649185987387907443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OnBoard_MovingObject
   momentum: {x: 0, y: 0}
-  movingObject: {fileID: 2173604428243535777}
+  testing: 0
 --- !u!1 &1144325201861666580
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,7 +247,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.2
+  m_Radius: 0.15
 --- !u!114 &2686476973033429540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,7 +340,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1006580431
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8fdbf106df52b3c4aa5602aa84a291a5, type: 3}
   m_Color: {r: 0.899371, g: 0.43271616, b: 0.43271616, a: 1}
@@ -432,7 +431,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1006580431
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -457,4 +456,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b152dd43403db554484b32b75122259f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VelocityVisualizer
-  movingObject: {fileID: 2173604428243535777}
+  DistanceFactor: 0.35
+  BelongsToCaptain: 0

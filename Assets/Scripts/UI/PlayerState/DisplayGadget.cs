@@ -26,6 +26,8 @@ public class DisplayGadget : MonoBehaviour
 
     void Update()
     {
+        if (CaptainHandler.Instance == null) return;
+
         if (CaptainHandler.Instance.Gadgets.Count == 0) ShowDisplay(false);
         else
         {

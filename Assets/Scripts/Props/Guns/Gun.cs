@@ -60,6 +60,11 @@ public class Gun : MonoBehaviour
 
     [SerializeField] private GameObject ProjectilePrefab;
 
+    private void OnEnable()
+    {
+        StartCoroutine(FireCooldown());
+    }
+
     private void Awake()
     {
         hitMask = LayerMask.GetMask("EnemyTriggers", "Walls");
@@ -70,10 +75,14 @@ public class Gun : MonoBehaviour
 
     public void Fire()
     {
+        Debug.Log("Gunfire request received");
+
         // Check that fire request is valid
         if (Shooting) return;
         if (Chamber <= 0) { Reload(); return; }
         StopReloading();
+
+        Debug.Log("Gunfire request validated");
 
         StartCoroutine(FireBurst());
 

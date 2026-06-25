@@ -36,7 +36,7 @@ public class ChangeTile : MonoBehaviour
 
     private void OnDisable()
     {
-        EventHandler.Instance.OnBeatChange += OnTileChange;
+        EventHandler.Instance.OnBeatChange -= OnTileChange;
     }
 
     private Vector3Int GetTilePos()

@@ -15,11 +15,11 @@ public class CaptainHandler : MonoBehaviour
     [Header("Mid-Game")]
 
     [SerializeField] public Health Health { get; private set; }
-    [SerializeField, Range(1, 3)] public int MaxGadgets { get; private set; }
+    [SerializeField, Range(1, 3)] private int MaxGadgets;
     [SerializeField] public List<Gadget> Gadgets { get; private set; } = new();
     [SerializeField] public int CurrGadget { get; private set; }
 
-    [SerializeField, Range(1, 3)] public int MaxGuns { get; private set; }
+    [SerializeField, Range(1, 3)] private int MaxGuns;
     [SerializeField] public List<Gun> Guns { get; private set; } = new();
     [SerializeField] public int CurrGun { get; private set; }
     [SerializeField] public int Money { get; private set; }
@@ -43,7 +43,11 @@ public class CaptainHandler : MonoBehaviour
         if (GunEquipped())
         {
             // Fire/Reload gun if requested
-            if (InputHandler.Instance.FireIsPressed()) Guns[CurrGun].Fire();
+            if (InputHandler.Instance.FireIsPressed())
+            {
+                Debug.Log("Requesting gunfire");
+                Guns[CurrGun].Fire();
+            }
             if (InputHandler.Instance.ReloadWasPressedThisFrame()) Guns[CurrGun].Reload();
         }
            
@@ -125,13 +129,14 @@ public class CaptainHandler : MonoBehaviour
 
     private void UpdateGuns()
     {
-        for (int i = 0; i < Guns.Count; i++)
-        {
-            Guns[i].gameObject.SetActive(false);
-        }
         if (Guns.Count <= CurrGun) CurrGun = 0;
         if (0 > CurrGun) CurrGun = Guns.Count - 1;
-        if (Guns.Count != 0) Guns[CurrGun].gameObject.SetActive(true);
+
+        for (int i = 0; i < Guns.Count; i++)
+        {
+            if (i != CurrGun) Guns[i].gameObject.SetActive(false);
+            else Guns[CurrGun].gameObject.SetActive(true);
+        }
     }
 
     public void FlipGun()
