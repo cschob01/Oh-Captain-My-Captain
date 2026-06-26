@@ -18679,6 +18679,91 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1539452577
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 875963250676354430, guid: ae4174658f5422540a61aa3b4f681aeb, type: 3}
+      propertyPath: Activations.Array.data[1].beat
+      value: Revolver Bought
+      objectReference: {fileID: 0}
+    - target: {fileID: 983631290112112087, guid: ae4174658f5422540a61aa3b4f681aeb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 983631290112112087, guid: ae4174658f5422540a61aa3b4f681aeb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 983631290112112087, guid: ae4174658f5422540a61aa3b4f681aeb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983631290112112087, guid: ae4174658f5422540a61aa3b4f681aeb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 983631290112112087, guid: ae4174658f5422540a61aa3b4f681aeb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983631290112112087, guid: ae4174658f5422540a61aa3b4f681aeb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983631290112112087, guid: ae4174658f5422540a61aa3b4f681aeb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983631290112112087, guid: ae4174658f5422540a61aa3b4f681aeb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983631290112112087, guid: ae4174658f5422540a61aa3b4f681aeb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983631290112112087, guid: ae4174658f5422540a61aa3b4f681aeb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3323339624566479309, guid: ae4174658f5422540a61aa3b4f681aeb, type: 3}
+      propertyPath: Gun
+      value: 
+      objectReference: {fileID: 5365711144065134445, guid: 05a0e3ff2ee3dc34eaea0ff8e0883c68, type: 3}
+    - target: {fileID: 3323339624566479309, guid: ae4174658f5422540a61aa3b4f681aeb, type: 3}
+      propertyPath: Beat
+      value: Revolver Bought
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361023475607948889, guid: ae4174658f5422540a61aa3b4f681aeb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8c80150c3902fc64d80f06ce580b55f7, type: 3}
+    - target: {fileID: 5323347487964960359, guid: ae4174658f5422540a61aa3b4f681aeb, type: 3}
+      propertyPath: m_Name
+      value: Revolver Stand
+      objectReference: {fileID: 0}
+    - target: {fileID: 9101256716094307156, guid: ae4174658f5422540a61aa3b4f681aeb, type: 3}
+      propertyPath: cost
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 9101256716094307156, guid: ae4174658f5422540a61aa3b4f681aeb, type: 3}
+      propertyPath: prompt
+      value: Buy the Revolver
+      objectReference: {fileID: 0}
+    - target: {fileID: 9101256716094307156, guid: ae4174658f5422540a61aa3b4f681aeb, type: 3}
+      propertyPath: 'Beats.Array.data[0]'
+      value: Revolver Bought
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ae4174658f5422540a61aa3b4f681aeb, type: 3}
 --- !u!1001 &1578017546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19976,4 +20061,5 @@ SceneRoots:
   - {fileID: 1519353360}
   - {fileID: 7896843451397351062}
   - {fileID: 1578017546}
+  - {fileID: 1539452577}
   - {fileID: 720038526}

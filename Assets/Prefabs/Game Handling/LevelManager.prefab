@@ -1391,6 +1391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00a6abb35d78a748adb93fa183280f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DisplayMoney
+  MoneyUpdateDisplay: {fileID: 6132021796306209260, guid: 46172ab6ad5eab649bd63e4e0deb16df, type: 3}
 --- !u!1 &6443236158587418944
 GameObject:
   m_ObjectHideFlags: 0
