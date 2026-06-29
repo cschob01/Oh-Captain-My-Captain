@@ -13,8 +13,7 @@ public class HandlePlayerDeath : MonoBehaviour
     [Tooltip("Sets Velocity to Zero")]
     [SerializeField] MovingObject movingObject;
 
-    [SerializeField] private float WaitTime = 3f;
-    private float WaitProg;
+    [SerializeField] private float WaitTime = 1.5f;
 
     private void OnEnable()
     {
@@ -33,18 +32,12 @@ public class HandlePlayerDeath : MonoBehaviour
         onBoard.momentum = Ship.Instance.vel;
         animator.SetTrigger("Died");
         movingObject.ModifyVel(Vector2.zero);
-        StartCoroutine(WaitForReset());
+        StartCoroutine(FailLevel());
     }
 
-    private IEnumerator WaitForReset()
+    private IEnumerator FailLevel()
     {
-        while(WaitProg < WaitTime)
-        {
-            WaitProg += Time.deltaTime;
-            yield return null;
-            onBoard.momentum = Ship.Instance.vel;
-        }
-        SceneHandler.Instance.RestartLevel();
+        yield return new WaitForSeconds(WaitTime);
+        EventHandler.Instance.LevelFailed();
     }
-
 }

@@ -189,10 +189,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 983631290112112087}
-  - component: {fileID: 3323339624566479309}
   - component: {fileID: 7023478649403037901}
   - component: {fileID: 9101256716094307156}
-  - component: {fileID: 875963250676354430}
+  - component: {fileID: 1544450552921952553}
   m_Layer: 15
   m_Name: Tool Stand
   m_TagString: Untagged
@@ -217,20 +216,6 @@ Transform:
   - {fileID: 5462758803917815873}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3323339624566479309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5323347487964960359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6375da1b89e9fff42959d51e7f32a953, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GiveGun
-  Beat: ___ Bought
-  Gun: {fileID: 5365711144065134445, guid: b5eeb5dfec60db04480e35b032d31105, type: 3}
 --- !u!58 &7023478649403037901
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -286,7 +271,7 @@ MonoBehaviour:
   text: {fileID: 5076939120362494166, guid: 0b1649c13a7f0c64eaec4942cbe11b2d, type: 3}
   offset: {x: 0, y: 0, z: 0}
   OneTimeUse: 1
---- !u!114 &875963250676354430
+--- !u!114 &1544450552921952553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -295,11 +280,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5323347487964960359}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7155d281ced450446ac4dfeebd50bb8e, type: 3}
+  m_Script: {fileID: 11500000, guid: bb972795567abb746aaf6fa522d80d38, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ToggleChildrenAfterBeat
-  Activations:
-  - beat: 0
-    active: 1
-  - beat: ____ Bought
-    active: 0
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyObject
+  Beat: ____ Bought

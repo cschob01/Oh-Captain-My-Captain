@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 // Gun
 // This is the abstract class defining the interface for different gun types 
@@ -60,9 +61,16 @@ public class Gun : MonoBehaviour
 
     [SerializeField] private GameObject ProjectilePrefab;
 
+
     private void OnEnable()
     {
         StartCoroutine(FireCooldown());
+        EventHandler.Instance.OnPlayerDied += OnPlayerDeath;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.Instance.OnPlayerDied -= OnPlayerDeath;
     }
 
     private void Awake()
@@ -188,5 +196,10 @@ public class Gun : MonoBehaviour
 
         ReloadProg = 0f;
         ReloadCoroutine = null;
+    }
+
+    private void OnPlayerDeath()
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 }

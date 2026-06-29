@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageOnTouch
   damage: 10
+  forceMultiplier: 0.5
   Cooldown: 2.5
 --- !u!114 &-8649185987387907443
 MonoBehaviour:
@@ -262,6 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   health: 200
   onBoard: {fileID: -8649185987387907443}
+  animator: {fileID: 56553934174085452}
   knockback_vulnerability: 1
 --- !u!1 &1656623353977328917
 GameObject:
@@ -273,6 +275,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4222269742137721873}
   - component: {fileID: 5145913762206242632}
+  - component: {fileID: 56553934174085452}
   m_Layer: 0
   m_Name: Render
   m_TagString: Untagged
@@ -320,7 +323,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: -876546973899608171, guid: ed62c36e8c20666408482f4b761bb5f1, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -353,6 +356,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &56553934174085452
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656623353977328917}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d9d0a771fa477ae47a5dc33b8cacc224, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7914739119810694751
 GameObject:
   m_ObjectHideFlags: 0

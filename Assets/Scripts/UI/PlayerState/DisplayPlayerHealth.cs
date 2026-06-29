@@ -3,12 +3,18 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class DisplayPlayerHealth : MonoBehaviour
 {
     private Image Bar;
     private Image Border;
     private PlayerHealth Health;
+
+    private int prevHealth;
+
+    [SerializeField] private Animator WarningBackdrop;
+    [SerializeField] private Animator HealingBackdrop;
 
     private void Awake()
     {
@@ -34,7 +40,15 @@ public class DisplayPlayerHealth : MonoBehaviour
     {
         if (Health == null) return;
 
-        Bar.fillAmount = Mathf.Clamp01(Health.health / Health.MaxHealth);
+        float healthPercent = Mathf.Clamp01(Health.health / Health.MaxHealth);
+        if (prevHealth != Health.health)
+        {
+            DOTween.Kill(Bar);
+            Bar.DOFillAmount(healthPercent, .3f);
+        }
+
+        HealingBackdrop.SetBool("Active", Health.healing);
+        WarningBackdrop.SetBool("Active", !Health.healing && healthPercent < .4f);
     }
 
     private void ShowDisplay(bool show)
@@ -43,6 +57,12 @@ public class DisplayPlayerHealth : MonoBehaviour
         Border.enabled = show;
 
     }
+
+    private void OnDestroy()
+    {
+        DOTween.Kill(Bar);
+    }
+
     private void OnEnable()
     {
         EventHandler.Instance.OnHealthChange += SetHealth;

@@ -1,27 +1,42 @@
 using UnityEngine;
 
-public class GiveGun : MonoBehaviour
+public class GiveTool : MonoBehaviour
 {
-    [SerializeField] string Beat;
-    [SerializeField] Gun Gun;
-    [SerializeField] Gadget Gadget;
+    [System.Serializable]
+    public class Tool
+    {
+        public string beat;
+        public Gun gun;
+        public Gadget gadget;
+    }
+
+    [SerializeField] private Tool[] Tools;
 
     private void OnEnable()
     {
-        EventHandler.Instance.OnBeatChange += GivePlayerGun;
+        EventHandler.Instance.OnBeatChange += GivePlayerTool;
     }
 
     private void OnDisable()
     {
-        EventHandler.Instance.OnBeatChange -= GivePlayerGun;
+        EventHandler.Instance.OnBeatChange -= GivePlayerTool;
     }
 
-    private void GivePlayerGun(string Beat)
+    private void GivePlayerTool(string Beat)
     {
-        if (this.Beat == Beat)
+        if (CaptainHandler.Instance == null)
         {
-            if (Gun != null) CaptainHandler.Instance.AddGun(Gun);
-            if (Gadget != null) CaptainHandler.Instance.AddGadget(Gadget);
+            Debug.Log("No Captain to give a tool to.");
+            return;
+        }
+
+        for (int i = 0; i < Tools.Length; i++)
+        {
+            if (Tools[i].beat == Beat)
+            {
+                if (Tools[i].gun != null) CaptainHandler.Instance.AddGun(Tools[i].gun);
+                if (Tools[i].gadget != null) CaptainHandler.Instance.AddGadget(Tools[i].gadget);
+            }
         }
     }
 }

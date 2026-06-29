@@ -302,8 +302,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   health: 1000
   onBoard: {fileID: 1418219319419628021}
-  damage_cool_down: 0
-  cool_down_time: 3
+  MaxHealth: 100
+  HealSpeed: 5
+  HealCooldown: 5
+  camShaker: {fileID: 2426594031354913391}
+  animator: {fileID: 676469244707782632}
+  healing: 0
 --- !u!58 &2017271623390874407
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -578,7 +582,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: -876546973899608171, guid: ed62c36e8c20666408482f4b761bb5f1, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

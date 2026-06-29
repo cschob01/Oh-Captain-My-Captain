@@ -25,7 +25,6 @@ public class CaptainHandler : MonoBehaviour
     [SerializeField] public int Money { get; private set; }
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -37,7 +36,6 @@ public class CaptainHandler : MonoBehaviour
         Instance = this;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (GunEquipped())
@@ -67,6 +65,7 @@ public class CaptainHandler : MonoBehaviour
     private void SwitchGadget(bool move)
     {
         CurrGadget += move ? 1 : 0;
+        UpdateGadgets();
     }
 
     private void SwitchGun(int index)

@@ -49,6 +49,11 @@ public class CameraShaker : MonoBehaviour
 
     public void Shake()
     {
-        countdown = 0f;
+        countdown = Mathf.Min(0f, countdown);
+    }
+
+    public void Shake(float seconds)
+    {
+        countdown = Mathf.Min(HangTime - seconds, countdown);
     }
 }
