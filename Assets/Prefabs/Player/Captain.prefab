@@ -435,7 +435,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6511702108819458984}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: babdcd0e4b95f1d49970b83182bf26ab, type: 3}
   m_Name: 
@@ -519,11 +519,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc27dc396795de84db9ed098ccb1f801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CaptainHandler
-  StartingGun: {fileID: 0}
+  StartingGun: {fileID: 5365711144065134445, guid: 7e292f46644067c4ea6edcbcb00210c2, type: 3}
   StartingGadget: {fileID: 0}
   StartingMoney: 0
-  MaxGadgets: 1
-  MaxGuns: 2
+  MaxGadgets: 3
+  MaxGuns: 3
 --- !u!1 &7038076241529085269
 GameObject:
   m_ObjectHideFlags: 0

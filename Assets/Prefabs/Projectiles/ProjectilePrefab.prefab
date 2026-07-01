@@ -83,7 +83,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1923099245
-  m_SortingLayer: 8
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.6603774, g: 0.039456382, b: 0.039456382, a: 1}
@@ -113,6 +113,7 @@ MonoBehaviour:
     m_Bits: 12288
   OnBoard: {fileID: -3170256269384823344}
   BouncesLeft: 0
+  PiercesLeft: 0
 --- !u!96 &7162691740740842116
 TrailRenderer:
   serializedVersion: 3
@@ -159,7 +160,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 51473445
-  m_SortingLayer: 7
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Time: 0.05
   m_PreviewTimeScale: 1
@@ -311,4 +312,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OnBoard_Projectile
   momentum: {x: 0, y: 0}
-  bounce: 0
+  testing: 0

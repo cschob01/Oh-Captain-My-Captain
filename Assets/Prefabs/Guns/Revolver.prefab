@@ -79,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1700389523
-  m_SortingLayer: 9
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8c80150c3902fc64d80f06ce580b55f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -111,9 +111,10 @@ MonoBehaviour:
   FiringSpeed: 0.5
   Kickback: 0.01
   ProjectilesPerShot: 1
-  Ammo: {fileID: 11400000, guid: f66daf5fae840914ebb7cbd74348b344, type: 2}
+  Ammo: {fileID: 11400000, guid: 4601feb76d8e2754f97c8d383fb10855, type: 2}
   BulletSpeed: 25
   Bounces: 5
+  Pierce: 2
   MagReload: 0
   ReloadSpeed: 1
   Capacity: 6

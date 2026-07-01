@@ -16,13 +16,13 @@ public class CaptainHandler : MonoBehaviour
 
     [SerializeField] public Health Health { get; private set; }
     [SerializeField, Range(1, 3)] private int MaxGadgets;
-    [SerializeField] public List<Gadget> Gadgets { get; private set; } = new();
-    [SerializeField] public int CurrGadget { get; private set; }
+    [HideInInspector] public List<Gadget> Gadgets { get; private set; } = new();
+    [HideInInspector] public int CurrGadget { get; private set; }
 
     [SerializeField, Range(1, 3)] private int MaxGuns;
-    [SerializeField] public List<Gun> Guns { get; private set; } = new();
-    [SerializeField] public int CurrGun { get; private set; }
-    [SerializeField] public int Money { get; private set; }
+    [HideInInspector] public List<Gun> Guns { get; private set; } = new();
+    [HideInInspector] public int CurrGun { get; private set; }
+    [HideInInspector] public int Money { get; private set; }
 
 
     void Awake()
@@ -34,6 +34,9 @@ public class CaptainHandler : MonoBehaviour
         }
 
         Instance = this;
+
+        ResetPlayer();
+
     }
 
     void Update()

@@ -44,6 +44,8 @@ public class Gun : MonoBehaviour
 
     [SerializeField] private int Bounces = 0;
 
+    [SerializeField] private int Pierce = 0;
+
     [Header("Reload Settings")]
 
     [SerializeField] private bool MagReload;
@@ -132,7 +134,7 @@ public class Gun : MonoBehaviour
         Projectile projectile_script = obj.GetComponent<Projectile>();
         projectile_script.Ammo = Ammo;
         projectile_script.BouncesLeft = Bounces;
-        OnBoard proj_OnBoard = obj.GetComponent<OnBoard>();
+        projectile_script.PiercesLeft = Pierce;
 
         Vector2 dir = new Vector2(
             Mathf.Cos(angle * Mathf.Deg2Rad),

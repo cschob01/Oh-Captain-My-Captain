@@ -10,6 +10,8 @@ public class Projectile : MonoBehaviour
     public int BouncesLeft = 0;
     public int PiercesLeft = 0;
 
+    private bool done;
+
     private void DamageTarget(GameObject target)
     {
         target.GetComponent<Health>()?.TakeDamage(Ammo.damage, Vector2.zero);
@@ -41,19 +43,18 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+        if (PiercesLeft <= -1) return;
+
         DamageTarget(collider.gameObject);
         PushTarget(collider.gameObject);
 
         CaptainHandler.Instance.MakeMoney(10);
 
-
-        if (PiercesLeft == 0)
+        PiercesLeft--;
+        if (PiercesLeft <= -1)
         {
+            Debug.Log("Destroying Projectile");
             Destroy(gameObject);
-        }
-        else
-        {
-            PiercesLeft--;
         }
     }
 

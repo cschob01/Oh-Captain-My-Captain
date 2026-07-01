@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToggleChildrenAfterBeat
   Activations:
-  - beat: 0
+  - beat: 
     active: 1
   - beat: Door_ Opened
     active: 0

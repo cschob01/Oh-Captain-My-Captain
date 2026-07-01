@@ -4,7 +4,6 @@ using TMPro;
 public class DisplayTimer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI Count;
-    private Timer Timer;
 
     private void Awake()
     {
@@ -16,32 +15,10 @@ public class DisplayTimer : MonoBehaviour
         Count.enabled = show;
     }
 
-    private void OnEnable()
-    {
-        EventHandler.Instance.OnTimerChange += OnTimerChange;
-    }
-
-    private void OnDisable()
-    {
-        EventHandler.Instance.OnTimerChange -= OnTimerChange;
-    }
-
-    private void OnTimerChange(Timer timer)
-    {
-        Timer = timer;
-        if (Timer == null) ShowDisplay(false);
-        else {
-            UpdateDisplay();
-            ShowDisplay(true);
-        }
-    }
-
     private void UpdateDisplay()
     {
-        if (Timer != null)
-        {
-            Count.text = Timer.TimeProg.ToString("F2");
-        }
+        if (Timer.Instance != null) Count.text = Timer.Instance.TimeProg.ToString("F2");
+        else Count.text = "";
     }
 
     void Update()

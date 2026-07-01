@@ -71,45 +71,46 @@ public class Ship : MonoBehaviour
     //////////////////////////////////////////
     public void SetVel(Vector2 global_input)
     {
-        float temp_epsilon = .001f;
-        if (global_input.y < -temp_epsilon)
+        bool stateChanged = false;
+        if (global_input.y < 0 && !Mathf.Approximately(vel.y, -max_vel))
         {
             ThrustIndicators[0].SetBool("Thrusting", true);
-            Shaker.Shake();
+            stateChanged = true;
         }
         else {
             ThrustIndicators[0].SetBool("Thrusting", false);
         }
 
-        if (global_input.y > temp_epsilon)
+        if (global_input.y > 0 && !Mathf.Approximately(vel.y, max_vel))
         {
             ThrustIndicators[1].SetBool("Thrusting", true);
-            Shaker.Shake();
+            stateChanged = true;
         }
         else
         {
             ThrustIndicators[1].SetBool("Thrusting", false);
         }
 
-        if (global_input.x > temp_epsilon)
+        if (global_input.x > 0 && !Mathf.Approximately(vel.x, max_vel))
         {
             ThrustIndicators[2].SetBool("Thrusting", true);
-            Shaker.Shake();
+            stateChanged = true;
         }
         else
         {
             ThrustIndicators[2].SetBool("Thrusting", false);
         }
 
-        if (global_input.x < -temp_epsilon)
+        if (global_input.x < 0 && !Mathf.Approximately(vel.x, -max_vel))
         {
             ThrustIndicators[3].SetBool("Thrusting", true);
-            Shaker.Shake();
+            stateChanged = true;
         }
         else
         {
             ThrustIndicators[3].SetBool("Thrusting", false);
         }
+        if (stateChanged) Shaker.Shake();
 
         // Get the camera's rotation in radians. Rotating the ship's movement by
         // this will keep its movement relative to the player's camera
@@ -122,9 +123,17 @@ public class Ship : MonoBehaviour
 
         global_vel += global_input * vel_acc_rate * Time.fixedDeltaTime;
 
-        vel = Vector2.ClampMagnitude(vel, max_vel);
-        global_vel = Vector2.ClampMagnitude(global_vel, max_vel);
+        vel = ClampManhattanMagnitude(vel, max_vel);
+        global_vel = ClampManhattanMagnitude(global_vel, max_vel);
 
+    }
+
+    private Vector2 ClampManhattanMagnitude(Vector2 vector, float max)
+    {
+        return new Vector2(
+            Mathf.Clamp(vector.x, -max, max),
+            Mathf.Clamp(vector.y, -max, max)
+        );
     }
 
     //////////////////////////////////////////
@@ -134,7 +143,8 @@ public class Ship : MonoBehaviour
     {
         spin += dir * spin_acc_rate * Time.fixedDeltaTime;
         spin = Mathf.Clamp(spin, -max_spin, max_spin);
-        if (!Mathf.Approximately(0, dir)) Shaker.Shake();
+        if (dir > 0 && !Mathf.Approximately(spin, max_spin)) Shaker.Shake();
+        if (dir < 0 && !Mathf.Approximately(spin, -max_spin)) Shaker.Shake();
     }
 
     public void AddDenseMass(DenseMass dm)

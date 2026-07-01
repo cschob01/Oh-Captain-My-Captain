@@ -5,6 +5,8 @@ public class PropSpawner : Gadget
 {
     [SerializeField] private GameObject Prop;
     [SerializeField] private float ThrowForce;
+    [Tooltip("<0 signifies forever")]
+    [SerializeField] private float PropExistTime = -1;
     private OnBoard OnBoard;
     private MovingObject MovingObject;
 
@@ -12,7 +14,8 @@ public class PropSpawner : Gadget
     {
         OnBoard = GetComponentInParent<OnBoard>();
         MovingObject = GetComponentInParent<MovingObject>();
-        if (OnBoard == null) Debug.Log("ERROR: Parent of shock grenade does not contain OnBoard");
+        if (OnBoard == null) Debug.Log("ERROR: Parent of PropSpawner does not contain OnBoard");
+        if (OnBoard == null) Debug.Log("ERROR: Parent of PropSpawner does not contain movingObject");
         GetComponent<SpriteRenderer>().enabled = false;
     }
 
@@ -24,16 +27,18 @@ public class PropSpawner : Gadget
 
     protected override void Use()
     {
-        GameObject grenade = Instantiate(Prop, transform.position, transform.rotation);
-        OnBoard onBoard = grenade.GetComponent<OnBoard>();
-        if (onBoard == null) Debug.Log("ERROR: Grenade prefab does not contain onBoard");
-        else
+        GameObject projectile = Instantiate(Prop, transform.position, transform.rotation);
+        OnBoard onBoard = projectile.GetComponent<OnBoard>();
+        if (onBoard == null)
         {
-            onBoard.momentum = OnBoard.momentum + InputHandler.Instance.LookReadValue().normalized * ThrowForce;
-            if (MovingObject != null) onBoard.momentum += MovingObject.vel;
-            else Debug.Log("No movingObject parent detected");
+            Debug.Log("ERROR: Projectile prefab does not contain onBoard");
+            return;
         }
-        StartCoroutine(CooldownRoutine());
+
+        onBoard.momentum = OnBoard.momentum + InputHandler.Instance.LookReadValue().normalized * ThrowForce;
+        if (MovingObject != null) onBoard.momentum += MovingObject.vel;
+
+        if (PropExistTime > 0) Destroy(projectile, PropExistTime);
     }
 
     protected override void Disuse()

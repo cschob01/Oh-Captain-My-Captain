@@ -11,7 +11,7 @@ public class DisplayPlayerHealth : MonoBehaviour
     private Image Border;
     private PlayerHealth Health;
 
-    private int prevHealth;
+    private float prevHealth;
 
     [SerializeField] private Animator WarningBackdrop;
     [SerializeField] private Animator HealingBackdrop;
@@ -38,11 +38,16 @@ public class DisplayPlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        if (Health == null) return;
+        if (Health == null)
+        {
+            return;
+        }
 
         float healthPercent = Mathf.Clamp01(Health.health / Health.MaxHealth);
-        if (prevHealth != Health.health)
+        if (!Mathf.Approximately(prevHealth, Health.health))
         {
+            Debug.Log("Displayed percent change triggered");
+            prevHealth = Health.health;
             DOTween.Kill(Bar);
             Bar.DOFillAmount(healthPercent, .3f);
         }

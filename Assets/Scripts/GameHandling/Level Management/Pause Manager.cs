@@ -8,11 +8,20 @@ public class PauseManager : MonoBehaviour
     private void OnEnable()
     {
         EventHandler.Instance.OnLevelCompleted += DisablePauseMenu;
+        EventHandler.Instance.OnLevelFailed += DisablePauseMenu;
+        EventHandler.Instance.OnPlayerDied += DisablePauseMenu;
     }
 
     private void OnDisable()
     {
         EventHandler.Instance.OnLevelCompleted -= DisablePauseMenu;
+        EventHandler.Instance.OnLevelFailed -= DisablePauseMenu;
+        EventHandler.Instance.OnPlayerDied -= DisablePauseMenu;
+    }
+
+    private void DisablePauseMenu(int index)
+    {
+        DisablePauseMenu();
     }
 
     private void DisablePauseMenu()

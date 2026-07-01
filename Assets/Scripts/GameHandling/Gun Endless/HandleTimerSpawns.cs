@@ -22,6 +22,12 @@ public class HandleTimerSpawns : MonoBehaviour
     [SerializeField] private float Divider = 1.3f;
     [SerializeField] private float DivideTime = 30f;
 
+    [Header("Enemy diffuclty control")]
+    [Tooltip("Base health multipler increments every HealthIncreaseRate seconds")]
+    [SerializeField] private float HealthIncreaseRate = 60;
+    private float HealthMultiplier = 1f;
+
+
     private int EnemiesInPlay = 0;
     private float SpawnRate;
 
@@ -52,6 +58,7 @@ public class HandleTimerSpawns : MonoBehaviour
     private void FixedUpdate()
     {
         SpawnRate *= Mathf.Pow(1f / Divider, Time.fixedDeltaTime / DivideTime);
+        HealthMultiplier += Time.fixedDeltaTime / HealthIncreaseRate;
     }
 
     private void OnEnable()
@@ -106,7 +113,17 @@ public class HandleTimerSpawns : MonoBehaviour
 
         GameObject enemy = Instantiate(ChooseEnemy(), SpawnPoints[SpawnIndex].SpawnPoint.position, Quaternion.Euler(0f, 0f, 0f));
         OnBoard onBoard = enemy.GetComponent<OnBoard>();
+        Health health = enemy.GetComponentInChildren<Health>();
+
+        if (onBoard == null || health == null)
+        {
+            Debug.Log("Enemy prefab not set up correctly for HandleTimerSpawns");
+            return;
+        }
+
         onBoard.momentum = Ship.Instance.vel;
+        health.health *= HealthMultiplier;
+
         EnemiesInPlay++;
     }
 

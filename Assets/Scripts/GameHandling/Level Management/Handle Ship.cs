@@ -12,12 +12,15 @@ using System.Collections;
 public class HandleShip : MonoBehaviour
 {
     public bool[] actions;
-    public float spin_strength = 1;
-    public float vel_strength = 1;
+    public float spin_strength = .1f;
+    public float vel_strength = .5f;
+    [Tooltip("6 signify ship movements")]
+    public int empty_actions = 10;
+    [SerializeField] float TimePerAction = 5f;
 
     void Start()
     {
-        actions = new bool[6];
+        actions = new bool[6 + empty_actions];
 
         StartCoroutine(RandomActionRoutine());
     }
@@ -26,12 +29,14 @@ public class HandleShip : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(TimePerAction);
 
             //Every five seconds chose a new action to be actively doing
-            int index = Random.Range(0, actions.Length);
-            actions = new bool[actions.Length];
-            actions[index] = true;
+            for (int i = 0; i < actions.Length; i++)
+            {
+                actions[i] = false;
+            }
+            actions[Random.Range(0, actions.Length)] = true;
         }
     }
 

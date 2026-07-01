@@ -9,6 +9,8 @@ public class DisplayGadget : MonoBehaviour
     private Image Cooldown1;
     private Image Cooldown2;
 
+    private Gadget Gadget;
+
     private void Awake()
     {
         Icon = transform.Find("Icon").GetComponent<Image>();
@@ -31,15 +33,19 @@ public class DisplayGadget : MonoBehaviour
         if (CaptainHandler.Instance.Gadgets.Count == 0) ShowDisplay(false);
         else
         {
-            ShowDisplay(true);
+            if (Gadget != CaptainHandler.Instance.Gadgets[CaptainHandler.Instance.CurrGadget])
+            {
+                Gadget = CaptainHandler.Instance.Gadgets[CaptainHandler.Instance.CurrGadget];
+                Icon.sprite = Gadget.GetComponent<SpriteRenderer>().sprite;
+            }
 
-            Gadget gadget = CaptainHandler.Instance.Gadgets[CaptainHandler.Instance.CurrGadget];
-
-            if (gadget.MidCooldown) Cooldown2.fillAmount = 1f - gadget.CooldownProg / gadget.Cooldown;
+            if (Gadget.MidCooldown) Cooldown2.fillAmount = 1f - Gadget.CooldownProg / Gadget.Cooldown;
             else Cooldown2.fillAmount = 0f;
 
-            if (gadget.MidUse) Cooldown1.fillAmount = 1f - gadget.UseProg / gadget.UseTime;
+            if (Gadget.MidUse) Cooldown1.fillAmount = 1f - Gadget.UseProg / Gadget.UseTime;
             else Cooldown1.fillAmount = 0f;
+
+            ShowDisplay(true);
         }
     }
 }

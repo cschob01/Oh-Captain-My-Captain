@@ -6,4 +6,14 @@ public class SceneButton : MonoBehaviour
     {
         SceneHandler.Instance.LoadScene(SceneName);
     }
+
+    public void LoadHomePage()
+    {
+        SceneHandler.Instance.LoadScene("Home Page");
+    }
+
+    public void RestartScene()
+    {
+        SceneHandler.Instance.RestartLevel();
+    }
 }

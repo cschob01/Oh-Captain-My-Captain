@@ -11,13 +11,20 @@ public class Anchor : Gadget
     }
     protected override void Use()
     {
-        StartCoroutine(CooldownRoutine());
-        onBoard.momentum = Ship.Instance.vel;
+        
     }
 
     protected override void Disuse()
     {
         
+    }
+
+    private void Update()
+    {
+        if (MidUse)
+        {
+            if (onBoard != null) onBoard.momentum = Ship.Instance.vel;
+        }
     }
 
 

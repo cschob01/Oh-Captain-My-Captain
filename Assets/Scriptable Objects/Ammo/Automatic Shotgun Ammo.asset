@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5219c398993e1254d98507a58e0c0086, type: 3}
-  m_Name: LightAmmo
+  m_Name: Automatic Shotgun Ammo
   m_EditorClassIdentifier: Assembly-CSharp::Ammo
-  damage: 3
-  weight: 10.6
+  damage: 50
+  weight: 30

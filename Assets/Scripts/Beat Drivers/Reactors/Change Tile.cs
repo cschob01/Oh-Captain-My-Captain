@@ -74,7 +74,7 @@ public class ChangeTile : MonoBehaviour
             Vector3 worldPos = Tilemap.GetCellCenterWorld(pos);
             Bounds bounds = new Bounds(worldPos, Vector3.one);
 
-            AstarPath.active.UpdateGraphs(bounds);
+            if (AstarPath.active != null) AstarPath.active.UpdateGraphs(bounds);
 
             yield return new WaitForSeconds(Speed);
         }

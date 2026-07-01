@@ -19,6 +19,7 @@ public class PlayerHealth : Health
 
     private void Update()
     {
+
         if (CooldownProg < HealCooldown) {
             CooldownProg += Time.deltaTime;
             healing = false;
@@ -30,7 +31,11 @@ public class PlayerHealth : Health
             return;
         }
 
-        if (dead) return;
+        if (dead)
+        {
+            health = 0;
+            return;
+        }
 
         healing = true;
         health += HealSpeed * Time.deltaTime;
@@ -59,17 +64,12 @@ public class PlayerHealth : Health
         {
             if (ArmorActive) health = 10;
             else {
+                dead = true;
                 health = 0;
-                PlayerDies();
+                EventHandler.Instance.PlayerDied();
                 return;
             }
         }
         if (animator != null) animator.SetTrigger("Hurt");
-    }
-
-    private void PlayerDies()
-    {
-        dead = true;
-        EventHandler.Instance.PlayerDied();
     }
 }

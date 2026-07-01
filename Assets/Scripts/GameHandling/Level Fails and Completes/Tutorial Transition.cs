@@ -3,7 +3,7 @@ using System.Collections;
 using DG.Tweening;
 using System.Runtime.CompilerServices;
 
-public class LevelTransitionTutorial : MonoBehaviour
+public class TutorialTransition : MonoBehaviour
 {
     private void OnEnable()
     {
@@ -17,7 +17,7 @@ public class LevelTransitionTutorial : MonoBehaviour
         EventHandler.Instance.OnLevelFailed -= Fail;
     }
 
-    private void Complete()
+    private void Complete(int index)
     {
         SceneHandler.Instance.LoadNextLevel();
     }

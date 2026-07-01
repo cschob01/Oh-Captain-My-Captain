@@ -12,12 +12,11 @@ public class EventHandler : MonoBehaviour
     public event Action OnRoundEnd;
     public event Action<int> OnRoundChange;
 
-    public event Action<Timer> OnTimerChange;
     public event Action<PlayerHealth> OnHealthChange;
 
     /// Beats
     public event Action<string> OnBeatChange;
-    public event Action OnLevelCompleted;
+    public event Action<int> OnLevelCompleted;
     public event Action OnLevelFailed;
 
     public event Action<bool> OnGamePause;
@@ -35,11 +34,6 @@ public class EventHandler : MonoBehaviour
         Instance = this;
     }
 
-    public void TimerChange(Timer timer)
-    {
-        OnTimerChange?.Invoke(timer);
-    }
-
     public void LevelFailed()
     {
         OnLevelFailed?.Invoke();
@@ -55,9 +49,9 @@ public class EventHandler : MonoBehaviour
         OnHealthChange?.Invoke(Health);
     }
 
-    public void LevelCompleted()
+    public void LevelCompleted(int index)
     {
-        OnLevelCompleted?.Invoke();
+        OnLevelCompleted?.Invoke(index);
     }
 
     public void GamePause(bool pause)

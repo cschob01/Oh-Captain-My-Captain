@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1700389523
-  m_SortingLayer: 9
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5afae8d8aa0107e468896a866804dc67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -103,7 +103,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3982e1270495f0419de0c2fb3f453ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PropSpawner
-  Cooldown: 6
+  Cooldown: 10
   CooldownProg: 0
+  UseTime: 0
+  UseProg: 0
+  MidCooldown: 0
+  MidUse: 0
   Prop: {fileID: 361116788346805724, guid: d68b6ebae16658346bd4c2d7a5556fb6, type: 3}
-  ThrowForce: 1
+  ThrowForce: 0.5
+  PropExistTime: 20

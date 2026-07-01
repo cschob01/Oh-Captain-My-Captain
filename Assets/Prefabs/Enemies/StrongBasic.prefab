@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f8705b41df64b45b310afb8350d7e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  health: 200
+  health: 300
   onBoard: {fileID: -8649185987387907443}
   animator: {fileID: 56553934174085452}
   knockback_vulnerability: 1
