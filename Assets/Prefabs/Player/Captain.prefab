@@ -355,7 +355,6 @@ GameObject:
   - component: {fileID: 999012904826529106}
   - component: {fileID: 970004257232185974}
   - component: {fileID: 7705164070393923615}
-  - component: {fileID: 5406976678429950185}
   - component: {fileID: 6429341799052351813}
   - component: {fileID: 1418219319419628021}
   - component: {fileID: 4171110588639457092}
@@ -428,18 +427,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &5406976678429950185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6511702108819458984}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: babdcd0e4b95f1d49970b83182bf26ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ControlShip
 --- !u!58 &6429341799052351813
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -71,46 +71,18 @@ public class Ship : MonoBehaviour
     //////////////////////////////////////////
     public void SetVel(Vector2 global_input)
     {
-        bool stateChanged = false;
-        if (global_input.y < 0 && !Mathf.Approximately(vel.y, -max_vel))
-        {
-            ThrustIndicators[0].SetBool("Thrusting", true);
-            stateChanged = true;
-        }
-        else {
-            ThrustIndicators[0].SetBool("Thrusting", false);
-        }
+        bool up = global_input.y > 0 && vel.y < max_vel;
+        bool down = global_input.y < 0 && vel.y > -max_vel;
+        bool left = global_input.x < 0 && vel.x > -max_vel;
+        bool right = global_input.x > 0 && vel.x < max_vel;
 
-        if (global_input.y > 0 && !Mathf.Approximately(vel.y, max_vel))
-        {
-            ThrustIndicators[1].SetBool("Thrusting", true);
-            stateChanged = true;
-        }
-        else
-        {
-            ThrustIndicators[1].SetBool("Thrusting", false);
-        }
+        ThrustIndicators[1].SetBool("Thrusting", up);
+        ThrustIndicators[0].SetBool("Thrusting", down);
+        ThrustIndicators[3].SetBool("Thrusting", left);
+        ThrustIndicators[2].SetBool("Thrusting", right);
 
-        if (global_input.x > 0 && !Mathf.Approximately(vel.x, max_vel))
-        {
-            ThrustIndicators[2].SetBool("Thrusting", true);
-            stateChanged = true;
-        }
-        else
-        {
-            ThrustIndicators[2].SetBool("Thrusting", false);
-        }
-
-        if (global_input.x < 0 && !Mathf.Approximately(vel.x, -max_vel))
-        {
-            ThrustIndicators[3].SetBool("Thrusting", true);
-            stateChanged = true;
-        }
-        else
-        {
-            ThrustIndicators[3].SetBool("Thrusting", false);
-        }
-        if (stateChanged) Shaker.Shake();
+        if (down || up || right || left)
+            Shaker.Shake();
 
         // Get the camera's rotation in radians. Rotating the ship's movement by
         // this will keep its movement relative to the player's camera

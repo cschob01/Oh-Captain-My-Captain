@@ -34,9 +34,7 @@ public class CaptainHandler : MonoBehaviour
         }
 
         Instance = this;
-
         ResetPlayer();
-
     }
 
     void Update()

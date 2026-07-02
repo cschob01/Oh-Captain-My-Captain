@@ -23,7 +23,7 @@ public class MapTransition : MonoBehaviour
     [SerializeField] private TextMeshProUGUI Kills;
     [SerializeField] private TextMeshProUGUI Points;
     [SerializeField] private TextMeshProUGUI FavoriteGun;
-    [SerializeField] private TextMeshProUGUI PercentOfShotsHit;
+    [SerializeField] private TextMeshProUGUI FavoriteGadget;
 
     private bool Tracking = true;
     private bool Displaying = false;
@@ -33,13 +33,14 @@ public class MapTransition : MonoBehaviour
     private int PrevMoney;
     private int MoneyCounter;
     private Dictionary<string, float> WeaponList = new Dictionary<string, float>();
+    private Dictionary<string, float> GadgetList = new Dictionary<string, float>();
     private int KillCount;
 
     //Displaying
     private int DisplayPoints;
     private int DisplayKills;
     private float DisplayTimeSurvived;
-    private float DisplayPercentOfShotsHit;
+    private string DisplayFavoriteGadget;
     private string DisplayFavoriteGun;
 
     private void Awake()
@@ -61,6 +62,45 @@ public class MapTransition : MonoBehaviour
         DisplayPage(-1);
     }
 
+    private IEnumerator UpdateDisplayStats()
+    {
+        float TweenTime = 2f;
+
+        DOTween.To(() => DisplayTimeSurvived, x => DisplayTimeSurvived = x, time, TweenTime).SetUpdate(true).SetTarget(this);
+        yield return new WaitForSecondsRealtime(TweenTime);
+
+        DOTween.To(() => DisplayKills, x => DisplayKills = x, KillCount, TweenTime).SetUpdate(true).SetTarget(this);
+        yield return new WaitForSecondsRealtime(TweenTime);
+
+        DOTween.To(() => DisplayPoints, x => DisplayPoints = x, MoneyCounter, TweenTime).SetUpdate(true).SetTarget(this);
+        yield return new WaitForSecondsRealtime(TweenTime);
+
+        float stringTime = 1f;
+
+        yield return new WaitForSecondsRealtime(stringTime);
+        DisplayFavoriteGadget = GetMaxString(GadgetList).Replace("(Clone)", "");
+
+        yield return new WaitForSecondsRealtime(stringTime);
+        DisplayFavoriteGun = GetMaxString(WeaponList).Replace("(Clone)", "");
+    }
+
+    private string GetMaxString(Dictionary<string, float> dict)
+    {
+        float maxValue = float.MinValue;
+        string keyValue = "None";
+
+        foreach (var pair in WeaponList)
+        {
+            if (pair.Value > maxValue)
+            {
+                maxValue = pair.Value;
+                keyValue = pair.Key;
+            }
+        }
+
+        return keyValue;
+    }
+
     private void DisplayPage(int EndCondition) // -1 = fail, 0 = escape pods, 1 = ship control
     {
         Displaying = true;
@@ -73,29 +113,7 @@ public class MapTransition : MonoBehaviour
         else if (EndCondition == 0) this.EndCondition.text = "You Escaped";
         else if (EndCondition == 1) this.EndCondition.text = "You Regained Control";
 
-        float TweenTime = 2f;
-        DOTween.To(() => DisplayTimeSurvived, x => DisplayTimeSurvived = x, time, TweenTime).SetTarget(this).OnComplete(() =>
-        {
-            DOTween.To(() => DisplayKills, x => DisplayKills = x, KillCount, TweenTime).SetTarget(this).OnComplete(() =>
-            {
-                DOTween.To(() => DisplayPoints, x => DisplayPoints = x, MoneyCounter, TweenTime).SetTarget(this).OnComplete(() =>
-                {
-                    DOTween.To(() => DisplayPercentOfShotsHit, x => DisplayPercentOfShotsHit = x, MoneyCounter, TweenTime).SetTarget(this).OnComplete(() =>
-                    {
-                        float maxValue = float.MinValue;
-
-                        foreach (var pair in WeaponList)
-                        {
-                            if (pair.Value > maxValue)
-                            {
-                                maxValue = pair.Value;
-                                DisplayFavoriteGun = pair.Key;
-                            }
-                        }
-                    });
-                });
-            });
-        });
+        StartCoroutine(UpdateDisplayStats());
     }
 
     private void OnDestroy()
@@ -115,7 +133,7 @@ public class MapTransition : MonoBehaviour
         TimeSurvived.text = "Time Survived: " + DisplayTimeSurvived.ToString("F2");
         Kills.text = "Kills: " + DisplayKills;
         Points.text = "Score: " + DisplayPoints;
-        PercentOfShotsHit.text = "Percent of Shots Hit: " + (DisplayPercentOfShotsHit * 100).ToString("F0");
+        FavoriteGadget.text = "Favorite Gadget: " + DisplayFavoriteGadget;
         FavoriteGun.text = "Favorite Gun: " + DisplayFavoriteGun;
     }
 

@@ -18,11 +18,23 @@ public class HandleShip : MonoBehaviour
     public int empty_actions = 10;
     [SerializeField] float TimePerAction = 5f;
 
+    [SerializeField] string DeactivateOnBeat;
+
     void Start()
     {
         actions = new bool[6 + empty_actions];
 
         StartCoroutine(RandomActionRoutine());
+    }
+
+    private void OnEnable()
+    {
+        EventHandler.Instance.OnBeatChange += OnBeatChange;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.Instance.OnBeatChange -= OnBeatChange;
     }
 
     IEnumerator RandomActionRoutine()
@@ -58,5 +70,10 @@ public class HandleShip : MonoBehaviour
         dir = dir.normalized * vel_strength;
 
         Ship.Instance.SetVel(dir);
+    }
+
+    private void OnBeatChange(string beat)
+    {
+        if (beat == DeactivateOnBeat) Destroy(this);
     }
 }

@@ -17,7 +17,11 @@ public class DisplayTimer : MonoBehaviour
 
     private void UpdateDisplay()
     {
-        if (Timer.Instance != null) Count.text = Timer.Instance.TimeProg.ToString("F2");
+        if (Timer.Instance != null)
+        {
+            ShowDisplay(true);
+            Count.text = Timer.Instance.TimeProg.ToString("F2");
+        }
         else Count.text = "";
     }
 

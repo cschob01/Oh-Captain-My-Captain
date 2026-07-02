@@ -77,16 +77,18 @@ public class InputHandler : MonoBehaviour
         gunSwitch4 = GetAction("Switch To 4");
     }
 
-    public string GetInteractBinding()
+    public string GetBinding(InputAction action)
     {
-        if (interact == null)
+        if (action == null)
             return "";
 
-        return interact.GetBindingDisplayString(
+        return action.GetBindingDisplayString(
             InputBinding.DisplayStringOptions.DontUseShortDisplayNames,
             group: playerInput.currentControlScheme
         );
     }
+
+    public string GetInteractBinding() => GetBinding(interact); 
 
     private InputAction GetAction(string actionName)
     {

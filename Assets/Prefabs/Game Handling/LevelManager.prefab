@@ -60,6 +60,260 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55773412508232586}
   m_CullTransparentMesh: 1
+--- !u!1 &909752985453932765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1194319167616601036}
+  - component: {fileID: 732530591147975409}
+  - component: {fileID: 33730509893245521}
+  - component: {fileID: 968713279449733165}
+  m_Layer: 0
+  m_Name: GuidanceText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1194319167616601036
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909752985453932765}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1102605782098374984}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 120}
+  m_SizeDelta: {x: -600, y: 200}
+  m_Pivot: {x: 0.5, y: 0}
+--- !u!222 &732530591147975409
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909752985453932765}
+  m_CullTransparentMesh: 1
+--- !u!114 &33730509893245521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909752985453932765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: '(E): REFERNCE GUIDANCE'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 1024
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &968713279449733165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909752985453932765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8a362a61a95a744993c244490141068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DisplayControlGuidance
+  Text: {fileID: 33730509893245521}
+  WaitTime: 4
+  FadeTime: 0.5
+  ShowBasics: 0
+  OffRipText:
+    shown: 0
+    active: 0
+    miniPrompts:
+    - bindingReplacements:
+      - placeHolder: '@'
+        binding: {fileID: 5210252070067347490, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      - placeHolder: '#'
+        binding: {fileID: -1507454327171421106, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      - placeHolder: $
+        binding: {fileID: 3751533525087718654, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      - placeHolder: '%'
+        binding: {fileID: 7616088555886941436, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      prompt: '(@, #, $, %): Move'
+    - bindingReplacements:
+      - placeHolder: '@'
+        binding: {fileID: 720781203305320520, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      prompt: '(@): Interact'
+  FirstGunText:
+    shown: 0
+    active: 0
+    miniPrompts:
+    - bindingReplacements:
+      - placeHolder: '@'
+        binding: {fileID: 5394936520638065396, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      prompt: '(@): Shoot'
+    - bindingReplacements:
+      - placeHolder: '@'
+        binding: {fileID: -6859643181761232711, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      prompt: '(@): Reload'
+    - bindingReplacements:
+      - placeHolder: '@'
+        binding: {fileID: 1581783132520310673, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      prompt: '(@): Aim'
+  SecondGunText:
+    shown: 0
+    active: 0
+    miniPrompts:
+    - bindingReplacements:
+      - placeHolder: '@'
+        binding: {fileID: -4754921737613440719, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      prompt: '(@): Switch Gun'
+  ThirdGunText:
+    shown: 0
+    active: 0
+    miniPrompts:
+    - bindingReplacements:
+      - placeHolder: '@'
+        binding: {fileID: -7728134886652173212, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      - placeHolder: '#'
+        binding: {fileID: -2684917788897753750, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      prompt: '(@)/(#): Switch to Next/Previous Gun'
+    - bindingReplacements:
+      - placeHolder: '@'
+        binding: {fileID: 6656748808174177202, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      - placeHolder: '#'
+        binding: {fileID: -6970404272026072464, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      - placeHolder: $
+        binding: {fileID: -8104852881131010559, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      prompt: '(@, #, $): Switch Guns Using Index'
+  FirstGadgetText:
+    shown: 0
+    active: 0
+    miniPrompts:
+    - bindingReplacements:
+      - placeHolder: '@'
+        binding: {fileID: -2708527803382103187, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      prompt: '(@): (Hold) Use Gadget'
+    - bindingReplacements:
+      - placeHolder: '@'
+        binding: {fileID: 1581783132520310673, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      prompt: '(@): Aim Gadget'
+  SecondGadgetText:
+    shown: 0
+    active: 0
+    miniPrompts:
+    - bindingReplacements:
+      - placeHolder: '@'
+        binding: {fileID: -8545413037981227734, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      prompt: '(@): Switch Gadget'
+  ControlShip:
+    shown: 0
+    active: 0
+    miniPrompts:
+    - bindingReplacements:
+      - placeHolder: '@'
+        binding: {fileID: -1580297439381293587, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      - placeHolder: '#'
+        binding: {fileID: -4844397514785555615, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      prompt: '(@, #): Spin Ship'
+    - bindingReplacements:
+      - placeHolder: '@'
+        binding: {fileID: 4118466635777977954, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      - placeHolder: '#'
+        binding: {fileID: -5458264506106977333, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      - placeHolder: $
+        binding: {fileID: 1650760120944109178, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      - placeHolder: '%'
+        binding: {fileID: -1881588993966060509, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+      prompt: '(@, #, $, %): Thurst Ship'
+  ControlGadget: {fileID: -1796507794238387513, guid: 7b8efa01a60a0f4408ac99bc3d98ed29, type: 3}
 --- !u!1 &1008494428029867737
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,6 +347,7 @@ RectTransform:
   m_Children:
   - {fileID: 8148907857656684959}
   - {fileID: 6160137372118646604}
+  - {fileID: 1194319167616601036}
   m_Father: {fileID: 5625135077099785642}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -121,7 +376,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &5987708578050342816
 MonoBehaviour:
@@ -1895,8 +2150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f294b47bb4ffaa4486879f8ac07d353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ship
-  max_vel: 7
-  max_spin: 0.13
+  max_vel: 4
+  max_spin: 0.1
   vel_acc_rate: 1
   spin_acc_rate: 1
 --- !u!114 &119434454317149826
@@ -1916,6 +2171,7 @@ MonoBehaviour:
   vel_strength: 0.5
   empty_actions: 10
   TimePerAction: 5
+  DeactivateOnBeat: Ship Controller Bought
 --- !u!114 &4206852848793849048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1982,6 +2238,9 @@ MonoBehaviour:
   - beat: Grounder Bought
     gun: {fileID: 0}
     gadget: {fileID: 2274928955199762251, guid: 5d3df1bc498dde24a94a61f4ab17d43b, type: 3}
+  - beat: Ship Controller Bought
+    gun: {fileID: 0}
+    gadget: {fileID: -1796507794238387513, guid: 7b8efa01a60a0f4408ac99bc3d98ed29, type: 3}
 --- !u!1 &7385119858106679228
 GameObject:
   m_ObjectHideFlags: 0
