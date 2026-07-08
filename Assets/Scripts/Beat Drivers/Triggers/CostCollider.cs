@@ -12,6 +12,10 @@ public class CostCollider : MonoBehaviour
     [SerializeField] private Vector3 offset = Vector3.zero;
     [SerializeField] private bool OneTimeUse;
 
+    [Header("Ending Game")]
+    [SerializeField] private bool LevelComplete;
+    [SerializeField] private int CompleteIndex;
+
     private bool Active;
     private TextMeshProUGUI label;
     private string Prompt;
@@ -80,6 +84,10 @@ public class CostCollider : MonoBehaviour
                 for (int i = 0; i < Beats.Length; i++)
                 {
                     EventHandler.Instance.BeatChange(Beats[i]);
+                }
+                if (LevelComplete)
+                {
+                    EventHandler.Instance.LevelCompleted(CompleteIndex);
                 }
                 if (OneTimeUse) Destroy(this);
             }

@@ -71,10 +71,11 @@ public class Ship : MonoBehaviour
     //////////////////////////////////////////
     public void SetVel(Vector2 global_input)
     {
-        bool up = global_input.y > 0 && vel.y < max_vel;
-        bool down = global_input.y < 0 && vel.y > -max_vel;
-        bool left = global_input.x < 0 && vel.x > -max_vel;
-        bool right = global_input.x > 0 && vel.x < max_vel;
+        float epsilon = .1f;
+        bool up = global_input.y > 0 && global_vel.y < max_vel - epsilon;
+        bool down = global_input.y < 0 && global_vel.y > -max_vel + epsilon;
+        bool left = global_input.x < 0 && global_vel.x > -max_vel + epsilon;
+        bool right = global_input.x > 0 && global_vel.x < max_vel - epsilon;
 
         ThrustIndicators[1].SetBool("Thrusting", up);
         ThrustIndicators[0].SetBool("Thrusting", down);
@@ -142,5 +143,10 @@ public class Ship : MonoBehaviour
 
         global_angle += spin * Time.fixedDeltaTime; // Update angle in global space
         global_pos += global_vel * Time.fixedDeltaTime; // Update position in global space
+
+        ThrustIndicators[1].SetBool("Thrusting", false);
+        ThrustIndicators[0].SetBool("Thrusting", false);
+        ThrustIndicators[3].SetBool("Thrusting", false);
+        ThrustIndicators[2].SetBool("Thrusting", false);
     }
 }

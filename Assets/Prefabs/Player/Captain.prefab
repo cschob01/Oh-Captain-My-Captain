@@ -300,10 +300,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96773108a48ff74999fe27bc29910e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  health: 1000
+  health: 500
   onBoard: {fileID: 1418219319419628021}
-  MaxHealth: 100
-  HealSpeed: 5
+  MaxHealth: 500
+  HealSpeed: 25
   HealCooldown: 5
   camShaker: {fileID: 2426594031354913391}
   animator: {fileID: 676469244707782632}

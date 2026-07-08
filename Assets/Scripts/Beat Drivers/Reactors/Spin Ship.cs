@@ -46,7 +46,7 @@ public class SpinShip : MonoBehaviour
             spin.prog += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
 
-            Ship.Instance.SetSpin(spin.dir? 1 : -1 * spin.speed);
+            Ship.Instance.SetSpin(spin.dir? 1 * spin.speed : -1 * spin.speed);
         }
         spin.prog = 0f;
     }

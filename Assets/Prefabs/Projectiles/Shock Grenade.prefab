@@ -85,7 +85,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 51473445
-  m_SortingLayer: 7
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Time: 0.05
   m_PreviewTimeScale: 1
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShockGrenade
   Radius: 3
   Force: 3
-  time: 6
+  time: 3
 --- !u!1 &4066706987104781883
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,7 +352,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1700389523
-  m_SortingLayer: 9
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 4689240166119133576, guid: b6e94c325f5912c48b894ed250a6b3c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

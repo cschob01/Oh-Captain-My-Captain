@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c7e20c870bf45142be764926ba9cd11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCPathing
-  acc: 0.04
+  acc: 0.05
   max_vel: 2
   render: {fileID: 1656623353977328917}
   target: {fileID: 0}
@@ -164,8 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96096b40e9f2aea4687b18abf414d479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageOnTouch
-  damage: 10
-  forceMultiplier: 0.5
+  damage: 50
+  forceMultiplier: 0.25
   Cooldown: 2.5
 --- !u!114 &1737008275309652486
 MonoBehaviour:

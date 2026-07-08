@@ -26,7 +26,7 @@ public class MapTransition : MonoBehaviour
     [SerializeField] private TextMeshProUGUI FavoriteGadget;
 
     private bool Tracking = true;
-    private bool Displaying = false;
+    //private bool Displaying = false;
 
     //Tracking
     private float time;
@@ -52,12 +52,14 @@ public class MapTransition : MonoBehaviour
 
     private void OnLevelComplete(int index)
     {
+        Time.timeScale = 0f;
         Page.sprite = CompletePage;
         DisplayPage(index);
     }
 
     private void OnLevelFailed()
     {
+        Time.timeScale = 0f;
         Page.sprite = FailPage;
         DisplayPage(-1);
     }
@@ -84,12 +86,20 @@ public class MapTransition : MonoBehaviour
         DisplayFavoriteGun = GetMaxString(WeaponList).Replace("(Clone)", "");
     }
 
+    private IEnumerator UpdateDisplayRoutine()
+    {
+        while(true){
+            yield return null;
+            UpdateDisplay();
+        }
+    }
+
     private string GetMaxString(Dictionary<string, float> dict)
     {
         float maxValue = float.MinValue;
         string keyValue = "None";
 
-        foreach (var pair in WeaponList)
+        foreach (var pair in dict)
         {
             if (pair.Value > maxValue)
             {
@@ -103,7 +113,7 @@ public class MapTransition : MonoBehaviour
 
     private void DisplayPage(int EndCondition) // -1 = fail, 0 = escape pods, 1 = ship control
     {
-        Displaying = true;
+        //Displaying = true;
 
         Holder.DOFade(1f, 2f).SetUpdate(true);
         Holder.blocksRaycasts = true; 
@@ -111,9 +121,10 @@ public class MapTransition : MonoBehaviour
 
         if (EndCondition == -1) this.EndCondition.text = "You Died";
         else if (EndCondition == 0) this.EndCondition.text = "You Escaped";
-        else if (EndCondition == 1) this.EndCondition.text = "You Regained Control";
+        else if (EndCondition == 1) this.EndCondition.text = "You Made it Home";
 
         StartCoroutine(UpdateDisplayStats());
+        StartCoroutine(UpdateDisplayRoutine());
     }
 
     private void OnDestroy()
@@ -124,7 +135,6 @@ public class MapTransition : MonoBehaviour
     private void Update()
     {
         if (Tracking) Track();
-        if (Displaying) UpdateDisplay();
 
     }
 
@@ -145,6 +155,14 @@ public class MapTransition : MonoBehaviour
             string CurrGunName = CaptainHandler.Instance.Guns[CaptainHandler.Instance.CurrGun].name;
             WeaponList.TryAdd(CurrGunName, 0);
             WeaponList[CurrGunName] += Time.deltaTime;
+        }
+
+        //Tracking Favorite Gadget
+        if (CaptainHandler.Instance.Gadgets.Count != 0)
+        {
+            string CurrGadgetName = CaptainHandler.Instance.Gadgets[CaptainHandler.Instance.CurrGadget].name;
+            GadgetList.TryAdd(CurrGadgetName, 0);
+            GadgetList[CurrGadgetName] += Time.deltaTime;
         }
 
         //Update Points
