@@ -125,6 +125,16 @@ public class MapTransition : MonoBehaviour
 
         StartCoroutine(UpdateDisplayStats());
         StartCoroutine(UpdateDisplayRoutine());
+
+        // Save stats
+        if (GameHandler.Instance != null)
+        {
+            SaveData SaveData = GameHandler.Instance.GetSaveData();
+            if (EndCondition == 0) SaveData.aegisData.escapePod = true;
+            if (EndCondition == 1) SaveData.aegisData.shipControl = true;
+            if (time > SaveData.aegisData.time) SaveData.aegisData.time = time;
+            GameHandler.Instance.SetSaveData(SaveData);
+        }
     }
 
     private void OnDestroy()
@@ -175,7 +185,6 @@ public class MapTransition : MonoBehaviour
 
         //Track TIme
         if (Timer.Instance != null) time = Timer.Instance.TimeProg;
-        else time = 0;
     }
 
     private void OnEnable()

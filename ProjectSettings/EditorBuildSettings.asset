@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorials/Tutorial4.unity
     guid: 2878ecd5eba04d7428efec5eafd5a565
   - enabled: 1
+    path: Assets/Scenes/Tutorials/Tutorial5.unity
+    guid: 2253e61975539a443be1c744ef0621c3
+  - enabled: 1
     path: Assets/Scenes/Aegis108.unity
     guid: 867062423a653aa4093017f3defef325
   m_configObjects:

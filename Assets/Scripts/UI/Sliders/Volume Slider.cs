@@ -12,8 +12,11 @@ public class VolumeSlider : MonoBehaviour
     {
         slider = GetComponent<Slider>();
         slider.onValueChanged.AddListener(SetVolume);
+    }
 
-        SetVolume(slider.value);
+    private void Update()
+    {
+        slider.value = GetVolume();
     }
 
     private void SetVolume(float value)
@@ -22,5 +25,15 @@ public class VolumeSlider : MonoBehaviour
             group,
             Mathf.Log10(Mathf.Max(value, 0.0001f)) * 20f
         );
+    }
+
+    public float GetVolume()
+    {
+        if (mixer != null)
+        {
+            mixer.GetFloat(group, out float dB);
+            return Mathf.Pow(10f, dB / 20f);
+        }
+        return .5f;
     }
 }

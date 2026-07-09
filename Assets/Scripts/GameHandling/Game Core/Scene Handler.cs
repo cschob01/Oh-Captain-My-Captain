@@ -56,9 +56,26 @@ public class SceneHandler : MonoBehaviour
     {
         if (isLoading) return;
 
-        int index = SceneManager.GetActiveScene().buildIndex + 1;
-        if (index >= SceneManager.sceneCountInBuildSettings) LoadScene("Home Page");
-        else StartCoroutine(LoadRoutine(GetNameByIndex(index), SpecialLoadingScreen));
+        int currIndex = SceneManager.GetActiveScene().buildIndex;
+        int TutorialIndex = currIndex - 2;
+
+        // Indexes 0 and 1 are Bootstrap and HomePage
+        if (TutorialIndex >= 0)
+        {
+            SaveData SaveData = GameHandler.Instance.GetSaveData();
+            if (TutorialIndex < SaveData.tutorialData.Length)
+            {
+                SaveData.tutorialData[TutorialIndex].complete = true;
+            }
+            GameHandler.Instance.SetSaveData(SaveData);
+
+            if (TutorialIndex + 1 < SaveData.tutorialData.Length && currIndex + 1 < SceneManager.sceneCountInBuildSettings) // We have another Tutorial ahead
+            {
+                StartCoroutine(LoadRoutine(GetNameByIndex(currIndex + 1), SpecialLoadingScreen));
+                return;
+            }
+        }
+        LoadScene("Home Page");
     }
 
     public void RestartLevel()
@@ -138,5 +155,11 @@ public class SceneHandler : MonoBehaviour
         }
 
         Debug.Log("Scene Init Complete");
+    }
+
+    public void ExitGame()
+    {
+        if (GameHandler.Instance != null) GameHandler.Instance.Save();
+        Application.Quit();
     }
 }

@@ -2175,6 +2175,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b74efc9746822184c93a73062f5cbff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameHandler
+  TutorialCount: 5
+  autoSaveInterval: 10
+  mixer: {fileID: 24100000, guid: cda8a63582769ed4f990866c6de82bf3, type: 2}
 --- !u!1 &3731414664553732980
 GameObject:
   m_ObjectHideFlags: 0
@@ -3732,8 +3735,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8655187504190403195}
   m_HandleRect: {fileID: 6058787498492907338}
   m_Direction: 2
-  m_Value: 1.000004
-  m_Size: 0.91415167
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3946,7 +3949,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2771888355934628304}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.35550344
+  m_Size: 0.3944505
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

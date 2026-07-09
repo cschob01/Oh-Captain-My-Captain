@@ -16,4 +16,9 @@ public class SceneButton : MonoBehaviour
     {
         SceneHandler.Instance.RestartLevel();
     }
+
+    public void ExitGame()
+    {
+        SceneHandler.Instance.ExitGame();
+    }
 }
