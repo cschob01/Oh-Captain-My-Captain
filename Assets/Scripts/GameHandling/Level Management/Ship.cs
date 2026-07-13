@@ -39,6 +39,7 @@ public class Ship : MonoBehaviour
     private CameraShaker Shaker;
     private AudioSource AudioSource;
     private bool[] Shaking = new bool[2];
+    private float prog_check;
 
     // Initialization
     protected virtual void Awake()
@@ -162,10 +163,15 @@ public class Ship : MonoBehaviour
         global_angle += spin * Time.fixedDeltaTime; // Update angle in global space
         global_pos += global_vel * Time.fixedDeltaTime; // Update position in global space
 
-        ThrustIndicators[1].SetBool("Thrusting", false);
-        ThrustIndicators[0].SetBool("Thrusting", false);
-        ThrustIndicators[3].SetBool("Thrusting", false);
-        ThrustIndicators[2].SetBool("Thrusting", false);
+        if (prog_check > 2f)
+        {
+            prog_check = 0;
+            ThrustIndicators[1].SetBool("Thrusting", false);
+            ThrustIndicators[0].SetBool("Thrusting", false);
+            ThrustIndicators[3].SetBool("Thrusting", false);
+            ThrustIndicators[2].SetBool("Thrusting", false);
+        }
+        else prog_check += Time.fixedDeltaTime;
 
         if (AudioSource != null)
         {
