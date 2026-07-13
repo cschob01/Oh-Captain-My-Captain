@@ -9,6 +9,10 @@ public class OnBoard_Projectile : OnBoard
     private Projectile Projectile;
     private float BounceFactor = 1f;
 
+    private bool inContact;
+    private float stuckDetector;
+    private float escapedDetector;
+
     private void Awake()
     {
         Projectile = GetComponent<Projectile>();
@@ -19,18 +23,50 @@ public class OnBoard_Projectile : OnBoard
     {
         TransformOnBoard();
         TransformDenseMass();
+        EnsureExistence();
+    }
+
+    private void EnsureExistence()
+    {
+        if (inContact)
+        {
+            stuckDetector += Time.fixedDeltaTime;
+            escapedDetector = 0;
+        }
+        else
+        {
+            escapedDetector += Time.fixedDeltaTime;
+            stuckDetector = 0;
+        }
+
+        if (stuckDetector > 1f)
+        {
+            Debug.Log("Projectile dectected as stuck in wall. Destroying...");
+            Destroy(gameObject);
+        }
+        if (escapedDetector > 10f)
+        {
+            Debug.Log("Projectile detected as having escaped map. Destroying...");
+            Destroy(gameObject);
+        }
     }
 
     void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Walls"))
         {
+            inContact = true;
             CollideWall(collision);
         }
         else
         {
             CollideOther(collision);
         }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Walls")) inContact = false;
     }
 
     void CollideOther(Collision2D collision)

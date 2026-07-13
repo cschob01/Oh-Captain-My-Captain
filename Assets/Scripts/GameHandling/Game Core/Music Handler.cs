@@ -37,6 +37,8 @@ public class MusicHandler : MonoBehaviour
 
     private void Update()
     {
+
+
         if (ClipEnded())
         {
             TimeProg += Time.unscaledDeltaTime;
@@ -66,6 +68,7 @@ public class MusicHandler : MonoBehaviour
     private void PlaySong(AudioClip song)
     {
         EndTranstion();
+        ActiveSong = song;
         Transition = StartCoroutine(SongTransition(song));
     }
 

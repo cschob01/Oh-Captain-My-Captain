@@ -8,12 +8,16 @@ public class ManageBinding : MonoBehaviour
     private Button button;
     [SerializeField] private InputActionReference action;
     private TMP_Text buttonText;
+    [SerializeField] private bool allowRebinding = true;
 
     private void Awake()
     {
         button = transform.Find("Button1").GetComponent<Button>();
         buttonText = button.GetComponentInChildren<TMP_Text>();
+    }
 
+    private void Start()
+    {
         Refresh();
     }
 
@@ -39,6 +43,8 @@ public class ManageBinding : MonoBehaviour
 
     public void StartRebind()
     {
+        if (!allowRebinding) return;
+
         buttonText.text = "Press a key...";
 
         action.action.Disable();

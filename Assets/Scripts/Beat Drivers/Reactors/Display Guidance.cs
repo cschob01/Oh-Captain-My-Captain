@@ -9,6 +9,7 @@ public class DisplayGuidance : MonoBehaviour
     private CanvasGroup cg;
     private TextMeshProUGUI Text;
     private Coroutine coroutine;
+    private AudioSource AudioSource;
 
     [System.Serializable]
     public class Guidance
@@ -24,7 +25,9 @@ public class DisplayGuidance : MonoBehaviour
     void Awake()
     {
         cg = GetComponent<CanvasGroup>();
+        cg.alpha = 0f;
         Text = transform.Find("Text").GetComponent<TextMeshProUGUI>();
+        AudioSource = GetComponent<AudioSource>();
     }
     private void OnDestroy()
     {
@@ -52,6 +55,7 @@ public class DisplayGuidance : MonoBehaviour
                     coroutine = null;
                 }
 
+                AudioSource?.Play();
                 Text.text = Guides[i].text;
                 cg.DOKill();
                 cg.DOFade(1f, 0.25f);

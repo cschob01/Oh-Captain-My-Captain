@@ -14,13 +14,15 @@ public class VolumeSlider : MonoBehaviour
         slider.onValueChanged.AddListener(SetVolume);
     }
 
-    private void Update()
+    private void Start()
     {
-        slider.value = GetVolume();
+        slider.SetValueWithoutNotify(GetVolume());
+        slider.onValueChanged.AddListener(SetVolume);
     }
 
     private void SetVolume(float value)
     {
+        Debug.Log("Setting valume of " + group + " to " + value);
         mixer.SetFloat(
             group,
             Mathf.Log10(Mathf.Max(value, 0.0001f)) * 20f

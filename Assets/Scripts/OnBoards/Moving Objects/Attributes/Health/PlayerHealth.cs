@@ -19,6 +19,11 @@ public class PlayerHealth : Health
 
     private AudioSource Hurt;
 
+    private void Awake()
+    {
+        Hurt = GetComponent<AudioSource>();
+    }
+
     private void Update()
     {
 

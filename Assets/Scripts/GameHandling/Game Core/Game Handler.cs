@@ -49,7 +49,10 @@ public class GameHandler : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
 
+    private void Start()
+    {
         Load();
     }
 
@@ -82,6 +85,7 @@ public class GameHandler : MonoBehaviour
         {
             // First launch
             SaveData = new SaveData();
+            Debug.Log("No Existing data detected. Saving blank slate");
         }
         else
         {
@@ -89,6 +93,8 @@ public class GameHandler : MonoBehaviour
         }
         EnsureSaveDataFormat();
         ApplySaveData();
+
+        PrintSaveData("After Loading: ");
     }
 
     private void ApplySaveData()
@@ -108,10 +114,17 @@ public class GameHandler : MonoBehaviour
 
     private void SetVolume(string group, float value)
     {
-        mixer.SetFloat(
+        if (!mixer.SetFloat(
             group,
             Mathf.Log10(Mathf.Max(value, 0.0001f)) * 20f
-        );
+        ))
+        {
+            Debug.Log("Failed to set " + group);
+        }
+        else
+        {
+            Debug.Log("Set " + group + " to " + value + " (" + Mathf.Log10(Mathf.Max(value, 0.0001f)) * 20f + "db)");
+        }
     }
 
     public void Save()
@@ -119,10 +132,10 @@ public class GameHandler : MonoBehaviour
         EnsureSaveDataFormat();
 
         string json = JsonUtility.ToJson(SaveData, true);
-
-        Debug.Log("Saving Player Data:\n" + json);
         PlayerPrefs.SetString(SAVE_KEY, json);
         PlayerPrefs.Save();
+
+        PrintSaveData("Saved: ");
     }
 
     public void EnsureSaveDataFormat()
@@ -168,6 +181,12 @@ public class GameHandler : MonoBehaviour
     {
         UpdateData();
         Save();
+    }
+
+    private void PrintSaveData(string key = "")
+    {
+        string json = JsonUtility.ToJson(SaveData, true);
+        Debug.Log(key + "Current Save Data:\n" + json);
     }
 }
 
