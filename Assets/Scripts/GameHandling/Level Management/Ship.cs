@@ -37,6 +37,8 @@ public class Ship : MonoBehaviour
     private Animator[] ThrustIndicators;
     private Transform CameraHolder;
     private CameraShaker Shaker;
+    private AudioSource AudioSource;
+    private bool[] Shaking = new bool[2];
 
     // Initialization
     protected virtual void Awake()
@@ -64,6 +66,7 @@ public class Ship : MonoBehaviour
 
         CameraHolder = Camera.main.transform.parent;
         Shaker = CameraHolder.GetComponent<CameraShaker>();
+        AudioSource = GetComponent<AudioSource>();
     }
 
     //////////////////////////////////////////
@@ -83,11 +86,18 @@ public class Ship : MonoBehaviour
         ThrustIndicators[2].SetBool("Thrusting", right);
 
         if (down || up || right || left)
+        {
+            Shaking[0] = true;
             Shaker.Shake();
+        }
+        else
+        {
+            Shaking[0] = false;
+        }
 
-        // Get the camera's rotation in radians. Rotating the ship's movement by
-        // this will keep its movement relative to the player's camera
-        float camRot = CameraHolder.eulerAngles.z * Mathf.Deg2Rad;
+            // Get the camera's rotation in radians. Rotating the ship's movement by
+            // this will keep its movement relative to the player's camera
+            float camRot = CameraHolder.eulerAngles.z * Mathf.Deg2Rad;
         Vector2 local_input = new Vector2(
             global_input.x * Mathf.Cos(camRot) - global_input.y * Mathf.Sin(camRot),
             global_input.x * Mathf.Sin(camRot) + global_input.y * Mathf.Cos(camRot)
@@ -116,8 +126,16 @@ public class Ship : MonoBehaviour
     {
         spin += dir * spin_acc_rate * Time.fixedDeltaTime;
         spin = Mathf.Clamp(spin, -max_spin, max_spin);
-        if (dir > 0 && !Mathf.Approximately(spin, max_spin)) Shaker.Shake();
-        if (dir < 0 && !Mathf.Approximately(spin, -max_spin)) Shaker.Shake();
+        if ((dir > 0 && !Mathf.Approximately(spin, max_spin))
+           || (dir < 0 && !Mathf.Approximately(spin, -max_spin)))
+        {
+            Shaker.Shake();
+            Shaking[1] = true;
+        }
+        else
+        {
+            Shaking[1] = false;
+        }
     }
 
     public void AddDenseMass(DenseMass dm)
@@ -148,5 +166,17 @@ public class Ship : MonoBehaviour
         ThrustIndicators[0].SetBool("Thrusting", false);
         ThrustIndicators[3].SetBool("Thrusting", false);
         ThrustIndicators[2].SetBool("Thrusting", false);
+
+        if (AudioSource != null)
+        {
+            if (!AudioSource.isPlaying && (Shaking[0] || Shaking[1]))
+            {
+                AudioSource.Play();
+            }
+            if (AudioSource.isPlaying && !Shaking[0] && !Shaking[1])
+            {
+                AudioSource.Stop();
+            }
+        }
     }
 }

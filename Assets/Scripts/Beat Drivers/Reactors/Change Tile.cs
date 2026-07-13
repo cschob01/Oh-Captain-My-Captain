@@ -21,12 +21,16 @@ public class ChangeTile : MonoBehaviour
 
     private Tilemap Tilemap;
 
+    private AudioSource DoorAudio;
+
     private void Awake()
     {
         GameObject obj = GameObject.Find(TilemapName);
         if (obj == null) Debug.Log("ERROR: Object of name \"" + TilemapName + "\" not found");
         Tilemap = obj.GetComponent<Tilemap>();
         if (Tilemap == null) Debug.Log("ERROR: Object of name \"" + TilemapName + "\" does not have Tilemap component");
+
+        DoorAudio = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -66,6 +70,8 @@ public class ChangeTile : MonoBehaviour
 
     private IEnumerator TileChangeSequence(int i)
     {
+        DoorAudio?.Play();
+
         Vector3Int pos = GetTilePos();
         for (int j = 1; j < Tiles[i].tiles.Length; j++)
         {

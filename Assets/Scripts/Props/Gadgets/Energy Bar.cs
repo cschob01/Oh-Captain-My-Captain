@@ -11,6 +11,8 @@ public class EnergyBar : Gadget
     private float MaxVel;
     private float Acc;
 
+    private AudioSource Crunch;
+
     private void Awake()
     {
         MovingObject = GetComponentInParent<MovingObject>();
@@ -22,9 +24,13 @@ public class EnergyBar : Gadget
             MaxVel = MovingObject.max_vel;
             Acc = MovingObject.acc;
         }
+
+        Crunch = GetComponent<AudioSource>();
     }
     protected override void Use()
     {
+        Crunch?.Play();
+
         MovingObject.max_vel = MaxVel * MaxVelBoost;
         MovingObject.acc = Acc * AccBoost;
     }

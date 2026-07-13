@@ -12,8 +12,16 @@ public class Projectile : MonoBehaviour
 
     private bool done;
 
+    private AudioSource hitIndicator;
+
+    private void Awake()
+    {
+        hitIndicator = GetComponent<AudioSource>();
+    }
+
     private void DamageTarget(GameObject target)
     {
+        hitIndicator?.Play();
         target.GetComponent<Health>()?.TakeDamage(Ammo.damage, Vector2.zero);
     }
 

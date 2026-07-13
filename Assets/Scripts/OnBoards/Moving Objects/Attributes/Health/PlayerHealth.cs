@@ -17,6 +17,8 @@ public class PlayerHealth : Health
 
     private bool dead;
 
+    private AudioSource Hurt;
+
     private void Update()
     {
 
@@ -51,6 +53,8 @@ public class PlayerHealth : Health
     public override void TakeDamage(int damage, Vector2 dir)
     {
         if (dead) return;
+
+        Hurt?.Play();
 
         bool ArmorActive = health / MaxHealth > .8f; // Shouldn't die in one hit if above 80%
 

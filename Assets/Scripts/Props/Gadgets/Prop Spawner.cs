@@ -10,6 +10,8 @@ public class PropSpawner : Gadget
     private OnBoard OnBoard;
     private MovingObject MovingObject;
 
+    private AudioSource Throw;
+
     private void Awake()
     {
         OnBoard = GetComponentInParent<OnBoard>();
@@ -17,6 +19,8 @@ public class PropSpawner : Gadget
         if (OnBoard == null) Debug.Log("ERROR: Parent of PropSpawner does not contain OnBoard");
         if (OnBoard == null) Debug.Log("ERROR: Parent of PropSpawner does not contain movingObject");
         GetComponent<SpriteRenderer>().enabled = false;
+
+        Throw = GetComponentInParent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -27,6 +31,8 @@ public class PropSpawner : Gadget
 
     protected override void Use()
     {
+        Throw?.Play();
+
         GameObject projectile = Instantiate(Prop, transform.position, transform.rotation);
         OnBoard onBoard = projectile.GetComponent<OnBoard>();
         if (onBoard == null)

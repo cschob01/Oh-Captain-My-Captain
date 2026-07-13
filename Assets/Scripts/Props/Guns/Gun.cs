@@ -63,6 +63,11 @@ public class Gun : MonoBehaviour
 
     [SerializeField] private GameObject ProjectilePrefab;
 
+    [SerializeField] private AudioClip ShootClip;
+    [SerializeField] private AudioClip ReloadClip;
+
+    private AudioSource AudioSource;
+
 
     private void OnEnable()
     {
@@ -81,6 +86,7 @@ public class Gun : MonoBehaviour
         Muzzle = transform.Find("Muzzle");
         Chamber = Capacity;
         onBoard = transform.parent.GetComponent<OnBoard_MovingObject>(); // Parent must have this script
+        AudioSource = GetComponent<AudioSource>();
     }
 
     public void Fire()
@@ -125,6 +131,12 @@ public class Gun : MonoBehaviour
 
     private void FireProjectile()
     {
+        if (AudioSource != null)
+        {
+            AudioSource.clip = ShootClip;
+            AudioSource.Play();
+        }
+
         float angle = transform.eulerAngles.z + Random.Range(-AngleRandomness, AngleRandomness);
         GameObject obj =
            Instantiate(ProjectilePrefab,
@@ -171,7 +183,6 @@ public class Gun : MonoBehaviour
 
     IEnumerator ReloadTimer()
     {
-
         // Reload mag once
         if (MagReload)
         {
@@ -179,6 +190,12 @@ public class Gun : MonoBehaviour
             {
                 yield return null;
                 ReloadProg += Time.deltaTime;
+            }
+
+            if (AudioSource != null)
+            {
+                AudioSource.clip = ReloadClip;
+                AudioSource.Play();
             }
             Chamber = Capacity;
         }
@@ -190,6 +207,12 @@ public class Gun : MonoBehaviour
                 {
                     yield return null;
                     ReloadProg += Time.deltaTime;
+                }
+
+                if (AudioSource != null)
+                {
+                    AudioSource.clip = ReloadClip;
+                    AudioSource.Play();
                 }
                 Chamber++;
                 ReloadProg = 0f;

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5219c398993e1254d98507a58e0c0086, type: 3}
   m_Name: m1919 Ammo
   m_EditorClassIdentifier: Assembly-CSharp::Ammo
-  damage: 25
-  weight: 8
+  damage: 45
+  weight: 16

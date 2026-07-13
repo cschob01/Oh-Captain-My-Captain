@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,11 +7,22 @@ using UnityEngine.InputSystem;
 public class ControlPlayer : MovingObject
 {
     private Transform CameraHolder;
+    private AudioSource AudioSource;
+    [SerializeField] private float MaxVolume; 
 
     protected override void Awake()
     {
         object_rb = GetComponent<Rigidbody2D>();
         CameraHolder = Camera.main.transform.parent;
+        AudioSource = GetComponent<AudioSource>();
+    }
+
+    private void Update()
+    {
+        if (AudioSource != null)
+        {
+            AudioSource.volume = (vel.magnitude / max_vel) * MaxVolume;
+        }
     }
 
     // SetVel called once per FixedUpdate

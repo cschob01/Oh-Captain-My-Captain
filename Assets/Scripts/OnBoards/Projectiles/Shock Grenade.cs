@@ -8,6 +8,7 @@ public class ShockGrenade : MonoBehaviour
     [SerializeField] private float time;
 
     private Animator animator;
+    private AudioSource Explosion;
 
     private void Awake()
     {
@@ -15,6 +16,8 @@ public class ShockGrenade : MonoBehaviour
         animator = GetComponent<Animator>();
         if (animator == null) Debug.Log("ERROR: No animator set up for ShockGrenade");
         StartCoroutine(ExplodeAfter());
+
+        Explosion = GetComponent<AudioSource>();
     }
 
     private IEnumerator ExplodeAfter()
@@ -26,6 +29,8 @@ public class ShockGrenade : MonoBehaviour
             animator.speed = 1 + (timeLeft / time) * 6;
             yield return null;
         }
+
+        Explosion?.Play();
         EventHandler.Instance.Explosion(transform.position, Force, Radius);
         animator.speed = 1f;
         animator.SetTrigger("Explode");
