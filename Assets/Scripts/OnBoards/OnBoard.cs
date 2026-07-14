@@ -1,6 +1,4 @@
-using TMPro;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 // OnBoard is the foundation for on-ship physics
 // Rather than moving the spaceship, objects inside that are given this script

@@ -1,9 +1,6 @@
 using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.ShaderGraph;
 using UnityEngine;
-using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
 public class MusicHandler : MonoBehaviour
