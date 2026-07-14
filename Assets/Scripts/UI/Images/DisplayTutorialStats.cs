@@ -33,7 +33,7 @@ public class DisplayTutorialStats : MonoBehaviour
             {
                 Buttons[i].button.interactable = false;
                 Buttons[i].image.sprite = lockedButton;
-                Buttons[i].image.color = new Color(0.2f, 0.2f, 0.2f, 1f);
+                Buttons[i].image.color = new Color(0.5f, 0.5f, 0.5f, 1f);
             }
 
             prevComplete = SaveData.tutorialData[i].complete;

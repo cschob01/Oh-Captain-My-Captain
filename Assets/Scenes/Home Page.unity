@@ -190,7 +190,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 25530410}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -1130,7 +1130,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 268879392}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -2009,7 +2009,7 @@ MonoBehaviour:
   EscapePodStar: {fileID: 906678020}
   ShipControlStar: {fileID: 751740200}
   TimeText: {fileID: 458641457}
-  OffColor: {r: 0.8742138, g: 0.86596644, b: 0.86596644, a: 1}
+  OffColor: {r: 0.5031446, g: 0.4952335, b: 0.4952335, a: 1}
   OnColor: {r: 1, g: 0.94946396, b: 0, a: 1}
 --- !u!1001 &546985334
 PrefabInstance:
@@ -3561,7 +3561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1203968630763616772, guid: f23750f0ac81783478e7323ed2a18f02, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000030517578
+      value: 0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 1366432885538259887, guid: f23750f0ac81783478e7323ed2a18f02, type: 3}
       propertyPath: m_AnchorMax.x
